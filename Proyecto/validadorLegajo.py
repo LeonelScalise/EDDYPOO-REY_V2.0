@@ -2,7 +2,7 @@ from claseInstitucion import *
 import os
 from armado_menu import *
 from string import *
-from validadorInputs import *
+from validador import *
 
 clear = lambda : os.system('cls')
 
