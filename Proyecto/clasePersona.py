@@ -9,7 +9,6 @@ from validadorNota import *
 import matplotlib.pyplot as plt
 from validadorInputs import *
 from validadorLegajo import *
-from validadorDNI import *
 from validadorSexo import *
 from validadorFecha import * 
 from validador import *
