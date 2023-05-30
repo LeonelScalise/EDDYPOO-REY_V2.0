@@ -6,7 +6,6 @@ import random
 from popularInstitucion import ITBA
 from claseCarrera import *
 import matplotlib.pyplot as plt
-from validadorSexo import *
 from validador import *
 
 
