@@ -7,7 +7,6 @@ from popularInstitucion import ITBA
 from claseCarrera import *
 from validadorNota import *
 import matplotlib.pyplot as plt
-from validadorInputs import *
 from validadorLegajo import *
 from validadorSexo import *
 from validador import *
