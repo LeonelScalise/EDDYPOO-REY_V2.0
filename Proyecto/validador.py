@@ -1,4 +1,5 @@
 import re
+from popularInstitucion import *
 
 def validadorAula():
     inicio = True
@@ -17,7 +18,6 @@ def validadorAula():
     
     return aula
 
-from popularInstitucion import *
 
 def validadorDNI():
     inicio = True
