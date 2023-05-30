@@ -1,4 +1,4 @@
-from validadorInputs import *
+from validador import *
 import os
 clear = lambda : os.system('cls') #para limpiar la terminal cada vez que se elija una opcion y aparezca lo nuevo
 
