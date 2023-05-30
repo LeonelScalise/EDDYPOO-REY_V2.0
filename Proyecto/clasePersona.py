@@ -11,7 +11,6 @@ from validadorInputs import *
 from validadorLegajo import *
 from validadorSexo import *
 from validador import *
-from validadorHorario import *
 
 
 
