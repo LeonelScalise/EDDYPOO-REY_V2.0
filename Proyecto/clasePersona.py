@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 from validadorInputs import *
 from validadorLegajo import *
 from validadorSexo import *
-from validadorFecha import * 
 from validador import *
 from validadorHorario import *
 
