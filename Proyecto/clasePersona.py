@@ -12,7 +12,7 @@ from validadorLegajo import *
 from validadorDNI import *
 from validadorSexo import *
 from validadorFecha import * 
-from validadorAula import *
+from validador import *
 from validadorDia import *
 from validadorHorario import *
 
