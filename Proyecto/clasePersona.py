@@ -5,7 +5,6 @@ from claseTramite import *
 import random
 from popularInstitucion import ITBA
 from claseCarrera import *
-from validadorNota import *
 import matplotlib.pyplot as plt
 from validadorSexo import *
 from validador import *
