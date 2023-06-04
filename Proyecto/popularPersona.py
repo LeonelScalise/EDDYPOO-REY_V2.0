@@ -1,4 +1,4 @@
-from claseInstitucion import *
+from claseRegistroITBA import *
 from clasePersona import Alumno, Profesor, Administrativo
 from popularInstitucion import ITBA
 from popularCarrera import *

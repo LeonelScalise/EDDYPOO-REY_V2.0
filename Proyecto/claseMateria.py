@@ -1,6 +1,6 @@
 from claseComision import *
 from popularInstitucion import ITBA
-from validador import *
+from validadores import *
 class Materia:
     def __init__(self, codigo_materia, nombre, creditos, sede, departamento, correlativas=[]):
         self.codigo_materia = codigo_materia

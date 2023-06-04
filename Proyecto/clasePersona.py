@@ -183,7 +183,6 @@ class Alumno(Persona):
       print(f"{self.nombre_apellido} no tiene notas cargadas por el momento")
 
     
-    
 
 class Profesor(Persona):
   def menu_registro_profesor(institucion:RegistroITBA):
@@ -376,7 +375,8 @@ class Administrativo(Persona):
               flag1 = False
 
       if len(materias_disponibles) == 0:
-        print("Todas las materias tienen un profesor asignado")
+        print("No hay materias disponibles para asignar al profesor")
+        flag2 = False
       else:
         print(f"{contador + 1}. Volver")
         opcion_elegida1 = validador(contador + 1)
@@ -387,29 +387,30 @@ class Administrativo(Persona):
           clear()
           flag2 = False
 
-    print(f"Comisiones de {materia_elegida.nombre} a las que se lo puede asignar\n")
-    contador = 0
-    flag2 = True
-
-    while flag2:
-      for comision in materia_elegida.comisiones:
-        if comision.profesor == None:
-          contador += 1
-          print(f"{contador}. Comision {comision.codigo_comision} de {materia_elegida.nombre}")
-
-      print(f"{contador + 1}. Volver")
-
-      opcion_elegida2 = validador(contador + 1)
-      if opcion_elegida2 == contador + 1:
-          flag2 = False
-      else:
-        comision_elegida = materia_elegida.comisiones[opcion_elegida2 - 1]
-        comision_elegida.profesor = profesor_elegido
-        if profesor_elegido not in materia_elegida.profesores:
-          materia_elegida.profesores.append(profesor_elegido)
-        flag2 = False
+        print(f"Comisiones de {materia_elegida.nombre} a las que se lo puede asignar\n")
     
-      print(f"Se ha asignado correctamente a {profesor_elegido.nombre_apellido} a la comision {comision_elegida.codigo_comision} de {materia_elegida.nombre}")
+        contador = 0
+        flag2 = True    
+
+        while flag2:
+          for comision in materia_elegida.comisiones:
+            if comision.profesor == None:
+              contador += 1
+              print(f"{contador}. Comision {comision.codigo_comision} de {materia_elegida.nombre}")
+
+          print(f"{contador + 1}. Volver")
+
+          opcion_elegida2 = validador(contador + 1)
+          if opcion_elegida2 == contador + 1:
+              flag2 = False
+          else:
+            comision_elegida = materia_elegida.comisiones[opcion_elegida2 - 1]
+            comision_elegida.profesor = profesor_elegido
+            if profesor_elegido not in materia_elegida.profesores:
+              materia_elegida.profesores.append(profesor_elegido)
+            flag2 = False
+        
+          print(f"Se ha asignado correctamente a {profesor_elegido.nombre_apellido} a la comision {comision_elegida.codigo_comision} de {materia_elegida.nombre}")
 
   def desasignarProfesor(self):
     materias_de_profesor = []

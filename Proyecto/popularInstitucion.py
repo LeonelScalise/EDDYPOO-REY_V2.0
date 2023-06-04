@@ -1,3 +1,3 @@
-from claseInstitucion import *
+from claseRegistroITBA import *
 
-ITBA = Institucion("ITBA","Pepe")
+ITBA = RegistroITBA("ITBA","Pepe")

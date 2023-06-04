@@ -1,6 +1,6 @@
 import re
 import os
-from claseInstitucion import *
+from claseRegistroITBA import *
 from armado_menu import *
 from string import *
 from popularInstitucion import *
