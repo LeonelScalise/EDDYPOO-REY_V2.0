@@ -3,11 +3,15 @@ from armado_menu import *
 import os
 from clasePersona import *
 from popularPersona import *
-from validador import *
+from validadores import *
+
 clear = lambda : os.system('cls')
 
 
 def menu_principal():
+    ITBA.cargarDatos() #Preguntar como arreglar lo de la Primera vez
+    print(ITBA.tramites_abiertos)
+    print(ITBA.administrativos[0].tramites_abiertos_admin)
     inicio = True
     while inicio:
         print("\n\t\tMENU PRINCIPAL\n\n1. Administrativo\n2. Alumno\n3. Profesor\n4. Salir")
@@ -21,7 +25,8 @@ def menu_principal():
             armado_menu("MENU PROFESOR", ["Iniciar Sesion", "Salir"], [lambda : Profesor.menu_registro_profesor(ITBA)])
         elif arranque == 4:
             inicio = False
-                       
+    
+    ITBA.guardarDatos()                   
     
     print('Saliste del menu')
 

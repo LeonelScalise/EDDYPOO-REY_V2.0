@@ -1,12 +1,12 @@
 from armado_menu import *
-from claseInstitucion import *
+from claseRegistroITBA import *
 import os
 from claseTramite import *
 import random
 from popularInstitucion import ITBA
 from claseCarrera import *
 import matplotlib.pyplot as plt
-from validador import *
+from validadores import *
 
 
 
@@ -21,7 +21,7 @@ class Persona:
 
 class Alumno(Persona):
 
-  def menu_registro_alumno(institucion:Institucion):
+  def menu_registro_alumno(institucion:RegistroITBA):
     x = "o"
     legajo_ingresado = validadorLegajoAlumnos(institucion)
     clear()
@@ -43,8 +43,8 @@ class Alumno(Persona):
     self.creditos_aprobados = 0
     self.historial_academico = {}
     self.estado_alumno = estado_alumno
-    self.tramites_abiertos = []
-    self.tramites_resueltos = []
+    self.tramites_abiertos_alu = []
+    self.tramites_resueltos_alu = []
 
  
   def __str__(self):
@@ -64,10 +64,10 @@ class Alumno(Persona):
       i_random = random.randint(0, cantidad_administrativos - 1)
       administrativo_asignado=institucion.administrativos[i_random]
       nuevo_tramite = Tramite(id_tramite, self, administrativo_asignado,tipo_de_tramite,"24/4/2023")
-      administrativo_asignado.tramites_abiertos.append(nuevo_tramite)
+      administrativo_asignado.tramites_abiertos_admin.append(nuevo_tramite)
       institucion.tramites_abiertos.append(nuevo_tramite)
       institucion.historial_tramites.append(nuevo_tramite)
-      self.tramites_abiertos.append(nuevo_tramite)
+      self.tramites_abiertos_alu.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
 
   def inscribirMateria(self, materia):
@@ -186,7 +186,7 @@ class Alumno(Persona):
     
 
 class Profesor(Persona):
-  def menu_registro_profesor(institucion:Institucion):
+  def menu_registro_profesor(institucion:RegistroITBA):
     x = "o"
     legajo_ingresado = validadorLegajoAdminyProf(institucion, 'profesor')
     clear()
@@ -203,8 +203,8 @@ class Profesor(Persona):
     self.fecha_ingreso = fecha_ingreso
     self.fecha_baja = fecha_baja
     self.comisiones_a_cargo = []
-    self.tramites_abiertos = []
-    self.tramites_resueltos = []
+    self.tramites_abiertos_profe = []
+    self.tramites_resueltos_profe = []
   def iniciarTramite(self, institucion):
     id_tramite = 0
 
@@ -218,10 +218,10 @@ class Profesor(Persona):
       i_random = random.randint(0, cantidad_administrativos - 1)
       administrativo_asignado=institucion.administrativos[i_random]
       nuevo_tramite = Tramite(id_tramite, None, administrativo_asignado,tipo_de_tramite,"24/4/2023", self)
-      administrativo_asignado.tramites_abiertos.append(nuevo_tramite)
+      administrativo_asignado.tramites_abiertos_admin.append(nuevo_tramite)
       institucion.tramites_abiertos.append(nuevo_tramite)
       institucion.historial_tramites.append(nuevo_tramite) 
-      self.tramites_abiertos.append(nuevo_tramite)
+      self.tramites_abiertos_profe.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
   
   def subirNotaFinal(self, materia):
@@ -313,7 +313,7 @@ class Profesor(Persona):
 
 class Administrativo(Persona):
 
-  def altaAdministrativo(institucion:Institucion):
+  def altaAdministrativo(institucion:RegistroITBA):
         
         nombre_apellido = input("Ingrese el nombre y apellido del administrativo: ")
         dni = validadorDNI()
@@ -332,7 +332,7 @@ class Administrativo(Persona):
         clear()
         print(f'El administrativo {nombre_apellido} se ha creado correctamente')
 
-  def menu_registro_administrativo(institucion:Institucion):
+  def menu_registro_administrativo(institucion:RegistroITBA):
     x = "o"
     legajo_ingresado = validadorLegajoAdminyProf(institucion)
     clear()
@@ -347,8 +347,8 @@ class Administrativo(Persona):
     self.legajo = legajo
     self.fecha_ingreso = fecha_ingreso
     self.fecha_baja = fecha_baja #Dejamos esto por si queres hacerlo fede, si te da fiaca, borralo tranqui o dejalo para implementarlo post-entrega
-    self.tramites_abiertos = []
-    self.tramites_resueltos = []
+    self.tramites_abiertos_admin = []
+    self.tramites_resueltos_admin = []
 
   
   def asignarProfesor(self):
@@ -500,40 +500,45 @@ class Administrativo(Persona):
 
   
   def tacharTramite(self, id_tram):
-      for tramite in self.tramites_abiertos:
+      for tramite in self.tramites_abiertos_admin:
         if tramite.id == id_tram:
           #Si esta, tengo que eliminarlo de las listas que estan en Institución y la propia lista del administrativo
           ITBA.tramites_abiertos.remove(tramite)
-          self.tramites_abiertos.remove(tramite)
+          self.tramites_abiertos_admin.remove(tramite)
         #Una vez que lo saco de las listas, tengo que cambiar el estado del tramite a "Resuelto"
           tramite.estado="Resuelto"
         #Una vez que le cambio el estado, tengo que poner el tramite en la lista de tramites resueltos de la Institución y el administrativo
           ITBA.tramites_resueltos.append(tramite)
-          self.tramites_resueltos.append(tramite)
+          self.tramites_resueltos_admin.append(tramite)
           if tramite.alumno != None:
-            tramite.alumno.tramites_abiertos.remove(tramite)
-            tramite.alumno.tramites_resueltos.append(tramite)
+            tramite.alumno.tramites_abiertos_alu.remove(tramite)
+            tramite.alumno.tramites_resueltos_alu.append(tramite)
           elif tramite.profesor != None:
-            tramite.profesor.tramites_abiertos.remove(tramite)
-            tramite.profesor.tramites_resueltos.append(tramite)
+            tramite.profesor.tramites_abiertos_profe.remove(tramite)
+            tramite.profesor.tramites_resueltos_profe.append(tramite)
 
           return print("El tramite {} ha sido resuelto".format(tramite.tipo_de_tramite))
       clear()
     
-
   def resolverTramite(self, tramite): #menu para resolver trámite
-    print(f'¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del alumno {tramite.alumno.nombre_apellido}?')
-    print("1. Resolver tramite\n2. Volver")
-    rta = validador(2)
-    if rta == 1:
-      self.tacharTramite(tramite.id)
-      
+    if tramite.alumno != None:
+      print(f'¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del alumno {tramite.alumno.nombre_apellido}?')
+      print("1. Resolver tramite\n2. Volver")
+      rta = validador(2)
+      if rta == 1:
+        self.tacharTramite(tramite.id)
+    else:
+      print(f'¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del profesor {tramite.profesor.nombre_apellido}?')
+      print("1. Resolver tramite\n2. Volver")
+      rta = validador(2)
+      if rta == 1:
+        self.tacharTramite(tramite.id)    
     
   def displayTramiteActivo(self):
     resolviendo_tramites = True
     while resolviendo_tramites:
       cont_opciones = 1
-      for tramite in self.tramites_abiertos: #por cada tramite activo que tiene el administrativo
+      for tramite in self.tramites_abiertos_admin: #por cada tramite activo que tiene el administrativo
             print(f'{cont_opciones}. {tramite.tipo_de_tramite}') # lo muestra como opcion
             cont_opciones += 1
       print(f'{cont_opciones}. Volver')
@@ -541,7 +546,7 @@ class Administrativo(Persona):
       if opcion_elegida == cont_opciones:
          resolviendo_tramites = False
       else:
-         self.resolverTramite(self.tramites_abiertos[opcion_elegida-1])
+         self.resolverTramite(self.tramites_abiertos_admin[opcion_elegida-1])
 
 
 
@@ -639,11 +644,11 @@ class Administrativo(Persona):
     else:
       for administrativo in ITBA.administrativos:
         if legajo_admin == administrativo.legajo:
-          if len(administrativo.tramites_abiertos) != 0:
+          if len(administrativo.tramites_abiertos_admin) != 0:
             if len(ITBA.administrativos)-1 == 0:
               print(f"Usted no puede dar de baja al Administrativo {administrativo.nombre_apellido} ya que no hay otro Administrativo que pueda hacer sus tramites pendientes")
             else:
-              for tramite in administrativo.tramites_abiertos:
+              for tramite in administrativo.tramites_abiertos_admin:
                 almacen_tramites.append(tramite)
               ITBA.administrativos.remove(administrativo)
               ITBA.legajos_administrativos.remove(legajo_admin)
@@ -652,7 +657,7 @@ class Administrativo(Persona):
               administrativo_asignado=ITBA.administrativos[i_random]
               for tramite in almacen_tramites:
                 tramite.administrativo=administrativo_asignado
-                administrativo_asignado.tramites_abiertos.append(tramite)
+                administrativo_asignado.tramites_abiertos_admin.append(tramite)
               print(f"El Administrativo ha sido de baja correctamente, sus tramites fueron asignados al Administrativo {administrativo_asignado.nombre_apellido}")
           else:
             ITBA.administrativos.remove(administrativo)
