@@ -418,6 +418,8 @@ class Administrativo(Persona):
     c1 = 0
     c2 = 0
     legajo_profesor = validadorLegajoAdminyProf(ITBA,"profesor")
+    if legajo_profesor not in ITBA.legajos_profesores:
+      return 
     for profesor in ITBA.profesores:
       if profesor.legajo == legajo_profesor:
         profesor_elegido = profesor
