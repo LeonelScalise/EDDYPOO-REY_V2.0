@@ -45,7 +45,7 @@ class RegistroITBA():
 
     def guardarDatos(self):
       
-       with open("DatosITBA","wb")as df:
+       with open("DatosITBA","wb") as df:
            pickle.dump(self.carreras,df)
            pickle.dump(self.alumnos,df)
            pickle.dump(self.profesores,df)
@@ -59,7 +59,7 @@ class RegistroITBA():
 
 
     def cargarDatos(self):
-       with open ("DatosITBA","rb")as lf:
+       with open ("DatosITBA","rb") as lf:
            carreras=pickle.load(lf)
            alumnos=pickle.load(lf)
            profesores=pickle.load(lf)

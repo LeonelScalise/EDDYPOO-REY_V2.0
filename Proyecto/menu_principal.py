@@ -8,9 +8,11 @@ clear = lambda : os.system('cls')
 
 
 def menu_principal():
-    # ITBA.cargarDatos() #Preguntar como arreglar lo de la Primera vez
-    # print(ITBA.tramites_abiertos)
-    # print(ITBA.administrativos[0].tramites_abiertos_admin)
+    try:
+        ITBA.cargarDatos()
+    except FileNotFoundError:
+        print("No se encontraron datos previos")
+
     inicio = True
     while inicio:
         print("\n\t\tMENU PRINCIPAL\n\n1. Administrativo\n2. Alumno\n3. Profesor\n4. Salir")
@@ -25,7 +27,7 @@ def menu_principal():
         elif arranque == 4:
             inicio = False
     
-    # ITBA.guardarDatos()                   
+    ITBA.guardarDatos()                   
     
     print('Saliste del menu')
 
