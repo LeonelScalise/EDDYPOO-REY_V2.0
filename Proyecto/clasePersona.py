@@ -330,6 +330,7 @@ class Administrativo(Persona):
         institucion.legajos_administrativos.append(legajo)
         clear()
         print(f'El administrativo {nombre_apellido} se ha creado correctamente')
+        print(f"El legajo del administrativo es: {legajo}")
 
   def menu_registro_administrativo(institucion:RegistroITBA):
     x = "o"
@@ -584,6 +585,7 @@ class Administrativo(Persona):
         clear()
         flag = False
         print("Se ha anotado al alumno a la carrera: ", alumno_nuevo.carrera.nombre)
+        print(f"El legajo del alumno es: {self.legajo}")
         ITBA.agregar_alumno(alumno_nuevo)
         alumno_nuevo.carrera.alumnos_actuales.append(alumno_nuevo)
 
@@ -602,6 +604,7 @@ class Administrativo(Persona):
 
     profesor_nuevo = Profesor(nombre, dni, sexo, fecha_nacimiento, legajo, fecha_ingreso)
     ITBA.agregar_profesor(profesor_nuevo)
+    print(f"El legajo del profesor es: {self.legajo}")
 
   def bajaAlumno(self):
     legajo_alumno = validadorLegajoAlumnos(ITBA)
