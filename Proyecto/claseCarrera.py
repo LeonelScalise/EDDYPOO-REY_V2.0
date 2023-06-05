@@ -8,7 +8,6 @@ class Carrera():
         self.materias = []
         self.alumnos_actuales = []
         self.alumnos_recibidos = []
-        self.cantidad_alumnos_recibidos=0
 
     def agregar_materia(self, materia:Materia):
 
