@@ -6,8 +6,7 @@ class Carrera():
         self.creditos_para_recibirse = creditos_para_recibirse
         self.director_carrera = director_carrera
         self.materias = []
-        self.alumnos_actuales = []
-        self.alumnos_recibidos = []
+        self.alumnos = []
 
     def agregar_materia(self, materia:Materia):
 
