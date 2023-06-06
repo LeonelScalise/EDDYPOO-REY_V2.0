@@ -1,9 +1,9 @@
-from claseRegistroITBA import *
+from claseRegistroITBA import RegistroITBA
 from clasePersona import Alumno, Profesor, Administrativo
 from popularInstitucion import ITBA
+from claseMateria import Materia
+from claseComision import Comision
 from popularCarrera import *
-from claseMateria import *
-from claseComision import *
 
 ITBA.agregar_carrera(licnegocios)
 ITBA.agregar_carrera(licnanalitica)

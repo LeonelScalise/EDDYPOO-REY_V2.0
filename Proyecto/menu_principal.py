@@ -1,10 +1,13 @@
-from armado_menu import *
 import os
+from armado_menu import armado_menu
 from clasePersona import *
-from popularPersona import *
 from validadores import *
+<<<<<<< HEAD
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QBoxLayout, QWidget
 
+=======
+from popularPersona import *
+>>>>>>> 0b20dd9e0c1c262dd6101d5118b9b3fe570a87e0
 
 clear = lambda : os.system('cls')
 
