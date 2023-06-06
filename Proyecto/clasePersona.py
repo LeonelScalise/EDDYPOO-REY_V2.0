@@ -503,28 +503,6 @@ class Administrativo(Persona):
       return "{} es administrativo y tiene el legajo {}".format(self.nombre_apellido,self.legajo)
 
   
-  def tacharTramite(self, id_tram):
-      for tramite in self.tramites_abiertos_admin:
-        if tramite.id == id_tram:
-          if getbyId(id_tram) is not None:
-          #Si esta, tengo que eliminarlo de las listas que estan en Institución y la propia lista del administrativo
-            ITBA.tramites_abiertos.remove(getbyId(id_tram))
-            self.tramites_abiertos_admin.remove(tramite)
-        #Una vez que lo saco de las listas, tengo que cambiar el estado del tramite a "Resuelto"
-            tramite.estado = "Resuelto"
-          #Una vez que le cambio el estado, tengo que poner el tramite en la lista de tramites resueltos de la Institución y el administrativo
-            ITBA.tramites_resueltos.append(tramite)
-            self.tramites_resueltos_admin.append(tramite)
-            if tramite.alumno != None:
-              tramite.alumno.tramites_abiertos_alu.remove(tramite)
-              tramite.alumno.tramites_resueltos_alu.append(tramite)
-            elif tramite.profesor != None:
-              tramite.profesor.tramites_abiertos_profe.remove(tramite)
-              tramite.profesor.tramites_resueltos_profe.append(tramite)
-
-          return print("El tramite {} ha sido resuelto".format(tramite.tipo_de_tramite))
-          
-      clear()
     
   def resolverTramite(self, tramite): #menu para resolver trámite
     if tramite.alumno != None:
@@ -532,13 +510,50 @@ class Administrativo(Persona):
       print("1. Resolver tramite\n2. Volver")
       rta = validador(2)
       if rta == 1:
-        self.tacharTramite(tramite.id)
+            if getbyId(tramite.id) is not None:
+            #Si esta, tengo que eliminarlo de las listas que estan en Institución y la propia lista del administrativo
+              ITBA.tramites_abiertos.remove(getbyId(tramite.id))
+              self.tramites_abiertos_admin.remove(tramite)
+          #Una vez que lo saco de las listas, tengo que cambiar el estado del tramite a "Resuelto"
+              tramite.estado = "Resuelto"
+            #Una vez que le cambio el estado, tengo que poner el tramite en la lista de tramites resueltos de la Institución y el administrativo
+              ITBA.tramites_resueltos.append(tramite)
+              self.tramites_resueltos_admin.append(tramite)
+              if tramite.alumno != None:
+                tramite.alumno.tramites_abiertos_alu.remove(tramite)
+                tramite.alumno.tramites_resueltos_alu.append(tramite)
+              elif tramite.profesor != None:
+                tramite.profesor.tramites_abiertos_profe.remove(tramite)
+                tramite.profesor.tramites_resueltos_profe.append(tramite)
+
+            return print("El tramite {} ha sido resuelto".format(tramite.tipo_de_tramite))
+            
+      clear()
     else:
       print(f'¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del profesor {tramite.profesor.nombre_apellido}?')
       print("1. Resolver tramite\n2. Volver")
       rta = validador(2)
       if rta == 1:
-        self.tacharTramite(tramite.id)    
+          if tramite.id == tramite.id:
+            if getbyId(tramite.id) is not None:
+            #Si esta, tengo que eliminarlo de las listas que estan en Institución y la propia lista del administrativo
+              ITBA.tramites_abiertos.remove(getbyId(tramite.id))
+              self.tramites_abiertos_admin.remove(tramite)
+          #Una vez que lo saco de las listas, tengo que cambiar el estado del tramite a "Resuelto"
+              tramite.estado = "Resuelto"
+            #Una vez que le cambio el estado, tengo que poner el tramite en la lista de tramites resueltos de la Institución y el administrativo
+              ITBA.tramites_resueltos.append(tramite)
+              self.tramites_resueltos_admin.append(tramite)
+              if tramite.alumno != None:
+                tramite.alumno.tramites_abiertos_alu.remove(tramite)
+                tramite.alumno.tramites_resueltos_alu.append(tramite)
+              elif tramite.profesor != None:
+                tramite.profesor.tramites_abiertos_profe.remove(tramite)
+                tramite.profesor.tramites_resueltos_profe.append(tramite)
+
+            return print("El tramite {} ha sido resuelto".format(tramite.tipo_de_tramite))
+            
+      clear()   
     
   def displayTramiteActivo(self):
     resolviendo_tramites = True
