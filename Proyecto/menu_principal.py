@@ -1,8 +1,8 @@
-from armado_menu import *
 import os
+from armado_menu import armado_menu
 from clasePersona import *
-from popularPersona import *
 from validadores import *
+from popularPersona import *
 
 clear = lambda : os.system('cls')
 
