@@ -506,7 +506,7 @@ class Administrativo(Persona):
     
   def resolverTramite(self, tramite): #menu para resolver trámite
     if tramite.alumno != None:
-      print(f'¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del alumno {tramite.alumno.nombre_apellido}?')
+      print(f'\n¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del alumno {tramite.alumno.nombre_apellido}?\n')
       print("1. Resolver tramite\n2. Volver")
       rta = validador(2)
       if rta == 1:
@@ -530,7 +530,7 @@ class Administrativo(Persona):
             
       clear()
     else:
-      print(f'¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del profesor {tramite.profesor.nombre_apellido}?')
+      print(f"\n¿Quiere resolver el tramite {tramite.tipo_de_tramite} del profesor {tramite.profesor.nombre_apellido}?\n")
       print("1. Resolver tramite\n2. Volver")
       rta = validador(2)
       if rta == 1:
@@ -551,7 +551,7 @@ class Administrativo(Persona):
                 tramite.profesor.tramites_abiertos_profe.remove(tramite)
                 tramite.profesor.tramites_resueltos_profe.append(tramite)
 
-            return print("El tramite {} ha sido resuelto".format(tramite.tipo_de_tramite))
+            return print(f"\nEl tramite {tramite.tipo_de_tramite} ha sido resuelto\n")
             
       clear()   
     
@@ -559,16 +559,21 @@ class Administrativo(Persona):
     resolviendo_tramites = True
     while resolviendo_tramites:
       cont_opciones = 1
+      print("\nTrámites disponibles para resolver\n")
       for tramite in self.tramites_abiertos_admin: #por cada tramite activo que tiene el administrativo
             print(f'{cont_opciones}. {tramite.tipo_de_tramite}') # lo muestra como opcion
             cont_opciones += 1
+      
+      if len(self.tramites_abiertos_admin) == 0:
+        print("No tiene trámites disponibles para resolver. Revise mas tarde\n")
+      
       print(f'{cont_opciones}. Volver')
       opcion_elegida = validador(cont_opciones)
+      
       if opcion_elegida == cont_opciones:
-         resolviendo_tramites = False
+        resolviendo_tramites = False
       else:
-         self.resolverTramite(self.tramites_abiertos_admin[opcion_elegida-1])
-
+        self.resolverTramite(self.tramites_abiertos_admin[opcion_elegida-1])
 
 
   def altaAlumno(self):

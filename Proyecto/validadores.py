@@ -101,7 +101,7 @@ def validador(cant_opciones):
 
     while inicio: #arranca el loop
         try: #intenta pedir una respuesta
-            rta = int(input('\nIngresa una opción: '))
+            rta = int(input('\nIngresa una opción:'))
             if rta not in list(range(1, cant_opciones + 1)):
                 raise Exception("\nNo es una opción válida.\n") #si no cumple con la condición que se indica levanta un error con un mensaje
             else:
