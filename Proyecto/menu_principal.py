@@ -1,10 +1,9 @@
 import os
 from armado_menu import armado_menu
 from clasePersona import *
-from validadores import *
+from validadores import validador
 from popularPersona import *
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QBoxLayout, QWidget
-
 
 clear = lambda : os.system('cls')
 
@@ -32,6 +31,7 @@ def menu_principal():
     
     print('Saliste del menu')
 
+menu_principal()
 
 ##Prueba PYQT
 # def load_data():

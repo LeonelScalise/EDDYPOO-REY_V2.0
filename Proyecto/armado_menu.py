@@ -1,5 +1,6 @@
 from validadores import *
 import os
+
 clear = lambda : os.system('cls') #para limpiar la terminal cada vez que se elija una opcion y aparezca lo nuevo
 
 def armado_menu(nombre_menu, lista_opciones, lista_funciones): #arma los menus de todos, le entran como argumento el nombre que queres que tenga el menu, una lista de el texto que queres que haya en cada opcion, y la lista donde van a estar las funciones propias de cada menu (los metodos dentro de las clases)

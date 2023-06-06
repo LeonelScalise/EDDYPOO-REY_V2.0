@@ -1,7 +1,6 @@
 import re
 import os
 from claseRegistroITBA import RegistroITBA
-from armado_menu import armado_menu
 from popularInstitucion import ITBA
 from datetime import *
 
