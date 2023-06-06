@@ -1,4 +1,4 @@
-from claseMateria import *
+from claseMateria import Materia
 
 class Carrera():
     def __init__(self,nombre, director_carrera, creditos_para_recibirse = 0):

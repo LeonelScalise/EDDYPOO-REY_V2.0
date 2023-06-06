@@ -1,4 +1,3 @@
-
 class Tramite():
     def __init__(self, id, alumno, administrativo, tipo_de_tramite, fecha_de_inicio, profesor = None, estado="Pendiente", comision=None):
         self.id = id

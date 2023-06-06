@@ -1,14 +1,14 @@
-from armado_menu import *
-from claseRegistroITBA import *
 import os
-from claseTramite import *
 import random
-from popularInstitucion import ITBA
-from claseCarrera import *
 import matplotlib.pyplot as plt
-from validadores import *
+from string import ascii_uppercase
+from armado_menu import armado_menu
+from claseRegistroITBA import RegistroITBA
+from claseTramite import Tramite
+from popularInstitucion import ITBA
 from getbyId import getbyId
-
+from claseComision import Comision
+from validadores import *
 
 clear = lambda : os.system('cls')
 
@@ -786,31 +786,3 @@ class Administrativo(Persona):
     plt.xticks(notas_posibles)
     plt.ylabel("Frecuencia")
     plt.show()
-
-
-
-# if __name__=="__main__":
-#   m_ainscrib={"Dia":["Martes","Viernes"],"Horario":["12:30-14:00","15:00-18:00"]}
-#   m_inscripto={"Dia":["Martes","Viernes"],"Horario":["13:30-14:00","14:00-19:00"]}
-#   if len(m_ainscrib["Dia"])>1:
-#     i_dia_ainscrib=0
-#     i_dia_inscripto=0
-#     for dia_ainscrib in m_ainscrib["Dia"]:
-#       for dia_inscripto in m_inscripto["Dia"]:
-#         if dia_ainscrib==dia_inscripto:
-#           if m_ainscrib["Horario"][i_dia_ainscrib]
-
-
-#         i_dia_inscripto+=1
-
-
-#       i_dia_ainscrib+=1
-
-if __name__=="__main__":
-  d={"Materia 1":8,"Materia 2":10,"Materia 3":7,"Materia 4":5,"Materia 5":7}
-  notas=d.values()
-  lista=[]
-  print(notas)
-  for nota in notas:
-    lista.append(nota)
-  print(lista)

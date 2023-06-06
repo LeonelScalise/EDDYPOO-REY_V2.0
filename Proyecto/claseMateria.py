@@ -1,6 +1,3 @@
-from claseComision import *
-from popularInstitucion import ITBA
-from validadores import *
 class Materia:
     def __init__(self, codigo_materia, nombre, creditos, sede, departamento, correlativas=[]):
         self.codigo_materia = codigo_materia
@@ -15,5 +12,3 @@ class Materia:
 
     def str(self):
         return f"{self.codigo_materia} - {self.nombre}"
-    
-
