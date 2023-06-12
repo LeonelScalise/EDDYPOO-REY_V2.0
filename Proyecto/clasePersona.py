@@ -22,17 +22,26 @@ class Persona:
 class Alumno(Persona):
 
   def menu_registro_alumno(institucion:RegistroITBA):
-    x = "o"
-    legajo_ingresado = validadorLegajoAlumnos(institucion)
-    clear()
-    for alumno in institucion.alumnos:
-        if alumno.legajo == legajo_ingresado:
-          if alumno.sexo == "F":
-            x = "a"
-          return armado_menu(f"Bienvenid{x} {alumno.nombre_apellido}", ["Inscripcion a materia", "Desinscripción a materia", "Iniciar Tramite", "Estadisticas", "Volver"], [lambda : alumno.displayMateriasDisponibles(), lambda : alumno.desinscribirMateria() , lambda : alumno.iniciarTramite(ITBA), lambda : alumno.estadisticasAlumno()])
+    inicio = True
+    while inicio:
+      x = "o"
+      legajo_ingresado = validadorLegajoAlumnos(institucion)
+      contraseña_ingresada = input("Contraseña: ")
+      clear()
+      for alumno in institucion.alumnos:
+          if alumno.legajo == legajo_ingresado and alumno.contraseña == contraseña_ingresada:
+            if alumno.sexo == "F":
+              x = "a"
+            return armado_menu(f"Bienvenid{x} {alumno.nombre_apellido}", ["Inscripcion a materia", "Desinscripción a materia", "Iniciar Tramite", "Cambiar contraseña", "Estadisticas", "Volver"], [lambda : alumno.displayMateriasDisponibles(), lambda : alumno.desinscribirMateria() , lambda : alumno.iniciarTramite(ITBA), lambda : alumno.actualizarContraseña(), lambda : alumno.estadisticasAlumno()])
+          elif alumno.legajo == legajo_ingresado:
+            print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
+            print("\n1. Reintentar\n2. Volver")
+            opcion_elegida=validador(2)
+            clear()
+            if opcion_elegida == 2:
+                inicio = False
 
-
-  def __init__(self, nombre_apellido, dni, sexo, fecha_nac, legajo,fecha_ingreso,estado_alumno="Activo", carrera=None, fecha_baja = None):
+  def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo,fecha_ingreso,estado_alumno="Activo", carrera=None, fecha_baja = None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
     self.materias_aprobadas = []
@@ -45,6 +54,7 @@ class Alumno(Persona):
     self.estado_alumno = estado_alumno
     self.tramites_abiertos_alu = []
     self.tramites_resueltos_alu = []
+    self.contraseña = contraseña
 
  
   def __str__(self):
@@ -182,7 +192,10 @@ class Alumno(Persona):
     else:
       print(f"{self.nombre_apellido} no tiene notas cargadas por el momento")
 
-    
+  def actualizarContraseña(self):
+    contraseña_nueva = input("Ingrese su contraseña nueva: ")
+    self.contraseña = contraseña_nueva
+    print("Su contraseña ha sido modificada exitosamente")
 
 class Profesor(Persona):
   def menu_registro_profesor(institucion:RegistroITBA):
@@ -196,7 +209,7 @@ class Profesor(Persona):
           return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA)])
 
 
-  def __init__(self, nombre_apellido, dni, sexo, fecha_nac, legajo, fecha_ingreso, fecha_baja = None):
+  def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, fecha_baja = None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
     self.fecha_ingreso = fecha_ingreso
@@ -204,6 +217,8 @@ class Profesor(Persona):
     self.comisiones_a_cargo = []
     self.tramites_abiertos_profe = []
     self.tramites_resueltos_profe = []
+    self.contraseña = contraseña
+  
   def iniciarTramite(self, institucion):
     id_tramite = 0
 
@@ -318,6 +333,7 @@ class Administrativo(Persona):
         dni = validadorDNI()
         fecha_nac = validadorFecha()
         sexo = validadorSexo()
+        contraseña = str(dni)
         if len(ITBA.legajos_administrativos) != 0:
           legajo_numero = int(ITBA.legajos_administrativos[-1][2:])+1
           legajo_alfa = "AD"
@@ -326,11 +342,11 @@ class Administrativo(Persona):
           legajo="AD10000"
         fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
 
-        institucion.administrativos.append(Administrativo(nombre_apellido, dni, sexo, fecha_nac, legajo, fecha_ingreso))
+        institucion.administrativos.append(Administrativo(nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso))
         institucion.legajos_administrativos.append(legajo)
         clear()
         print(f'El administrativo {nombre_apellido} se ha creado correctamente')
-        print(f"El legajo del administrativo es: {legajo}")
+        print(f"El legajo del administrativo es: {legajo} y la contraseña es su dni: {contraseña}")
 
   def menu_registro_administrativo(institucion:RegistroITBA):
     x = "o"
@@ -342,13 +358,14 @@ class Administrativo(Persona):
             x = "a"
           return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.estadisticasGenerales()])
         
-  def __init__(self, nombre_apellido, dni, sexo, fecha_nac, legajo, fecha_ingreso, fecha_baja=None):
+  def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, fecha_baja=None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
     self.fecha_ingreso = fecha_ingreso
     self.fecha_baja = fecha_baja #Dejamos esto por si queres hacerlo fede, si te da fiaca, borralo tranqui o dejalo para implementarlo post-entrega
     self.tramites_abiertos_admin = []
     self.tramites_resueltos_admin = []
+    self.contraseña = contraseña
 
   
   def asignarProfesor(self):
@@ -581,6 +598,7 @@ class Administrativo(Persona):
     dni = validadorDNI()
     sexo = validadorSexo()
     fecha_nacimiento = validadorFecha()
+    contraseña = str(dni)
     if len(ITBA.legajos_alumnos) != 0:
       legajo = ITBA.legajos_alumnos[-1] + 1
     else:
@@ -588,7 +606,7 @@ class Administrativo(Persona):
     fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
     contador = 0
     flag = True
-    alumno_nuevo = Alumno(nombre, dni, sexo, fecha_nacimiento, legajo, fecha_ingreso)
+    alumno_nuevo = Alumno(nombre, dni, sexo, contraseña, fecha_nacimiento, legajo, fecha_ingreso)
     clear()
     #Para que el administrativo anote al alumno en un objeto carrera
     print(f'\n\t\t Seleccione la carrera del alumno\n')
@@ -607,7 +625,7 @@ class Administrativo(Persona):
         clear()
         flag = False
         print("Se ha anotado al alumno a la carrera: ", alumno_nuevo.carrera.nombre)
-        print(f"El legajo del alumno es: {self.legajo}")
+        print(f"El legajo del alumno es: {self.legajo} y su contraseña es su dni: {contraseña}")
         ITBA.agregar_alumno(alumno_nuevo)
         alumno_nuevo.carrera.alumnos_actuales.append(alumno_nuevo)
 
@@ -616,6 +634,7 @@ class Administrativo(Persona):
     dni = validadorDNI()
     sexo = validadorSexo()
     fecha_nacimiento= validadorFecha()
+    contraseña = str(dni)
     if len(ITBA.legajos_profesores) != 0:
       legajo_numero = int(ITBA.legajos_profesores[-1][2:]) + 1
       legajo_alfa = "PR"
@@ -624,20 +643,16 @@ class Administrativo(Persona):
       legajo="PR10000"
     fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
 
-    profesor_nuevo = Profesor(nombre, dni, sexo, fecha_nacimiento, legajo, fecha_ingreso)
+    profesor_nuevo = Profesor(nombre, dni, sexo, contraseña, fecha_nacimiento, legajo, fecha_ingreso)
     ITBA.agregar_profesor(profesor_nuevo)
-    print(f"El legajo del profesor es: {self.legajo}")
+    print(f"El legajo del profesor es: {self.legajo} y su contraseña es su dni: {contraseña}")
 
   def bajaAlumno(self):
     legajo_alumno = validadorLegajoAlumnos(ITBA)
     for alumno in ITBA.alumnos:
       if alumno.legajo == legajo_alumno:
-        print(ITBA.alumnos)
         ITBA.alumnos.remove(alumno)
-        print(ITBA.alumnos)
-        print(alumno.carrera.alumnos_actuales)
         alumno.carrera.alumnos_actuales.remove(alumno)
-        print(alumno.carrera.alumnos_actuales)
         alumno.fecha_baja = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
 
 
@@ -679,7 +694,6 @@ class Administrativo(Persona):
               for tramite in administrativo.tramites_abiertos_admin:
                 almacen_tramites.append(tramite)
               ITBA.administrativos.remove(administrativo)
-              ITBA.legajos_administrativos.remove(legajo_admin)
               cantidad_administrativos = len(ITBA.administrativos)
               i_random = random.randint(0, cantidad_administrativos - 1)
               administrativo_asignado=ITBA.administrativos[i_random]
@@ -689,7 +703,6 @@ class Administrativo(Persona):
               print(f"El Administrativo ha sido de baja correctamente, sus tramites fueron asignados al Administrativo {administrativo_asignado.nombre_apellido}")
           else:
             ITBA.administrativos.remove(administrativo)
-            ITBA.legajos_administrativos.remove(legajo_admin)
             print("El Administrativo ha sido dado de baja correctamente")
 
 

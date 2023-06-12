@@ -9,6 +9,9 @@ class RegistroITBA():
         self.alumnos = []
         self.profesores = []
         self.administrativos = []
+        self.historial_alumnos = []
+        self.historial_profesores = []
+        self.historial_administrativos = []
         self.legajos_alumnos = []
         self.legajos_profesores = []
         self.legajos_administrativos = []
@@ -22,6 +25,7 @@ class RegistroITBA():
         
         self.alumnos.append(alumno)
         self.legajos_alumnos.append(alumno.legajo)
+        self.historial_alumnos.append(alumno)
         alumno.carrera.alumnos.append(alumno)
         print("Alumno agregado")
 
@@ -29,12 +33,14 @@ class RegistroITBA():
         
         self.profesores.append(profesor)
         self.legajos_profesores.append(profesor.legajo)
+        self.historial_profesores.append(profesor)
         print("Profesor agregado")
     
     def agregar_administrativo(self, administrativo):
         
         self.administrativos.append(administrativo)
         self.legajos_administrativos.append(administrativo.legajo)
+        self.historial_administrativos.append(administrativo)
         print("Administrativo agregado")
     
     def agregar_carrera(self, carrera):
@@ -49,6 +55,9 @@ class RegistroITBA():
            pickle.dump(self.alumnos,df)
            pickle.dump(self.profesores,df)
            pickle.dump(self.administrativos,df)
+           pickle.dump(self.historial_alumnos,df)
+           pickle.dump(self.historial_profesores,df)
+           pickle.dump(self.historial_administrativos,df)
            pickle.dump(self.legajos_alumnos,df)
            pickle.dump(self.legajos_profesores,df)
            pickle.dump(self.legajos_administrativos,df)
@@ -57,22 +66,30 @@ class RegistroITBA():
            pickle.dump(self.historial_tramites,df)
 
 
+
     def cargarDatos(self):
        with open ("DatosITBA","rb") as lf:
            carreras=pickle.load(lf)
            alumnos=pickle.load(lf)
            profesores=pickle.load(lf)
            administrativos=pickle.load(lf)
+           historial_alumnos=pickle.load(lf)
+           historial_profesores=pickle.load(lf)
+           historial_administrativos=pickle.load(lf)
            legajos_alumnos=pickle.load(lf)
            legajos_profesores=pickle.load(lf)
            legajos_admins=pickle.load(lf)
            tramites_resueltos=pickle.load(lf)
            tramites_abiertos=pickle.load(lf)
            historial_tramites=pickle.load(lf)
+
            self.carreras=carreras
            self.alumnos=alumnos
            self.profesores=profesores
            self.administrativos=administrativos
+           self.historial_alumnos=historial_alumnos
+           self.historial_profesores=historial_profesores
+           self.historial_administrativos=historial_administrativos
            self.legajos_alumnos=legajos_alumnos
            self.legajos_profesores=legajos_profesores
            self.legajos_admins=legajos_admins
