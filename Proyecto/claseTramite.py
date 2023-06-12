@@ -8,8 +8,5 @@ class Tramite():
         self.estado = estado
         self.profesor = profesor
         self.comision = comision
-    
     def __str__(self):
-        return f"{self.id} es un tramite del tipo: {self.tipo_de_tramite}, creado por {self.alumno} y el administrativo encargado es {self.administrativo}"
-    
-    
+        return "{} es un tramite del tipo: {}, creado por {} y el administrativo encargado es {}".format(self.id,self.tipo_de_tramite,self.alumno,self.administrativo)

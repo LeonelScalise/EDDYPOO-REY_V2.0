@@ -733,7 +733,7 @@ class Administrativo(Persona):
         dia_horario = {"Dia":dia,"Horario":horario}
         clear()
         
-        nueva_comision = Comision(cod_comi, aula, profesor_asignado, dia_horario)
+        nueva_comision = Comision(cod_comi, aula, profesor_asignado,materia_elegida.nombre, dia_horario)
 
         materia_elegida.comisiones.append(nueva_comision)
         materia_elegida.profesores.append(profesor_asignado)
