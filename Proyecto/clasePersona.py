@@ -383,6 +383,12 @@ class Profesor(Persona):
         clear()
         flag = False
         self.subirNotaFinal(materias_activas[opcion_elegida - 1])
+      
+  
+  def actualizarContraseña(self):
+    contraseña_nueva = input("Ingrese su contraseña nueva: ")
+    self.contraseña = contraseña_nueva
+    print("Su contraseña ha sido modificada exitosamente")
 
 class Administrativo(Persona):
 
@@ -587,7 +593,10 @@ class Administrativo(Persona):
   def __str__(self):
       return "{} es administrativo y tiene el legajo {}".format(self.nombre_apellido,self.legajo)
 
-  
+  def actualizarContraseña(self):
+    contraseña_nueva = input("Ingrese su contraseña nueva: ")
+    self.contraseña = contraseña_nueva
+    print("Su contraseña ha sido modificada exitosamente")
     
   def resolverTramite(self, tramite): #menu para resolver trámite
     if tramite.alumno != None:
