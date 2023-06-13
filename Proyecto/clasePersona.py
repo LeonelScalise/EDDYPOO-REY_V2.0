@@ -46,6 +46,7 @@ class Alumno(Persona):
     self.legajo = legajo
     self.materias_aprobadas = []
     self.materias_en_curso = []
+    self.comisiones_en_curso = []
     self.fecha_ingreso = fecha_ingreso
     self.carrera = carrera
     self.fecha_baja = fecha_baja
@@ -80,17 +81,52 @@ class Alumno(Persona):
       self.tramites_abiertos_alu.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
 
+  # def inscribirMateria(self, materia):
+  #   contador = 0
+  #   flag = True
+
+  #   print(f"\t\t\nComisiones disponibles para inscripcion en {materia.nombre}\n")
+  #   if len(materia.comisiones) != 0:
+  #     while flag:
+  #       for comisiones in materia.comisiones:
+  #         contador += 1
+  #         print(f"{contador}. {comisiones.codigo_comision}: {comisiones.dia_y_horario}")
+        
+  #       print(f"{contador + 1}. Volver")
+
+  #       opcion_elegida = validador(contador + 1)
+  #       clear()
+
+  #       if opcion_elegida == contador + 1:
+  #         flag = False
+  #       else:
+  #         comision = materia.comisiones[opcion_elegida - 1]
+  #         comision.alumnos.append(self)
+
+  #         materia.alumnos.append(comision.alumnos[-1])
+  #         self.materias_en_curso.append(materia)
+  #         clear()
+  #         flag = False
+  #         print(f"Te has inscripto correctamente a la comision {comision.codigo_comision} de la materia {materia.nombre}")
+      
+  #   else:
+  #     print("La materia no posee comisiones por el momento")
+
   def inscribirMateria(self, materia):
     contador = 0
     flag = True
 
     print(f"\t\t\nComisiones disponibles para inscripcion en {materia.nombre}\n")
     if len(materia.comisiones) != 0:
+      horarios_inscripcion_actual = []
+      for comision_inscripcion_actual in self.comisiones_en_curso:
+        horarios_inscripcion_actual.append(comision_inscripcion_actual.dia_y_horario)
+
       while flag:
         for comisiones in materia.comisiones:
           contador += 1
-          print(f"{contador}. {comisiones.codigo_comision}: {comisiones.dia_y_horario}")
-        
+        print(f"{contador}. {comisiones.codigo_comision}: {comisiones.dia_y_horario}")
+
         print(f"{contador + 1}. Volver")
 
         opcion_elegida = validador(contador + 1)
@@ -100,16 +136,30 @@ class Alumno(Persona):
           flag = False
         else:
           comision = materia.comisiones[opcion_elegida - 1]
-          comision.alumnos.append(self)
 
-          materia.alumnos.append(comision.alumnos[-1])
+          # Validar superposición de horarios
+          for horario_inscripcion in horarios_inscripcion_actual:
+            if any(dia in horario_inscripcion['Dia'] for dia in comision.dia_y_horario['Dia']):
+              for i in range(len(horario_inscripcion['Horario'])):
+                for j in range(len(comision.dia_y_horario['Horario'])):
+                  horario_existente = horario_inscripcion['Horario'][i].split('-')
+                  horario_nuevo = comision.dia_y_horario['Horario'][j].split('-')
+
+                  if (horario_nuevo[0] < horario_existente[1] and horario_nuevo[1] > horario_existente[0]):
+                    clear()
+                    print("No puedes inscribirte en esta comision por superposicion de horarios")
+                    return
+
+          comision.alumnos.append(self)
+          materia.alumnos.append(self)
           self.materias_en_curso.append(materia)
+          self.comisiones_en_curso.append(comision)
           clear()
           flag = False
           print(f"Te has inscripto correctamente a la comision {comision.codigo_comision} de la materia {materia.nombre}")
-      
     else:
-      print("La materia no posee comisiones por el momento")
+        print("La materia no posee comisiones por el momento")
+
 
   def displayMateriasDisponibles(self):
     materias_disponibles = []
@@ -742,7 +792,7 @@ class Administrativo(Persona):
             profesor_asignado = profesor
 
         dia = validadorDia().upper().replace(" ","").split(",")
-        horario = validadorHorario(dia).replace(" ","").split(",")
+        horario = validadorHorario(dia)
         dia_horario = {"Dia":dia,"Horario":horario}
         clear()
         

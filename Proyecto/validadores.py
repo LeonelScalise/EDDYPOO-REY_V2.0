@@ -76,23 +76,73 @@ def validadorFecha():
     
     return datetime.strptime(fecha, '%d/%m/%Y')
 
+# def validadorHorario(lista_dias):
+#     repe = len(lista_dias)
+#     inicio = True
+#     # patron = fr"^\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*[-]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)(\s*[,]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*[-]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*){{{repe-1}}}$"
+#     # patron = fr"^\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)\s*-\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)(\s*,\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)\s*-\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)\s*){{{repe-1}}}$"
+#     patron = fr"^\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])\s*-\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])(\s*,\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])\s*-\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])){{{repe-1}}}$"
+#     while inicio:
+#         try:
+#             horario = input("\nIngrese el/los horario/s respectivamente a los dias ingresados previamente.(Ejemplo: 10:30 - 12:40): ")
+#             if re.match(patron, horario) == None:
+#                 raise Exception("\nIngrese un horario valido siguiendo el formato indicado y asegurese de tener la misma cantidad de horarios que de dias.\n")
+#             else:
+#                 inicio = False
+
+
+#         except ValueError:
+#                 print('\nEl dato introducido no corresponde al valor esperado.\n')
+#         except Exception as e: 
+#                 print(e)
+    
+#     return horario
+
 def validadorHorario(lista_dias):
     repe = len(lista_dias)
     inicio = True
-    patron = fr"^\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*[-]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)(\s*[,]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*[-]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*){{{repe-1}}}$"
+    patron = fr"^\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])\s*-\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])(\s*,\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])\s*-\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])){{{repe-1}}}$"
+    # patron = fr"^\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*[-]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)(\s*[,]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*[-]{{1}}\s*(([0-1]\d)|(2[0-3])|([0-9]{{1}})):([0-5]\d)\s*){{{repe-1}}}$"
+    # patron = fr"^\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)\s*-\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)(\s*,\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)\s*-\s*(([0-1]\d)|(2[0-3])|([0-9]{{2}})):([0-5]\d)\s*){{{repe-1}}}$"
     while inicio:
         try:
-            horario = input("\nIngrese el/los horario/s respectivamente a los dias ingresados previamente.(Ejemplo: 10:30 - 12:40): ")
+            horario = input("\nIngrese el/los horario/s respectivamente a los días ingresados previamente. (Ejemplo: 08:30 - 12:40): ")
             if re.match(patron, horario) == None:
-                raise Exception("\nIngrese un horario valido siguiendo el formato indicado y asegurese de tener la misma cantidad de horarios que de dias.\n")
-            else:
-                inicio = False
+                raise Exception("\nIngrese un horario válido siguiendo el formato indicado y asegúrese de tener la misma cantidad de horarios que de días.\n")
+
+            lista_horarios = horario.replace(" ", "").split(",")    
+
+            for h in lista_horarios:
+                hora_inicio, hora_fin = h.split("-")
+                if hora_inicio >= hora_fin:
+                    raise Exception("\nLa hora inicial debe ser menor que la hora final.\n")
+
+            # Verifica si hay días repetidos
+            if len(lista_dias) != len(set(lista_dias)):
+                horarios_por_dia = {}
+                for dia, horario in zip(lista_dias, lista_horarios):
+                    if dia not in horarios_por_dia:
+                        horarios_por_dia[dia] = [horario]
+                    else:
+                        # Verifica superposición de horarios
+                        for h in horarios_por_dia[dia]:
+                            if superposicion(h, horario):
+                                raise Exception(f"\nSuperposición de horarios para el día {dia}.\n")
+                        horarios_por_dia[dia].append(horario)
+
+            inicio = False
         except ValueError:
-                print('\nEl dato introducido no corresponde al valor esperado.\n')
+            print('\nEl dato introducido no corresponde al valor esperado.\n')
         except Exception as e: 
-                print(e)
-    
-    return horario
+            print(e)
+
+    return lista_horarios
+
+def superposicion(horario1, horario2):
+    hora_inicio1, hora_fin1 = horario1.split("-")
+    hora_inicio2, hora_fin2 = horario2.split("-")
+    return hora_inicio1 < hora_fin2 and hora_fin1 > hora_inicio2
+
 
 def validador(cant_opciones):
     inicio = True

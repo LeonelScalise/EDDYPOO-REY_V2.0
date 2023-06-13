@@ -51,8 +51,8 @@ Algebra = Materia("67.30", "Algebra", 6, "SDF", "Matematica")
 Microeconomia = Materia("43.74", "Microeconomia", 6, "SDF", "Economia", [Analisis_matematico, Algebra])
 
 
-comi1 = Comision("A", "201F", Girafa, {"dia":["Lunes"], "horario":["12:30-14:30"]})
-comi2 = Comision("A", "202F", Girafa, {"dia":["Martes"], "horario":["12:30-14:30"]})
+comi1 = Comision("A", "201F", Girafa, Analisis_matematico, {"Dia":["LUNES"], "Horario":["12:30-14:30"]})
+comi2 = Comision("A", "202F", Girafa, Algebra, {"Dia":["LUNES"], "Horario":["10:30-14:30"]})
 
 
 Analisis_matematico.comisiones.append(comi1)
