@@ -249,15 +249,24 @@ class Alumno(Persona):
 
 class Profesor(Persona):
   def menu_registro_profesor(institucion:RegistroITBA):
-    x = "o"
-    legajo_ingresado = validadorLegajoAdminyProf(institucion, 'profesor')
-    clear()
-    for prof in institucion.profesores:
-        if prof.legajo == legajo_ingresado:
-          if prof.sexo == "F":
-            x = "a"
-          return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA)])
-
+    inicio = True
+    while inicio:
+      x = "o"
+      legajo_ingresado = validadorLegajoAdminyProf(institucion, 'profesor')
+      contraseña_ingresada = input("Contraseña: ")
+      clear()
+      for prof in institucion.profesores:
+          if prof.legajo == legajo_ingresado and prof.contraseña == contraseña_ingresada:
+            if prof.sexo == "F":
+              x = "a"
+            return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA)])
+          elif prof.legajo == legajo_ingresado:
+              print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
+              print("\n1. Reintentar\n2. Volver")
+              opcion_elegida=validador(2)
+              clear()
+              if opcion_elegida == 2:
+                  inicio = False
 
   def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, fecha_baja = None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
@@ -399,15 +408,24 @@ class Administrativo(Persona):
         print(f"El legajo del administrativo es: {legajo} y la contraseña es su dni: {contraseña}")
 
   def menu_registro_administrativo(institucion:RegistroITBA):
-    x = "o"
-    legajo_ingresado = validadorLegajoAdminyProf(institucion)
-    clear()
-    for admin in institucion.administrativos:
-        if admin.legajo == legajo_ingresado:
-          if admin.sexo == "F":
-            x = "a"
-          return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.estadisticasGenerales()])
-        
+    inicio = True
+    while inicio:
+      x = "o"
+      legajo_ingresado = validadorLegajoAdminyProf(institucion)
+      contraseña_ingresada = input("Contraseña: ")
+      clear()
+      for admin in institucion.administrativos:
+          if admin.legajo == legajo_ingresado and admin.contraseña == contraseña_ingresada:
+            if admin.sexo == "F":
+              x = "a"
+            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.estadisticasGenerales()])
+          elif admin.legajo == legajo_ingresado:
+                print("La contraseña es incorrecta. Intente nuevamente o consulte con otro administrador")
+                print("\n1. Reintentar\n2. Volver")
+                opcion_elegida=validador(2)
+                clear()
+                if opcion_elegida == 2:
+                    inicio = False
   def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, fecha_baja=None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
