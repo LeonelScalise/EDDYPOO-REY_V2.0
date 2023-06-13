@@ -48,7 +48,7 @@ def validadorDia():
     while inicio:
         try:
             dias = input("\nIngrese el/los dia/s de la semana separados por (,): ")
-            if re.match(patron, dias) == None:
+            if re.match(patron, dias, re.IGNORECASE) == None:
                 raise Exception("\nIngrese un dia de semana valido siguiendo el formato indicado.\n")
             else:
                 inicio = False
