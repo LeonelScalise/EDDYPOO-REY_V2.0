@@ -259,3 +259,11 @@ def validadorSexo():
                 print(e)
     
     return sexo
+
+def validadorCantidadDeCreditos():
+    while True:
+        try:
+            valor = int(input("Ingrese la cantidad de créditos. El numero debe ser un entero: "))
+            return valor
+        except ValueError:
+            print("El valor ingresado no es un número entero. Por favor, intente de nuevo.")
