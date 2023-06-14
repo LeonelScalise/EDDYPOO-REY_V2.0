@@ -8,6 +8,7 @@ from claseTramite import Tramite
 from popularInstitucion import ITBA
 from getbyId import getbyId
 from claseComision import Comision
+from claseCarrera import Carrera
 from validadores import *
 from claseMateria import Materia
 
@@ -384,6 +385,12 @@ class Profesor(Persona):
         clear()
         flag = False
         self.subirNotaFinal(materias_activas[opcion_elegida - 1])
+      
+  
+  def actualizarContraseña(self):
+    contraseña_nueva = input("Ingrese su contraseña nueva: ")
+    self.contraseña = contraseña_nueva
+    print("Su contraseña ha sido modificada exitosamente")
 
 class Administrativo(Persona):
 
@@ -419,7 +426,7 @@ class Administrativo(Persona):
           if admin.legajo == legajo_ingresado and admin.contraseña == contraseña_ingresada:
             if admin.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.estadisticasGenerales()])
+            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Crear nueva carrera" ,"Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.altaCarrera, lambda : admin.estadisticasGenerales()])
           elif admin.legajo == legajo_ingresado:
                 print("La contraseña es incorrecta. Intente nuevamente o consulte con otro administrador")
                 print("\n1. Reintentar\n2. Volver")
@@ -427,6 +434,8 @@ class Administrativo(Persona):
                 clear()
                 if opcion_elegida == 2:
                     inicio = False
+  
+  
   def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, fecha_baja=None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
@@ -436,7 +445,7 @@ class Administrativo(Persona):
     self.tramites_resueltos_admin = []
     self.contraseña = contraseña
 
-  
+
   def asignarProfesor(self):
     contador = 0
     flag1 = False
@@ -544,10 +553,8 @@ class Administrativo(Persona):
               comi.profesor = None
         
         
-  
         print(f'La materia {materia_elegida.nombre} tiene {len(materia_elegida.profesores)} profesores')
   
-
 
     elif opcion_elegida1 == 2:
       if len(materias_de_profesor) != 0:
@@ -585,10 +592,23 @@ class Administrativo(Persona):
       else:
         print("El profesor no tiene comisiones a cargo.")
 
+
+  def altaCarrera(self):
+    nombre = input("Ingrese el nombre de la carrera:")
+    director = input("Ingrese el nombre del director de la carrera:")
+    creditos = validadorCantidadDeCreditos()
+    nuevaCarrera = Carrera(nombre,director,creditos)
+    RegistroITBA.agregar_carrera(nuevaCarrera)
+    print("La nueva carrera ha sido creada exitosamente.")
+
+
   def __str__(self):
       return "{} es administrativo y tiene el legajo {}".format(self.nombre_apellido,self.legajo)
 
-  
+  def actualizarContraseña(self):
+    contraseña_nueva = input("Ingrese su contraseña nueva: ")
+    self.contraseña = contraseña_nueva
+    print("Su contraseña ha sido modificada exitosamente")
     
   def resolverTramite(self, tramite): #menu para resolver trámite
     if tramite.alumno != None:
