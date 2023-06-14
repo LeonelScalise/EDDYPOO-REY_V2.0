@@ -46,9 +46,9 @@ Girafa = Profesor("Profe Girafale", "23123141", "M","23123141", "12/12/12", "PR1
 ElAdmin = Administrativo("El Admin","41741232","M","41741232","fecha","AD10000","FECHA INGRESO") # nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, tramites_abiertos, tramites_resueltos, fecha_baja=None
 
 
-Analisis_matematico = Materia("55.22", "Analisis matematico", 3, "SDT", "Matematica")
-Algebra = Materia("67.30", "Algebra", 6, "SDF", "Matematica")
-Microeconomia = Materia("43.74", "Microeconomia", 6, "SDF", "Economia", [Analisis_matematico, Algebra])
+Analisis_matematico = Materia("55.22", "Analisis matematico", 3, "SDT")
+Algebra = Materia("67.30", "Algebra", 6, "SDF")
+Microeconomia = Materia("43.74", "Microeconomia", 6, "SDF", [Analisis_matematico, Algebra])
 
 
 comi1 = Comision("A", "201F", Girafa, Analisis_matematico, {"Dia":["LUNES"], "Horario":["12:30-14:30"]})
