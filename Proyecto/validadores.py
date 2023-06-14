@@ -272,7 +272,7 @@ def validadorCodigoMateria():
             else:
                 inicio = False
             for carrera in ITBA.carreras:
-                     for materia in carrera:
+                     for materia in carrera.materias:
                           if materia.codigo_materia == codigo_de_materia:
                                raise Exception("\nEl código de la materia ya está asignado a otra materia, introduzca otro.\n")
         except ValueError:
@@ -322,8 +322,8 @@ def validadorCorrelativas():
             materias = []
             correlativas = input("Ingrese el nombre de las correlativas separadas por comas (,): ")
             correlativas = correlativas.replace(" ", "").split(",")
-            for carrera in ITBA:
-                for materia in carrera:
+            for carrera in ITBA.carreras:
+                for materia in carrera.materias:
                         materias.append(materia.nombre.lower())
             for correlativa in correlativas:
                 if correlativa.lower() not in materias:
@@ -337,5 +337,6 @@ def validadorCorrelativas():
     
      return correlativas
                       
+
 
         
