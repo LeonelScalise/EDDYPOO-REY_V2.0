@@ -336,7 +336,6 @@ class Profesor(Persona):
               alumno_elegido.materias_aprobadas.append(materia)
               alumno_elegido.materias_en_curso.remove(materia)
               materia.alumnos.remove(alumno_elegido)
-              #CAMBIO NUMERO 1
               alumno_elegido.comisiones_en_curso.remove(comision_elegida)
               comision_elegida.alumnos.remove(alumno_elegido)
               alumno_elegido.creditos_aprobados += materia.creditos
@@ -426,7 +425,7 @@ class Administrativo(Persona):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
     self.fecha_ingreso = fecha_ingreso
-    self.fecha_baja = fecha_baja #Dejamos esto por si queres hacerlo fede, si te da fiaca, borralo tranqui o dejalo para implementarlo post-entrega
+    self.fecha_baja = fecha_baja
     self.tramites_abiertos_admin = []
     self.tramites_resueltos_admin = []
     self.contraseña = contraseña
@@ -583,9 +582,9 @@ class Administrativo(Persona):
     nombre = input("Ingrese el nombre de la carrera:")
     director = input("Ingrese el nombre del director de la carrera:")
     creditos = int(input("Ingrese cuantos creditos son necesarios para recibirse: "))
-    nuevaCarrera = Carrera(nombre,director,creditos)
+    nuevaCarrera = Carrera(nombre, director, creditos)
     institucion.agregar_carrera(nuevaCarrera)
-    print("La nueva carrera ha sido creada exitosamente.")
+    print(f"La nueva carrera {nombre} ha sido creada exitosamente.")
 
 
   def __str__(self):
@@ -843,6 +842,27 @@ class Administrativo(Persona):
         carrera_elegida.materias.append(nueva_materia)
         print(f"\nLa materia {nueva_materia.nombre} de la carrera {carrera_elegida.nombre} fue creada correctamente. ")
 
+  def bajaMateria(self):
+    codigo_elegido = validadorCodigoMateria()
+
+    for materia in ITBA.materias:
+      if codigo_elegido == materia.codigo_materia:
+        materia_elegida = materia
+    
+    if len(materia_elegida.profesores) != 0:
+      materia_elegida.profesores.clear()
+    
+    if len(materia_elegida.alumnos) != 0:
+      materia_elegida.alumnos.clear()
+    
+    if len(materia_elegida.comisiones) != 0:
+      #self.bajaComision()
+      pass
+
+    for carrera in ITBA.carreras:
+      if materia_elegida in carrera.materias:
+        carrera.materias.remove(materia_elegida)
+
 
   def crearComision(self):
     contador = 0
@@ -888,7 +908,7 @@ class Administrativo(Persona):
         materia_elegida.profesores.append(profesor_asignado)
 
         print(f"La comision {nueva_comision.codigo_comision} de {materia_elegida.nombre} fue creada correctamente ")
-        #CAMBIO 2
+ 
   def bajaComision(self):
     comisiones=[]
     materias=[]

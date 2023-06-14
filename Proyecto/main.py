@@ -3,7 +3,7 @@ from armado_menu import armado_menu
 from clasePersona import *
 from validadores import validador
 from popularPersona import *
-#from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QBoxLayout, QWidget
 
 clear = lambda : os.system('cls')
 
