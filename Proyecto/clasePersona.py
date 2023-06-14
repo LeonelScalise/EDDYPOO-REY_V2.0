@@ -411,7 +411,7 @@ class Administrativo(Persona):
           if admin.legajo == legajo_ingresado and admin.contraseña == contraseña_ingresada:
             if admin.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Dar de baja una Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Alta de Materia", "Crear nueva carrera" ,"Estadisticas", "Cambiar contraseña", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda: admin.bajaComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.crearMateria(), lambda : admin.altaCarrera(ITBA), lambda : admin.estadisticasGenerales(), lambda : admin.actualizarContraseña(ITBA)])
+            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Dar de baja una Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Alta de Materia", "Baja de Materia", "Crear nueva carrera" ,"Estadisticas", "Cambiar contraseña", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda: admin.bajaComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.crearMateria(), lambda : admin.bajaMateria(), lambda : admin.altaCarrera(ITBA), lambda : admin.estadisticasGenerales(), lambda : admin.actualizarContraseña(ITBA)])
           elif admin.legajo == legajo_ingresado:
                 print("La contraseña es incorrecta. Intente nuevamente o consulte con otro administrador")
                 print("\n1. Reintentar\n2. Volver")
@@ -843,7 +843,7 @@ class Administrativo(Persona):
         carrera_elegida.materias.append(nueva_materia)
         print(f"\nLa materia {nueva_materia.nombre} de la carrera {carrera_elegida.nombre} fue creada correctamente. ")
 
-  def bajaMateria(self):
+  def bajaMateria(self): 
     codigo_elegido = validadorCodigoMateria()
 
     for materia in ITBA.materias:
@@ -851,18 +851,28 @@ class Administrativo(Persona):
         materia_elegida = materia
     
     if len(materia_elegida.profesores) != 0:
+      for comision in materia_elegida.comisiones:
+        comision.profesor.comisiones_a_cargo.remove(comision)
+        comision.profesor = None
       materia_elegida.profesores.clear()
     
     if len(materia_elegida.alumnos) != 0:
+      for comision in materia_elegida.comsiones:
+        for alumno in comision.alumnos:
+          alumno.comisiones_en_curso.remove(comision)
+          alumno.materias_en_curso.remove(materia_elegida)
+      
+      comision.alumnos.clear()
       materia_elegida.alumnos.clear()
     
     if len(materia_elegida.comisiones) != 0:
-      #self.bajaComision()
-      pass
+      materia_elegida.comisiones.clear()
 
     for carrera in ITBA.carreras:
       if materia_elegida in carrera.materias:
         carrera.materias.remove(materia_elegida)
+    
+    print(f"La materia {materia_elegida.nombre} se ha dado de baja con exito.")
 
 
   def crearComision(self):
