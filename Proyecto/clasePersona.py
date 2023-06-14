@@ -34,7 +34,8 @@ class Alumno(Persona):
           if alumno.legajo == legajo_ingresado and alumno.contraseña == contraseña_ingresada:
             if alumno.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {alumno.nombre_apellido}", ["Inscripcion a materia", "Desinscripción a materia", "Iniciar Tramite", "Cambiar contraseña", "Estadisticas", "Volver"], [lambda : alumno.displayMateriasDisponibles(), lambda : alumno.desinscribirMateria() , lambda : alumno.iniciarTramite(ITBA), lambda : alumno.actualizarContraseña(), lambda : alumno.estadisticasAlumno()])
+            return armado_menu(f"Bienvenid{x} {alumno.nombre_apellido}", ["Inscripcion a materia", "Desinscripción a materia", "Iniciar Tramite", "Cambiar contraseña", "Estadisticas", "Materias Aprobadas", "Volver"], [lambda : alumno.displayMateriasDisponibles(), lambda : alumno.desinscribirMateria() , lambda : alumno.iniciarTramite(ITBA), lambda : alumno.actualizarContraseña(), lambda : alumno.estadisticasAlumno(), lambda: alumno.materiasAprobadas()])
+
           elif alumno.legajo == legajo_ingresado:
             print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
             print("\n1. Reintentar\n2. Volver")
@@ -248,6 +249,20 @@ class Alumno(Persona):
     contraseña_nueva = input("Ingrese su contraseña nueva: ")
     self.contraseña = contraseña_nueva
     print("Su contraseña ha sido modificada exitosamente")
+  
+  def materiasAprobadas(self):
+    flag=True
+    print("\t\t\nMaterias Aprobadas\t\t\n")
+    while flag:
+        for materia in self.materias_aprobadas:
+          print(f"{materia.codigo_materia} {materia.nombre}")
+        
+        print(f"1. Volver")
+        opcion_elegida = validador(1)
+        clear()
+        if opcion_elegida == 1:
+            flag = False
+
 
 class Profesor(Persona):
   def menu_registro_profesor(institucion:RegistroITBA):
@@ -596,7 +611,7 @@ class Administrativo(Persona):
   def altaCarrera(self):
     nombre = input("Ingrese el nombre de la carrera:")
     director = input("Ingrese el nombre del director de la carrera:")
-    creditos = validadorCantidadDeCreditos()
+    creditos = validadorCreditos()
     nuevaCarrera = Carrera(nombre,director,creditos)
     RegistroITBA.agregar_carrera(nuevaCarrera)
     print("La nueva carrera ha sido creada exitosamente.")
