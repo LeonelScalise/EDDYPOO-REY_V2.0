@@ -410,7 +410,7 @@ class Administrativo(Persona):
           if admin.legajo == legajo_ingresado and admin.contraseña == contraseña_ingresada:
             if admin.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Crear nueva carrera" ,"Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.altaCarrera, lambda : admin.estadisticasGenerales()])
+            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Crear nueva carrera" ,"Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.altaCarrera(), lambda : admin.estadisticasGenerales()])
           elif admin.legajo == legajo_ingresado:
                 print("La contraseña es incorrecta. Intente nuevamente o consulte con otro administrador")
                 print("\n1. Reintentar\n2. Volver")
@@ -580,7 +580,7 @@ class Administrativo(Persona):
   def altaCarrera(self):
     nombre = input("Ingrese el nombre de la carrera:")
     director = input("Ingrese el nombre del director de la carrera:")
-    creditos = validadorCreditos()
+    creditos = int(input("Ingrese cuantos creditos son necesarios para recibirse: "))
     nuevaCarrera = Carrera(nombre,director,creditos)
     RegistroITBA.agregar_carrera(nuevaCarrera)
     print("La nueva carrera ha sido creada exitosamente.")
