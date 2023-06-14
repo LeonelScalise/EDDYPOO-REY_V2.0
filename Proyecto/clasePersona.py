@@ -9,6 +9,7 @@ from popularInstitucion import ITBA
 from getbyId import getbyId
 from claseComision import Comision
 from validadores import *
+from claseMateria import Materia
 
 clear = lambda : os.system('cls')
 
@@ -774,8 +775,38 @@ class Administrativo(Persona):
             print("El Administrativo ha sido dado de baja correctamente")
 
 
-      
-  
+  def crearMateria(self):
+    contador = 0
+    carreras_total = []
+    flag = True
+    print("Carreras de la institución\n")
+    while flag:
+      for carrera in ITBA.carreras:
+        contador += 1
+        carreras_total.append(carrera)
+        print(f'{contador}. {carrera.nombre}')
+      print(f'{contador + 1}. Volver')
+    
+      opcion_elegida = validador(contador + 1)
+      if opcion_elegida == contador + 1:
+          flag = False
+      else:
+        carrera_elegida = carreras_total[opcion_elegida - 1]
+        clear()
+        flag = False
+
+        print(f'Creación de la materia para la carrera {carrera.nombre}\n')
+        codigo_materia = validadorCodigoMateria()
+        nombre = input("Ingrese el nombre de la materia: ")
+        creditos = validadorCreditos()
+        sede = validadorSede()
+        correlativas = validadorCorrelativas()
+
+        nueva_materia = Materia(codigo_materia, nombre, creditos, sede, correlativas)
+
+        carrera_elegida.materias.append(nueva_materia)
+        print(f"La materia {nueva_materia.nombre} de la carrera {carrera_elegida.nombre} fue creada correctamente. ")
+
   def crearComision(self):
     contador = 0
     materias_total = []

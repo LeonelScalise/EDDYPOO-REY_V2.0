@@ -6,11 +6,11 @@ from datetime import *
 
 def validadorAula():
     inicio = True
-    patron = "^\s*[0-9]{1}[0]{1}[0-9]{1}[T,R,F]\s*$"
+    patron = "^\s*[0-9]{1}[0]{1}[0-9]{1}(F|R|T){1}\s*$"
     while inicio:
         try:
             aula = input("\nIngrese el aula: ")
-            if re.match(patron, aula) == None:
+            if re.match(patron, aula, re.IGNORECASE) == None:
                 raise Exception("\nEl aula no existe, ingrese un aula valida.\n")
             else:
                 inicio = False
@@ -44,7 +44,7 @@ def validadorDNI():
 
 def validadorDia():
     inicio = True
-    patron = "^\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*([,]{1}\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*)*$"
+    patron = "^\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*([,]{1}\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*)*$/i"
     while inicio:
         try:
             dias = input("\nIngrese el/los dia/s de la semana separados por (,): ")
@@ -259,3 +259,83 @@ def validadorSexo():
                 print(e)
     
     return sexo
+
+
+def validadorCodigoMateria():
+     inicio = True
+     patron = "^\s*[0-9]{1}\s*[0-9]{1}\s*\.{1}\s*[0-9]{1}\s*[0-9]{1}\s*$"
+     while inicio:
+        try:
+            codigo_de_materia = input("\nIngrese el codigo de la materia\nCuatro digitos separados por un punto (.) en la mitad (56.45): ")
+            if re.match(patron, codigo_de_materia) == None:
+                raise Exception("\nEl código no sigue el formato válido, inténtelo nuevamente.\n")
+            else:
+                inicio = False
+            for carrera in ITBA.carreras:
+                     for materia in carrera:
+                          if materia.codigo_materia == codigo_de_materia:
+                               raise Exception("\nEl código de la materia ya está asignado a otra materia, introduzca otro.\n")
+        except ValueError:
+                print('\nEl dato introducido no corresponde al valor esperado.\n')
+        except Exception as e: 
+                print(e)
+     return codigo_de_materia
+
+def validadorCreditos():
+     inicio = True
+     while inicio:
+        try:
+            creditos = input("\nIngrese los creditos de la materia: ")
+            if creditos.strip().isdigit():
+                 if int(creditos.strip()) > 6:
+                      raise Exception("\nLos créditos deben ser un dígito igual o menor a 6.\n")
+                 else:
+                      inicio = False
+        except ValueError:
+             print('\nEl dato introducido no corresponde al valor esperado.\n')
+        except Exception as e:
+             print(e)
+     return creditos
+
+def validadorSede():
+     inicio = True
+     patron = "^(SDF|SDT|SDR)$"
+
+     while inicio:
+        try:
+            sede = input("\n Ingrese la sede de cursada (SDF, SDT, SDR): \n")
+            if (re.match(patron, sede, re.IGNORECASE)) == None:
+                     raise Exception("\nLa sede introducida no es una válida, inténtelo nuevamente.")
+            else:
+                inicio = False
+        
+        except ValueError:
+             print('\nEl dato introducido no corresponde al valor esperado.\n')
+        except Exception as e:
+             print(e)
+     return sede
+
+def validadorCorrelativas():
+     inicio = True
+     while inicio:
+        try:
+            materias = []
+            correlativas = input("Ingrese el nombre de las correlativas separadas por comas (,): ")
+            correlativas = correlativas.replace(" ", "").split(",")
+            for carrera in ITBA:
+                for materia in carrera:
+                        materias.append(materia.nombre.lower())
+            for correlativa in correlativas:
+                if correlativa.lower() not in materias:
+                     raise Exception(f'"{correlativa}" no es una materia en el sistema, por favor ingrese una materia válido.')
+                else:
+                     inicio = False
+        except ValueError:
+             print('\nEl dato introducido no corresponde al valor esperado.\n')
+        except Exception as e:
+             print(e)
+    
+     return correlativas
+                      
+
+        
