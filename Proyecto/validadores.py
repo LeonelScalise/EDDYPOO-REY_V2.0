@@ -44,7 +44,7 @@ def validadorDNI():
 
 def validadorDia():
     inicio = True
-    patron = "^\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*([,]{1}\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*)*$/i"
+    patron = "^\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*([,]{1}\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*)*$"
     while inicio:
         try:
             dias = input("\nIngrese el/los dia/s de la semana separados por (,): ")
@@ -319,3 +319,42 @@ def validadorCorrelativas():
 
 
         
+def validadorCodigoMateriaExistente():
+     inicio = True
+     while inicio:
+          try:
+               cod_materia = input("Ingrese el codigo de la materia: ")
+               for carrera in ITBA.carreras:
+                    lista_cod_mat = [materia.codigo_materia for materia in carrera.materias if materia.codigo_materia == cod_materia]
+                    if lista_cod_mat == []:
+                         raise Exception("Ingrese un codigo de materia existente.")
+                    else:
+                         inicio = False
+
+          except ValueError:
+               print('\nEl dato introducido no corresponde al valor esperado.\n')
+          except Exception as e:
+               print(e)
+    
+     return cod_materia
+
+def validadorCodigoComisionExistente():
+     inicio = True
+     while inicio:
+          try:
+               cod_comision = input("Ingrese el codigo de la comision: ")
+               for carrera in ITBA.carreras:
+                    for materia in carrera.materias:
+                         lista_cod_comi = [comision.codigo_comision for comision in materia.comisiones if comision.codigo_comision == cod_comision]
+                         if lista_cod_comi == []:
+                              raise Exception("Ingrese un codigo de comisión existente.")
+                         else:
+                              inicio = False
+          except ValueError:
+               print('\nEl dato introducido no corresponde al valor esperado.\n')
+          except Exception as e:
+               print(e)
+     
+     return cod_comision
+
+                         
