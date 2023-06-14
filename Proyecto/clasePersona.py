@@ -509,7 +509,8 @@ class Administrativo(Persona):
         for materia in carrera.materias:
           for profesor in materia.profesores:
             if profesor.legajo == legajo_profesor:
-              materias_de_profesor.append(materia)
+              if materia not in materias_de_profesor:
+                materias_de_profesor.append(materia)
 
     print(f'¿Quiere desasignar a {profesor_elegido.nombre_apellido} de una materia o de una comisión en específico?\n\n1. Materia\n2. Comision\n')
     
@@ -906,6 +907,7 @@ class Administrativo(Persona):
 
         materia_elegida.comisiones.append(nueva_comision)
         materia_elegida.profesores.append(profesor_asignado)
+        profesor_asignado.comisiones_a_cargo.append(nueva_comision)
 
         print(f"La comision {nueva_comision.codigo_comision} de {materia_elegida.nombre} fue creada correctamente ")
  
@@ -913,8 +915,8 @@ class Administrativo(Persona):
     comisiones=[]
     materias=[]
     #Crear validadores de codigo de comision y materias, para validar que existan
-    cod_materia=input("Ingrese el codigo de la materia: ")
-    cod_comi=input("Ingrese el codigo de la comisión: ")
+    cod_materia=validadorCodigoMateriaExistente()
+    cod_comi=validadorCodigoComisionExistente(cod_materia)
     for carrera in ITBA.carreras:
       for materia in carrera.materias:
         materias.append(materia)
