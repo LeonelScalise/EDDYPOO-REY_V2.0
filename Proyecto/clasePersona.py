@@ -84,37 +84,6 @@ class Alumno(Persona):
       self.tramites_abiertos_alu.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
 
-  # def inscribirMateria(self, materia):
-  #   contador = 0
-  #   flag = True
-
-  #   print(f"\t\t\nComisiones disponibles para inscripcion en {materia.nombre}\n")
-  #   if len(materia.comisiones) != 0:
-  #     while flag:
-  #       for comisiones in materia.comisiones:
-  #         contador += 1
-  #         print(f"{contador}. {comisiones.codigo_comision}: {comisiones.dia_y_horario}")
-        
-  #       print(f"{contador + 1}. Volver")
-
-  #       opcion_elegida = validador(contador + 1)
-  #       clear()
-
-  #       if opcion_elegida == contador + 1:
-  #         flag = False
-  #       else:
-  #         comision = materia.comisiones[opcion_elegida - 1]
-  #         comision.alumnos.append(self)
-
-  #         materia.alumnos.append(comision.alumnos[-1])
-  #         self.materias_en_curso.append(materia)
-  #         clear()
-  #         flag = False
-  #         print(f"Te has inscripto correctamente a la comision {comision.codigo_comision} de la materia {materia.nombre}")
-      
-  #   else:
-  #     print("La materia no posee comisiones por el momento")
-
   def inscribirMateria(self, materia):
     contador = 0
     flag = True
@@ -923,10 +892,6 @@ class Administrativo(Persona):
           c+=1
       lista_frecuencias.append(c)
       c=0
-    
-      
-
-  
 
     plt.title(f"Rendimiento del alumno {alumno_elegido.nombre_apellido}")
     plt.bar(notas_posibles,lista_frecuencias)
