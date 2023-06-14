@@ -34,7 +34,8 @@ class Alumno(Persona):
           if alumno.legajo == legajo_ingresado and alumno.contraseña == contraseña_ingresada:
             if alumno.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {alumno.nombre_apellido}", ["Inscripcion a materia", "Desinscripción a materia", "Iniciar Tramite", "Cambiar contraseña", "Estadisticas", "Volver"], [lambda : alumno.displayMateriasDisponibles(), lambda : alumno.desinscribirMateria() , lambda : alumno.iniciarTramite(ITBA), lambda : alumno.actualizarContraseña(), lambda : alumno.estadisticasAlumno()])
+            return armado_menu(f"Bienvenid{x} {alumno.nombre_apellido}", ["Inscripcion a materia", "Desinscripción a materia", "Iniciar Tramite", "Cambiar contraseña", "Estadisticas", "Materias Aprobadas", "Volver"], [lambda : alumno.displayMateriasDisponibles(), lambda : alumno.desinscribirMateria() , lambda : alumno.iniciarTramite(ITBA), lambda : alumno.actualizarContraseña(), lambda : alumno.estadisticasAlumno(), lambda: alumno.materiasAprobadas()])
+
           elif alumno.legajo == legajo_ingresado:
             print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
             print("\n1. Reintentar\n2. Volver")
@@ -82,37 +83,6 @@ class Alumno(Persona):
       institucion.historial_tramites.append(nuevo_tramite)
       self.tramites_abiertos_alu.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
-
-  # def inscribirMateria(self, materia):
-  #   contador = 0
-  #   flag = True
-
-  #   print(f"\t\t\nComisiones disponibles para inscripcion en {materia.nombre}\n")
-  #   if len(materia.comisiones) != 0:
-  #     while flag:
-  #       for comisiones in materia.comisiones:
-  #         contador += 1
-  #         print(f"{contador}. {comisiones.codigo_comision}: {comisiones.dia_y_horario}")
-        
-  #       print(f"{contador + 1}. Volver")
-
-  #       opcion_elegida = validador(contador + 1)
-  #       clear()
-
-  #       if opcion_elegida == contador + 1:
-  #         flag = False
-  #       else:
-  #         comision = materia.comisiones[opcion_elegida - 1]
-  #         comision.alumnos.append(self)
-
-  #         materia.alumnos.append(comision.alumnos[-1])
-  #         self.materias_en_curso.append(materia)
-  #         clear()
-  #         flag = False
-  #         print(f"Te has inscripto correctamente a la comision {comision.codigo_comision} de la materia {materia.nombre}")
-      
-  #   else:
-  #     print("La materia no posee comisiones por el momento")
 
   def inscribirMateria(self, materia):
     contador = 0
@@ -248,6 +218,20 @@ class Alumno(Persona):
     contraseña_nueva = input("Ingrese su contraseña nueva: ")
     self.contraseña = contraseña_nueva
     print("Su contraseña ha sido modificada exitosamente")
+  
+  def materiasAprobadas(self):
+    flag=True
+    print("\t\t\nMaterias Aprobadas\t\t\n")
+    while flag:
+        for materia in self.materias_aprobadas:
+          print(f"{materia.codigo_materia} {materia.nombre}")
+        
+        print(f"1. Volver")
+        opcion_elegida = validador(1)
+        clear()
+        if opcion_elegida == 1:
+            flag = False
+
 
 class Profesor(Persona):
   def menu_registro_profesor(institucion:RegistroITBA):
@@ -426,7 +410,7 @@ class Administrativo(Persona):
           if admin.legajo == legajo_ingresado and admin.contraseña == contraseña_ingresada:
             if admin.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Crear nueva carrera" ,"Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.altaCarrera, lambda : admin.estadisticasGenerales()])
+            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Crear nueva carrera" ,"Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.altaCarrera(), lambda : admin.estadisticasGenerales()])
           elif admin.legajo == legajo_ingresado:
                 print("La contraseña es incorrecta. Intente nuevamente o consulte con otro administrador")
                 print("\n1. Reintentar\n2. Volver")
@@ -596,7 +580,7 @@ class Administrativo(Persona):
   def altaCarrera(self):
     nombre = input("Ingrese el nombre de la carrera:")
     director = input("Ingrese el nombre del director de la carrera:")
-    creditos = validadorCantidadDeCreditos()
+    creditos = int(input("Ingrese cuantos creditos son necesarios para recibirse: "))
     nuevaCarrera = Carrera(nombre,director,creditos)
     RegistroITBA.agregar_carrera(nuevaCarrera)
     print("La nueva carrera ha sido creada exitosamente.")
@@ -908,10 +892,6 @@ class Administrativo(Persona):
           c+=1
       lista_frecuencias.append(c)
       c=0
-    
-      
-
-  
 
     plt.title(f"Rendimiento del alumno {alumno_elegido.nombre_apellido}")
     plt.bar(notas_posibles,lista_frecuencias)
