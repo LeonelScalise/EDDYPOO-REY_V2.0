@@ -251,9 +251,9 @@ def validadorCodigoMateria():
             else:
                 inicio = False
             for carrera in ITBA.carreras:
-                     for materia in carrera:
-                          if materia.codigo_materia == codigo_de_materia:
-                               raise Exception("\nEl código de la materia ya está asignado a otra materia, introduzca otro.\n")
+                for materia in carrera.materias:
+                    if materia.codigo_materia == codigo_de_materia:
+                        raise Exception("\nEl código de la materia ya está asignado a otra materia, introduzca otro.\n")
         except ValueError:
                 print('\nEl dato introducido no corresponde al valor esperado.\n')
         except Exception as e: 
@@ -264,12 +264,11 @@ def validadorCreditos():
      inicio = True
      while inicio:
         try:
-            creditos = input("\nIngrese los creditos de la materia: ")
-            if creditos.strip().isdigit():
-                 if int(creditos.strip()) > 6:
-                      raise Exception("\nLos créditos deben ser un dígito igual o menor a 6.\n")
-                 else:
-                      inicio = False
+            creditos = int(str(input("Ingrese los creditos de la materia: ")).strip())
+            if creditos > 6 or creditos < 1:
+                raise Exception("\nLos créditos deben ser un dígito entre 1 y 6.\n")
+            else:
+                inicio = False       
         except ValueError:
              print('\nEl dato introducido no corresponde al valor esperado.\n')
         except Exception as e:
@@ -282,9 +281,9 @@ def validadorSede():
 
      while inicio:
         try:
-            sede = input("\n Ingrese la sede de cursada (SDF, SDT, SDR): \n")
+            sede = input("Ingrese la sede de cursada (SDF, SDT, SDR): ")
             if (re.match(patron, sede, re.IGNORECASE)) == None:
-                     raise Exception("\nLa sede introducida no es una válida, inténtelo nuevamente.")
+                     raise Exception("\nLa sede introducida no es una válida, inténtelo nuevamente.\n")
             else:
                 inicio = False
         
@@ -299,14 +298,14 @@ def validadorCorrelativas():
      while inicio:
         try:
             materias = []
-            correlativas = input("Ingrese el nombre de las correlativas separadas por comas (,): ")
-            correlativas = correlativas.replace(" ", "").split(",")
-            for carrera in ITBA:
-                for materia in carrera:
-                        materias.append(materia.nombre.lower())
+            correlativas = input("Ingrese el nombre de las correlativas separadas por comas (,): ").replace(" ", "").split(",")
+
+            for carrera in ITBA.carreras:
+                for materia in carrera.materias:
+                    materias.append(materia.nombre.lower().replace(" ", ""))
             for correlativa in correlativas:
                 if correlativa.lower() not in materias:
-                     raise Exception(f'"{correlativa}" no es una materia en el sistema, por favor ingrese una materia válido.')
+                     raise Exception(f'La materia ingresada no se encuentra en el sistema, por favor ingrese una materia válida.\n')
                 else:
                      inicio = False
         except ValueError:

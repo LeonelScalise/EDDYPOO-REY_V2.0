@@ -245,7 +245,7 @@ class Profesor(Persona):
           if prof.legajo == legajo_ingresado and prof.contraseña == contraseña_ingresada:
             if prof.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA)])
+            return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Cambiar contraseña", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA), lambda : prof.actualizarContraseña()])
           elif prof.legajo == legajo_ingresado:
               print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
               print("\n1. Reintentar\n2. Volver")
@@ -410,7 +410,7 @@ class Administrativo(Persona):
           if admin.legajo == legajo_ingresado and admin.contraseña == contraseña_ingresada:
             if admin.sexo == "F":
               x = "a"
-            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Crear nueva carrera" ,"Estadisticas", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.altaCarrera(), lambda : admin.estadisticasGenerales()])
+            return armado_menu(f"Bienvenid{x} {admin.nombre_apellido}", ["Dar de alta alumno", "Dar de baja alumno", "Dar de alta profesor", "Dar de baja profesor","Dar de baja Administrativo", "Tramites","Crear Comisión", "Asignar profesor a materia", "Desasignar profesor a materia", "Alta de Materia", "Crear nueva carrera" ,"Estadisticas", "Cambiar contraseña", "Volver"], [lambda : admin.altaAlumno(), lambda : admin.bajaAlumno(), lambda : admin.altaProfesor(), lambda : admin.bajaProfesor(), lambda : admin.bajaAdministrativo(), lambda : admin.displayTramiteActivo(), lambda:admin.crearComision(), lambda : admin.asignarProfesor(), lambda : admin.desasignarProfesor(), lambda : admin.crearMateria(), lambda : admin.altaCarrera(ITBA), lambda : admin.estadisticasGenerales(), lambda : admin.actualizarContraseña(ITBA)])
           elif admin.legajo == legajo_ingresado:
                 print("La contraseña es incorrecta. Intente nuevamente o consulte con otro administrador")
                 print("\n1. Reintentar\n2. Volver")
@@ -577,22 +577,52 @@ class Administrativo(Persona):
         print("El profesor no tiene comisiones a cargo.")
 
 
-  def altaCarrera(self):
+  def altaCarrera(self, institucion:RegistroITBA):
     nombre = input("Ingrese el nombre de la carrera:")
     director = input("Ingrese el nombre del director de la carrera:")
     creditos = int(input("Ingrese cuantos creditos son necesarios para recibirse: "))
     nuevaCarrera = Carrera(nombre,director,creditos)
-    RegistroITBA.agregar_carrera(nuevaCarrera)
+    institucion.agregar_carrera(nuevaCarrera)
     print("La nueva carrera ha sido creada exitosamente.")
 
 
   def __str__(self):
       return "{} es administrativo y tiene el legajo {}".format(self.nombre_apellido,self.legajo)
 
-  def actualizarContraseña(self):
-    contraseña_nueva = input("Ingrese su contraseña nueva: ")
-    self.contraseña = contraseña_nueva
-    print("Su contraseña ha sido modificada exitosamente")
+  def actualizarContraseña(self, institucion:RegistroITBA):
+    inicio = True
+    opcion_elegida = 0
+    while inicio:
+      print("¿A que tipo de usuario desea modificarle la contraseña?\n")
+      print("1. Administrativo\n2. Alumno\n3. Profesor\n4. Volver")
+
+      opcion_elegida = validador(4)
+      clear()
+
+      if opcion_elegida == 1:
+        contraseña_nueva = input("Ingrese su contraseña nueva: ")
+        self.contraseña = contraseña_nueva
+        print("Su contraseña ha sido modificada exitosamente")
+        inicio = False
+      elif opcion_elegida == 2:
+        legajo_ingresado = validadorLegajoAlumnos(institucion)
+        for alumno in institucion.alumnos:
+          if alumno.legajo == legajo_ingresado:
+            contraseña_nueva = input("Ingrese la contraseña nueva: ")
+            alumno.contraseña = contraseña_nueva
+            print(f"La contraseña del alumno {alumno.nombre_apellido} ha sido modificada exitosamente")
+            inicio = False
+      elif opcion_elegida == 3:
+        legajo_ingresado = validadorLegajoAdminyProf(institucion, "profesor")
+        for profesor in institucion.profesores:
+          if profesor.legajo == legajo_ingresado:
+            contraseña_nueva = input("Ingrese la contraseña nueva: ")
+            profesor.contraseña = contraseña_nueva
+            print(f"La contraseña del profesor {profesor.nombre_apellido} ha sido modificada exitosamente")
+            inicio = False
+      else:
+        inicio = False
+
     
   def resolverTramite(self, tramite): #menu para resolver trámite
     if tramite.alumno != None:
@@ -809,7 +839,8 @@ class Administrativo(Persona):
         nueva_materia = Materia(codigo_materia, nombre, creditos, sede, correlativas)
 
         carrera_elegida.materias.append(nueva_materia)
-        print(f"La materia {nueva_materia.nombre} de la carrera {carrera_elegida.nombre} fue creada correctamente. ")
+        print(f"\nLa materia {nueva_materia.nombre} de la carrera {carrera_elegida.nombre} fue creada correctamente. ")
+
 
   def crearComision(self):
     contador = 0
