@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 # Project modules
 from src.ui.login import Ui_Login
 from src.system import SystemWindow
+from Proyecto.popularInstitucion import ITBA
 
 
 
@@ -20,18 +21,21 @@ class LoginWindow(QMainWindow, Ui_Login):
 
 
     def validLogin(self):
-        legajo = self.input_legajo.text()
-        contraseña = self.input_pass.text()
+        legajo_ingresado = int(self.input_legajo.text())
+        contraseña_ingresada = self.input_pass.text()
         self.label_error.setText("")
-        if legajo == "62523" and contraseña == "1234":
+        for alumno in ITBA.alumnos:
+            if alumno.legajo == legajo_ingresado:
+                alumno_elegido = alumno
+        if alumno_elegido.contraseña == contraseña_ingresada:
             self.hide()
-            if self.label_tipo.text() == "ADMINISTRADOR":
-                self.system_window.label_info.setText("Se ingresa como Administrador")
-            elif self.label_tipo.text() == "ALUMNO":
+            # if self.label_tipo.text() == "ADMINISTRADOR":
+            #     self.system_window.label_info.setText("Se ingresa como Administrador")
+            if self.label_tipo.text() == "ALUMNO":
                 self.system_window.label_info.setText("Se ingresa como Alumno")
-            else:
-                self.system_window.label_info.setText("Se ingresa como Profesor")
-            self.system_window.show()
+            # else:
+            #     self.system_window.label_info.setText("Se ingresa como Profesor")
+            # self.system_window.show()
         else:
             self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
     

@@ -1,0 +1,1 @@
+lf.actionLoad = QtWidgets.QAction(MainWindow)

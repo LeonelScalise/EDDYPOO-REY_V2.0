@@ -1,3 +1,3 @@
-from claseRegistroITBA import RegistroITBA
+from Proyecto.claseRegistroITBA import RegistroITBA
 
 ITBA = RegistroITBA("ITBA","Pepe")
