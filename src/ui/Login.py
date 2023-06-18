@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'designer/Login.ui'
+# Form implementation generated from reading ui file 'designer/login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -28,7 +28,6 @@ class Ui_Login(object):
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(100, 40, 197, 33))
-        self.label.setMaximumSize(QtCore.QSize(197, 33))
         font = QtGui.QFont()
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(19)
@@ -53,7 +52,9 @@ class Ui_Login(object):
         self.input_legajo = QtWidgets.QLineEdit(self.centralwidget)
         self.input_legajo.setGeometry(QtCore.QRect(130, 160, 181, 21))
         self.input_legajo.setStyleSheet("border-radius: 5px;\n"
+"font: 63 10pt \"Segoe UI Semibold\";\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(88, 145, 255, 255));")
+        self.input_legajo.setText("")
         self.input_legajo.setObjectName("input_legajo")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(24, 200, 101, 21))
@@ -70,7 +71,10 @@ class Ui_Login(object):
         self.input_pass = QtWidgets.QLineEdit(self.centralwidget)
         self.input_pass.setGeometry(QtCore.QRect(130, 200, 181, 21))
         self.input_pass.setStyleSheet("border-radius: 5px;\n"
+"font: 63 11pt \"Segoe UI Semibold\";\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(88, 145, 255, 255));")
+        self.input_pass.setText("")
+        self.input_pass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.input_pass.setDragEnabled(False)
         self.input_pass.setPlaceholderText("")
         self.input_pass.setObjectName("input_pass")
@@ -93,26 +97,26 @@ class Ui_Login(object):
         self.btn_login.setText("Ingresar")
         self.btn_login.setCheckable(False)
         self.btn_login.setObjectName("btn_login")
-        self.btn_salir = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_salir.setGeometry(QtCore.QRect(300, 410, 81, 21))
+        self.btn_back = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_back.setGeometry(QtCore.QRect(300, 410, 81, 21))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btn_salir.sizePolicy().hasHeightForWidth())
-        self.btn_salir.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.btn_back.sizePolicy().hasHeightForWidth())
+        self.btn_back.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(10)
-        self.btn_salir.setFont(font)
-        self.btn_salir.setToolTipDuration(-1)
-        self.btn_salir.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.btn_salir.setStyleSheet("border-radius: 8px;\n"
+        self.btn_back.setFont(font)
+        self.btn_back.setToolTipDuration(-1)
+        self.btn_back.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.btn_back.setStyleSheet("border-radius: 8px;\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(10, 155, 245, 255));")
-        self.btn_salir.setText("Salir")
-        self.btn_salir.setCheckable(False)
-        self.btn_salir.setObjectName("btn_salir")
+        self.btn_back.setText("Regresar")
+        self.btn_back.setCheckable(False)
+        self.btn_back.setObjectName("btn_back")
         self.label_error = QtWidgets.QLabel(self.centralwidget)
-        self.label_error.setGeometry(QtCore.QRect(70, 250, 241, 16))
+        self.label_error.setGeometry(QtCore.QRect(30, 250, 331, 16))
         font = QtGui.QFont()
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(10)
@@ -120,6 +124,15 @@ class Ui_Login(object):
         self.label_error.setStyleSheet("color:red;")
         self.label_error.setText("")
         self.label_error.setObjectName("label_error")
+        self.label_tipo = QtWidgets.QLabel(self.centralwidget)
+        self.label_tipo.setGeometry(QtCore.QRect(10, 410, 121, 16))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Semibold")
+        font.setPointSize(10)
+        self.label_tipo.setFont(font)
+        self.label_tipo.setText("")
+        self.label_tipo.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_tipo.setObjectName("label_tipo")
         Login.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Login)
@@ -133,8 +146,8 @@ class Ui_Login(object):
         self.label_3.setText(_translate("Login", "Contraseña:"))
         self.btn_login.setToolTip(_translate("Login", "<html><head/><body><p align=\"right\"><br/></p></body></html>"))
         self.btn_login.setWhatsThis(_translate("Login", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
-        self.btn_salir.setToolTip(_translate("Login", "<html><head/><body><p align=\"right\"><br/></p></body></html>"))
-        self.btn_salir.setWhatsThis(_translate("Login", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
+        self.btn_back.setToolTip(_translate("Login", "<html><head/><body><p align=\"right\"><br/></p></body></html>"))
+        self.btn_back.setWhatsThis(_translate("Login", "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
 
 
 if __name__ == "__main__":

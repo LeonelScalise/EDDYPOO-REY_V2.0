@@ -50,12 +50,6 @@ background-color: qlineargradient(spread:pad, x1:0.531, y1:0.977273, x2:0, y2:0,
       <height>33</height>
      </rect>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>197</width>
-      <height>33</height>
-     </size>
-    </property>
     <property name="font">
      <font>
       <family>Segoe UI Semibold</family>
@@ -117,7 +111,11 @@ background-color: qlineargradient(spread:pad, x1:0.531, y1:0.977273, x2:0, y2:0,
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 5px;
+font: 63 10pt &quot;Segoe UI Semibold&quot;;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(88, 145, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -158,7 +156,14 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 5px;
+font: 63 11pt &quot;Segoe UI Semibold&quot;;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(88, 145, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
     <property name="dragEnabled">
      <bool>false</bool>
@@ -212,7 +217,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_salir">
+   <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -250,7 +255,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(10, 155, 245, 255));</string>
     </property>
     <property name="text">
-     <string notr="true">Salir</string>
+     <string notr="true">Regresar</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -259,9 +264,9 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb
    <widget class="QLabel" name="label_error">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>30</x>
       <y>250</y>
-      <width>241</width>
+      <width>331</width>
       <height>16</height>
      </rect>
     </property>
@@ -276,6 +281,28 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_tipo">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI Semibold</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

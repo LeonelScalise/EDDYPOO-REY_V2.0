@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainMenu(object):
-    def setupUi(self, MainMenu):
-        MainMenu.setObjectName("MainMenu")
-        MainMenu.resize(400, 450)
-        MainMenu.setMinimumSize(QtCore.QSize(400, 450))
-        MainMenu.setMaximumSize(QtCore.QSize(600, 700))
-        MainMenu.setAcceptDrops(True)
-        self.centralwidget = QtWidgets.QWidget(MainMenu)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(400, 450)
+        MainWindow.setMinimumSize(QtCore.QSize(400, 450))
+        MainWindow.setMaximumSize(QtCore.QSize(600, 700))
+        MainWindow.setAcceptDrops(True)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setAcceptDrops(False)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -113,41 +113,41 @@ class Ui_MainMenu(object):
         self.btn_salir.setFlat(False)
         self.btn_salir.setObjectName("btn_salir")
         self.gridLayout.addWidget(self.btn_salir, 7, 1, 1, 1, QtCore.Qt.AlignHCenter)
-        MainMenu.setCentralWidget(self.centralwidget)
-        self.actionLoad = QtWidgets.QAction(MainMenu)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.actionLoad = QtWidgets.QAction(MainWindow)
         self.actionLoad.setObjectName("actionLoad")
-        self.actionSave = QtWidgets.QAction(MainMenu)
+        self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
-        self.actionLoad_2 = QtWidgets.QAction(MainMenu)
+        self.actionLoad_2 = QtWidgets.QAction(MainWindow)
         self.actionLoad_2.setObjectName("actionLoad_2")
-        self.actionSave_2 = QtWidgets.QAction(MainMenu)
+        self.actionSave_2 = QtWidgets.QAction(MainWindow)
         self.actionSave_2.setObjectName("actionSave_2")
-        self.actionSet_size = QtWidgets.QAction(MainMenu)
+        self.actionSet_size = QtWidgets.QAction(MainWindow)
         self.actionSet_size.setObjectName("actionSet_size")
 
-        self.retranslateUi(MainMenu)
-        QtCore.QMetaObject.connectSlotsByName(MainMenu)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, MainMenu):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainMenu.setWindowTitle(_translate("MainMenu", "eddypoo-rey"))
-        self.btn_alu.setText(_translate("MainMenu", "Alumno"))
-        self.btn_profe.setText(_translate("MainMenu", "Profesor"))
-        self.label.setText(_translate("MainMenu", "MENU PRINCIPAL"))
-        self.btn_admin.setText(_translate("MainMenu", "Administrativo"))
-        self.btn_salir.setText(_translate("MainMenu", "Salir"))
-        self.actionLoad.setText(_translate("MainMenu", "Load"))
-        self.actionSave.setText(_translate("MainMenu", "Save"))
-        self.actionLoad_2.setText(_translate("MainMenu", "Load..."))
-        self.actionSave_2.setText(_translate("MainMenu", "Save..."))
-        self.actionSet_size.setText(_translate("MainMenu", "Set size"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "eddypoo-rey"))
+        self.btn_alu.setText(_translate("MainWindow", "Alumno"))
+        self.btn_profe.setText(_translate("MainWindow", "Profesor"))
+        self.label.setText(_translate("MainWindow", "MENU PRINCIPAL"))
+        self.btn_admin.setText(_translate("MainWindow", "Administrativo"))
+        self.btn_salir.setText(_translate("MainWindow", "Salir"))
+        self.actionLoad.setText(_translate("MainWindow", "Load"))
+        self.actionSave.setText(_translate("MainWindow", "Save"))
+        self.actionLoad_2.setText(_translate("MainWindow", "Load..."))
+        self.actionSave_2.setText(_translate("MainWindow", "Save..."))
+        self.actionSet_size.setText(_translate("MainWindow", "Set size"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainMenu = QtWidgets.QMainWindow()
-    ui = Ui_MainMenu()
-    ui.setupUi(MainMenu)
-    MainMenu.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'designer/System.ui'
+# Form implementation generated from reading ui file 'designer/system.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -19,20 +19,21 @@ class Ui_System(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Semibold")
-        font.setPointSize(15)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_logout = QtWidgets.QPushButton(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(11)
-        self.pushButton.setFont(font)
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout_2.addWidget(self.pushButton, 1, 0, 1, 1)
+        self.btn_logout.setFont(font)
+        self.btn_logout.setObjectName("btn_logout")
+        self.gridLayout_2.addWidget(self.btn_logout, 1, 0, 1, 1)
+        self.label_info = QtWidgets.QLabel(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Semibold")
+        font.setPointSize(12)
+        self.label_info.setFont(font)
+        self.label_info.setText("")
+        self.label_info.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_info.setObjectName("label_info")
+        self.gridLayout_2.addWidget(self.label_info, 0, 0, 1, 1)
         System.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(System)
@@ -41,8 +42,7 @@ class Ui_System(object):
     def retranslateUi(self, System):
         _translate = QtCore.QCoreApplication.translate
         System.setWindowTitle(_translate("System", "MainWindow"))
-        self.label.setText(_translate("System", "SE INGRESÓ COMO ADMIN"))
-        self.pushButton.setText(_translate("System", "Cerrar Sesión"))
+        self.btn_logout.setText(_translate("System", "Cerrar Sesión"))
 
 
 if __name__ == "__main__":
