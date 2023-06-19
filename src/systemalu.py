@@ -3,15 +3,10 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.systemadmin import Ui_Systemadmin
+from src.ui.systemadmin import Ui_Systemalu
 
 
-class SystemadminWindow(QMainWindow, Ui_Systemadmin):
+class SystemaluWindow(QMainWindow, Ui_Systemalu):
     def __init__(self):
-        super(SystemadminWindow, self).__init__()
+        super(SystemaluWindow, self).__init__()
         self.setupUi(self)
-
-    
-
-
-    

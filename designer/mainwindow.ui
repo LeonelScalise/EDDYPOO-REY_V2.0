@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>eddypoo-rey</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#centralwidget{
+background-color: qlineargradient(spread:pad, x1:0.04, y1:0.909091, x2:1, y2:0, stop:0 rgba(0, 115, 203, 255), stop:1 rgba(187, 215, 255, 255));}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="acceptDrops">
     <bool>false</bool>
@@ -43,7 +47,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>110</width>
+        <width>150</width>
         <height>30</height>
        </size>
       </property>
@@ -57,9 +61,15 @@
        <font>
         <family>MS Sans Serif</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:8px;</string>
       </property>
       <property name="text">
        <string>Alumno</string>
@@ -76,7 +86,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>110</width>
+        <width>150</width>
         <height>30</height>
        </size>
       </property>
@@ -90,9 +100,15 @@
        <font>
         <family>MS Sans Serif</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 8px;</string>
       </property>
       <property name="text">
        <string>Profesor</string>
@@ -143,7 +159,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>110</width>
+        <width>150</width>
         <height>30</height>
        </size>
       </property>
@@ -157,9 +173,15 @@
        <font>
         <family>MS Sans Serif</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:8px;</string>
       </property>
       <property name="text">
        <string>Administrativo</string>
@@ -176,7 +198,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>110</width>
+        <width>150</width>
         <height>30</height>
        </size>
       </property>
@@ -190,8 +212,8 @@
        <font>
         <family>MS Sans Serif</family>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="focusPolicy">
@@ -202,6 +224,9 @@
       </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:8px;</string>
       </property>
       <property name="text">
        <string>Salir</string>

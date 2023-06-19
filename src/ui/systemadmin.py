@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Systemadmin(object):
     def setupUi(self, Systemadmin):
         Systemadmin.setObjectName("Systemadmin")
-        Systemadmin.resize(920, 604)
+        Systemadmin.resize(742, 589)
         self.centralwidget = QtWidgets.QWidget(Systemadmin)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
@@ -41,11 +41,14 @@ class Ui_Systemadmin(object):
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QtWidgets.QWidget()
+        self.tab_3.setObjectName("tab_3")
+        self.tabWidget.addTab(self.tab_3, "")
         self.gridLayout_2.addWidget(self.tabWidget, 0, 0, 1, 1)
         Systemadmin.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Systemadmin)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(Systemadmin)
 
     def retranslateUi(self, Systemadmin):
@@ -55,6 +58,7 @@ class Ui_Systemadmin(object):
         self.btn_logout.setText(_translate("Systemadmin", "Cerrar Sesión"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Systemadmin", "Tab 1"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Systemadmin", "Tab 2"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Systemadmin", "Page"))
 
 
 if __name__ == "__main__":
