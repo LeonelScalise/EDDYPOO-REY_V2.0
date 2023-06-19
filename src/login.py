@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 # Project modules
 from src.ui.login import Ui_Login
-from src.system import SystemWindow
+from src.systemadmin import SystemadminWindow
 from ProyectoV2.popularInstitucion import ITBA
 from ProyectoV2.popularPersona import *
 
@@ -14,7 +14,7 @@ class LoginWindow(QMainWindow, Ui_Login):
     def __init__(self):
         super(LoginWindow, self).__init__()
         self.setupUi(self)
-        self.system_window = SystemWindow()
+        self.system_window = SystemadminWindow()
         self.btn_login.clicked.connect(self.validLogin)
         self.system_window.btn_logout.clicked.connect(self.logout)
 
@@ -26,7 +26,7 @@ class LoginWindow(QMainWindow, Ui_Login):
             pass
         legajo_ingresado = self.input_legajo.text()
         contraseña_ingresada = self.input_pass.text()
-        
+
         if legajo_ingresado.isdigit():
             legajo_ingresado = int(legajo_ingresado)
         else:

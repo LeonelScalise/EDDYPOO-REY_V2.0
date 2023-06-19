@@ -4,12 +4,12 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.system import Ui_System
+from src.ui.systemadmin import Ui_Systemadmin
 
 
-class SystemWindow(QMainWindow, Ui_System):
+class SystemadminWindow(QMainWindow, Ui_Systemadmin):
     def __init__(self):
-        super(SystemWindow, self).__init__()
+        super(SystemadminWindow, self).__init__()
         self.setupUi(self)
 
     
