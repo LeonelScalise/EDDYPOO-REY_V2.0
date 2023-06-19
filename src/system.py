@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.system import Ui_System
+from src.ui.systemadmin import Ui_System
 
 
 class SystemWindow(QMainWindow, Ui_System):
