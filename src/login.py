@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.login import Ui_Login
+from src.ui.Login import Ui_Login
 from src.systemadmin import SystemadminWindow
 from src.systemalu import SystemaluWindow
 from src.systemprofe import SystemprofeWindow
@@ -25,6 +25,23 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemalu_window.btn_logout_alu.clicked.connect(self.logout)
         self.systemprofe_window.btn_logout_profe.clicked.connect(self.logout)
 
+
+
+    def validLegajo(self, institucion, legajo_ingresado):
+        try:
+            legajoingresado = int(legajo_ingresado)
+        except ValueError:
+            self.label_error.setText("El legajo ingresado debe ser un numero.")
+            return False  # volve antes porque el codigo que sigue depende de la conversion
+
+        if len(str(legajoingresado)) != 5:
+            self.label_error.setText("El legajo debe ser de 5 digitos.")
+            return False
+        elif legajoingresado not in institucion.legajos_alumnos:
+            self.label_error.setText("El legajo no existe.")
+            return False
+
+        return True
 
     def validLogin(self):
         try:
@@ -52,6 +69,10 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")    
             
             elif self.label_tipo.text() == "ALUMNO":
+                legajo_es_valido = self.validLegajo(ITBA, legajo_ingresado)
+                if not legajo_es_valido:
+                    return  # si el legajo no es valido no ejecutes lo siguiente
+
                 alumno_elegido = None
                 for alumno in ITBA.alumnos:
                     if alumno.legajo == int(legajo_ingresado):
@@ -61,8 +82,8 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.hide()
                     self.systemalu_window.label_info.setText(f"Logeado como {alumno_elegido.nombre_apellido}")
                     self.systemalu_window.show()
-                else:
-                    self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
+                # else:
+                #     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
             
             else:
                 profesor_elegido = None
