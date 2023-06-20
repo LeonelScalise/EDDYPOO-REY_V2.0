@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1090</width>
-    <height>517</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="minimumSize">
     <size>
      <width>1090</width>
-     <height>0</height>
+     <height>500</height>
     </size>
    </property>
    <property name="styleSheet">
@@ -41,16 +41,16 @@
       <property name="font">
        <font>
         <family>Segoe UI Semibold</family>
-        <pointsize>11</pointsize>
+        <pointsize>13</pointsize>
         <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
       <property name="text">
-       <string>Logeado como El admin</string>
+       <string>Logeado como</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -121,7 +121,7 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="page_alta_admin">
               <layout class="QGridLayout" name="gridLayout">
@@ -372,36 +372,13 @@
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="maxLength">
+                  <number>8</number>
+                 </property>
                 </widget>
                </item>
                <item row="3" column="0">
                 <spacer name="horizontalSpacer_7">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="4">
-                <spacer name="horizontalSpacer_45">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="0">
-                <spacer name="horizontalSpacer_52">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -424,7 +401,7 @@
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>13</pointsize>
+                   <pointsize>17</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -439,88 +416,7 @@
              </widget>
              <widget class="QWidget" name="page_alta_alu">
               <layout class="QGridLayout" name="gridLayout_7">
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_8">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>DNI:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <spacer name="horizontalSpacer_20">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>270</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="2" column="0">
-                <spacer name="horizontalSpacer_19">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>270</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="4" column="3">
-                <widget class="QPushButton" name="btn_registro_2">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Registrar</string>
-                 </property>
-                </widget>
-               </item>
                <item row="3" column="3">
-                <spacer name="horizontalSpacer_15">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>269</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="0">
-                <spacer name="horizontalSpacer_14">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>270</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="2" column="3">
                 <spacer name="horizontalSpacer_18">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -536,7 +432,36 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="3">
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_8">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>DNI:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <spacer name="horizontalSpacer_15">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>269</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="2" column="3">
                 <spacer name="horizontalSpacer_17">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -549,7 +474,20 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="2">
+               <item row="3" column="0">
+                <spacer name="horizontalSpacer_19">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>270</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
                 <widget class="QLineEdit" name="input_nombre_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -559,33 +497,33 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="label_5">
+               <item row="2" column="0">
+                <spacer name="horizontalSpacer_14">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>270</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="5" column="3">
+                <widget class="QPushButton" name="btn_registro_2">
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>10</pointsize>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Fecha de nacimiento:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
+                  <string>Registrar</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="2">
-                <widget class="QDateEdit" name="dt_fnac_2">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
+               <item row="1" column="1">
                 <widget class="QLabel" name="label_9">
                  <property name="font">
                   <font>
@@ -601,27 +539,17 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="2">
-                <widget class="QComboBox" name="cb_sexo_2">
+               <item row="4" column="2">
+                <widget class="QDateEdit" name="dt_fnac_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <item>
-                  <property name="text">
-                   <string>M</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>F</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
-               <item row="0" column="3">
+               <item row="1" column="3">
                 <spacer name="horizontalSpacer_12">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -634,7 +562,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="1">
                 <widget class="QLabel" name="label_6">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -656,7 +584,20 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
+               <item row="2" column="2">
+                <widget class="QLineEdit" name="input_dni_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maxLength">
+                  <number>8</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
                 <spacer name="horizontalSpacer_13">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -669,17 +610,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="2">
-                <widget class="QLineEdit" name="input_dni_2">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0" colspan="2">
+               <item row="5" column="0" colspan="2">
                 <widget class="QLabel" name="label_informe_alu">
                  <property name="enabled">
                   <bool>true</bool>
@@ -707,11 +638,82 @@
                  </property>
                 </widget>
                </item>
+               <item row="3" column="2">
+                <widget class="QComboBox" name="cb_sexo_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>M</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>F</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <spacer name="horizontalSpacer_20">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>270</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="label_5">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Fecha de nacimiento:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1" colspan="2">
+                <widget class="QLabel" name="label_36">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>ALTA ALUMNO</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
              <widget class="QWidget" name="page_alta_profe">
               <layout class="QGridLayout" name="gridLayout_8">
-               <item row="0" column="1">
+               <item row="1" column="1">
                 <widget class="QLabel" name="label_13">
                  <property name="font">
                   <font>
@@ -727,7 +729,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="4" column="3">
+               <item row="5" column="3">
                 <widget class="QPushButton" name="btn_registro_3">
                  <property name="font">
                   <font>
@@ -740,7 +742,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="2">
+               <item row="4" column="2">
                 <widget class="QDateEdit" name="dt_fnac_3">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -750,7 +752,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="2">
+               <item row="2" column="2">
                 <widget class="QLineEdit" name="input_dni_3">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -758,9 +760,12 @@
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="maxLength">
+                  <number>8</number>
+                 </property>
                 </widget>
                </item>
-               <item row="4" column="0" colspan="2">
+               <item row="5" column="0" colspan="2">
                 <widget class="QLabel" name="label_informe_profe">
                  <property name="enabled">
                   <bool>true</bool>
@@ -782,7 +787,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="3">
+               <item row="1" column="3">
                 <spacer name="horizontalSpacer_21">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -795,7 +800,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="0">
+               <item row="1" column="0">
                 <spacer name="horizontalSpacer_22">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -808,7 +813,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="3">
+               <item row="2" column="3">
                 <spacer name="horizontalSpacer_25">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -821,7 +826,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QLabel" name="label_10">
                  <property name="font">
                   <font>
@@ -837,7 +842,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="4" column="0">
                 <spacer name="horizontalSpacer_28">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -850,7 +855,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="0">
+               <item row="3" column="0">
                 <spacer name="horizontalSpacer_27">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -863,7 +868,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="2">
+               <item row="1" column="2">
                 <widget class="QLineEdit" name="input_nombre_3">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -873,7 +878,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="2" column="0">
                 <spacer name="horizontalSpacer_23">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -886,7 +891,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="3">
+               <item row="3" column="3">
                 <spacer name="horizontalSpacer_26">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -902,7 +907,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="2">
+               <item row="3" column="2">
                 <widget class="QComboBox" name="cb_sexo_3">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -922,7 +927,7 @@
                  </item>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="2" column="1">
                 <widget class="QLabel" name="label_12">
                  <property name="font">
                   <font>
@@ -938,7 +943,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="1">
                 <widget class="QLabel" name="label_11">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -960,7 +965,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="3">
+               <item row="4" column="3">
                 <spacer name="horizontalSpacer_24">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -973,11 +978,36 @@
                  </property>
                 </spacer>
                </item>
+               <item row="0" column="1" colspan="2">
+                <widget class="QLabel" name="label_37">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="midLineWidth">
+                  <number>0</number>
+                 </property>
+                 <property name="text">
+                  <string>ALTA PROFESOR</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
              <widget class="QWidget" name="page_alta_materia">
               <layout class="QGridLayout" name="gridLayout_9">
-               <item row="4" column="1">
+               <item row="5" column="1">
                 <widget class="QLabel" name="label_18">
                  <property name="font">
                   <font>
@@ -993,7 +1023,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="2">
+               <item row="6" column="2">
                 <widget class="QPushButton" name="btn_add_corre">
                  <property name="enabled">
                   <bool>false</bool>
@@ -1003,7 +1033,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="8" column="4">
+               <item row="9" column="4">
                 <widget class="QPushButton" name="btn_registro_4">
                  <property name="enabled">
                   <bool>false</bool>
@@ -1019,7 +1049,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QLabel" name="label_14">
                  <property name="font">
                   <font>
@@ -1035,7 +1065,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="2" column="0">
                 <spacer name="horizontalSpacer_31">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1048,7 +1078,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="0">
+               <item row="1" column="0">
                 <spacer name="horizontalSpacer_30">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1061,7 +1091,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="4">
+               <item row="2" column="4">
                 <spacer name="horizontalSpacer_33">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1074,7 +1104,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="3" column="4">
+               <item row="4" column="4">
                 <spacer name="horizontalSpacer_32">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1087,14 +1117,14 @@
                  </property>
                 </spacer>
                </item>
-               <item row="5" column="1">
+               <item row="6" column="1">
                 <widget class="QLineEdit" name="lineEdit_2">
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="1">
                 <widget class="QLabel" name="label_15">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1116,7 +1146,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="4" column="0">
                 <spacer name="horizontalSpacer_36">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1129,7 +1159,20 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="4">
+               <item row="9" column="1" colspan="2">
+                <widget class="QLabel" name="label_informe_materia">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:green;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
                 <spacer name="horizontalSpacer_34">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1145,165 +1188,10 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="2">
+               <item row="1" column="2">
                 <widget class="QComboBox" name="comboBox"/>
                </item>
-               <item row="2" column="2">
-                <widget class="QComboBox" name="cb_sexo_4">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>M</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>F</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="label_17">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Elija una Carrera:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="4">
-                <spacer name="horizontalSpacer_29">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>205</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="2" column="0">
-                <spacer name="horizontalSpacer_35">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>205</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="label_19">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Correlativa:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="2">
-                <widget class="QComboBox" name="comboBox_2">
-                 <item>
-                  <property name="text">
-                   <string>SDF</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>SDT</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>SDR</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_16">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Código de materia:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QLineEdit" name="input_dni_4">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="0">
-                <widget class="QLabel" name="label_registro_5">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="4">
-                <widget class="QListView" name="lv_correlativas">
-                 <property name="maximumSize">
-                  <size>
-                   <width>150</width>
-                   <height>100</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="2">
-                <widget class="QLineEdit" name="lineEdit"/>
-               </item>
-               <item row="6" column="4">
+               <item row="7" column="4">
                 <widget class="QLabel" name="label_error_correl">
                  <property name="enabled">
                   <bool>true</bool>
@@ -1322,24 +1210,171 @@
                  </property>
                 </widget>
                </item>
-               <item row="8" column="1" colspan="2">
-                <widget class="QLabel" name="label_informe_materia">
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_17">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Elija una Carrera:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <spacer name="horizontalSpacer_29">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>205</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="0">
+                <spacer name="horizontalSpacer_35">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>205</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="label_19">
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">color:green;</string>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Correlativa:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QComboBox" name="comboBox_2">
+                 <item>
+                  <property name="text">
+                   <string>SDF</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SDT</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SDR</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_16">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Código de materia:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLineEdit" name="input_dni_4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="label_registro_5">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
                  </property>
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                 </widget>
+               </item>
+               <item row="6" column="4">
+                <widget class="QListView" name="lv_correlativas">
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLineEdit" name="lineEdit"/>
+               </item>
+               <item row="0" column="1" colspan="2">
+                <widget class="QLabel" name="label_38">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>ALTA MATERIA</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLineEdit" name="input_nom_materia"/>
                </item>
               </layout>
              </widget>
              <widget class="QWidget" name="page_alta_comi">
               <layout class="QGridLayout" name="gridLayout_10">
-               <item row="2" column="0">
+               <item row="3" column="0">
                 <spacer name="horizontalSpacer_38">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1355,286 +1390,17 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="2">
+               <item row="1" column="2">
                 <widget class="QComboBox" name="comboBox_4"/>
                </item>
-               <item row="10" column="3">
-                <widget class="QLabel" name="label_error_correl_2">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>15</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color:red;</string>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="label_23">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Elija una Carrera:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="11" column="1" colspan="2">
-                <widget class="QLabel" name="label_informe_comision">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color:green;</string>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <spacer name="horizontalSpacer_44">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Preferred</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>100</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="3" column="2">
-                <widget class="QLineEdit" name="lineEdit_4"/>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="label_22">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Legajo profesor:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_24">
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Elija una materia:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="2">
-                <widget class="QComboBox" name="cb_sexo_5">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>M</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>F</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="3" column="3">
-                <spacer name="horizontalSpacer_40">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>300</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="0">
-                <spacer name="horizontalSpacer_37">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Preferred</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>100</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="11" column="3">
-                <widget class="QPushButton" name="btn_registro_5">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Registrar</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <spacer name="horizontalSpacer_43">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>300</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="3">
-                <spacer name="horizontalSpacer_42">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>300</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="0">
-                <spacer name="horizontalSpacer_41">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Preferred</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>100</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="label_25">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Aula:</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="3">
-                <spacer name="horizontalSpacer_39">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Expanding</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>300</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="9" column="3">
-                <widget class="QTableWidget" name="tableWidget">
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>120</height>
-                  </size>
-                 </property>
-                 <column>
-                  <property name="text">
-                   <string>Dia</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Inicio</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Fin</string>
-                  </property>
-                 </column>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QComboBox" name="comboBox_5"/>
-               </item>
-               <item row="9" column="0" colspan="3">
+               <item row="10" column="0" colspan="3">
                 <widget class="QFrame" name="frame">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>130</height>
+                  </size>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -1643,7 +1409,33 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
                   <item row="1" column="1">
-                   <widget class="QComboBox" name="comboBox_3"/>
+                   <widget class="QComboBox" name="comboBox_3">
+                    <item>
+                     <property name="text">
+                      <string>Lunes</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Martes</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Miercoles</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Jueves</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Viernes</string>
+                     </property>
+                    </item>
+                   </widget>
                   </item>
                   <item row="2" column="1">
                    <widget class="QTimeEdit" name="timeEdit"/>
@@ -1669,6 +1461,9 @@
                   </item>
                   <item row="2" column="2">
                    <widget class="QPushButton" name="pushButton">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
                     <property name="text">
                      <string>Agregar Hora Incio</string>
                     </property>
@@ -1721,6 +1516,9 @@
                   </item>
                   <item row="3" column="2">
                    <widget class="QPushButton" name="pushButton_2">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
                     <property name="text">
                      <string>Agregar Hora Fin</string>
                     </property>
@@ -1729,11 +1527,291 @@
                  </layout>
                 </widget>
                </item>
+               <item row="11" column="3">
+                <widget class="QLabel" name="label_error_correl_2">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:red;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_23">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Elija una Carrera:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="12" column="1" colspan="2">
+                <widget class="QLabel" name="label_informe_comision">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:green;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <spacer name="horizontalSpacer_44">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Preferred</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLineEdit" name="lineEdit_4"/>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="label_22">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Legajo profesor:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_24">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Elija una materia:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <spacer name="horizontalSpacer_40">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>300</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="0">
+                <spacer name="horizontalSpacer_37">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Preferred</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="12" column="3">
+                <widget class="QPushButton" name="btn_registro_5">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Registrar</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <spacer name="horizontalSpacer_43">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>300</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="3">
+                <spacer name="horizontalSpacer_42">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>300</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="2" column="0">
+                <spacer name="horizontalSpacer_41">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Preferred</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_25">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Aula:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <spacer name="horizontalSpacer_39">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Expanding</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>300</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="10" column="3">
+                <widget class="QTableWidget" name="tableWidget">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>120</height>
+                  </size>
+                 </property>
+                 <column>
+                  <property name="text">
+                   <string>Dia</string>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Inicio</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Fin</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QComboBox" name="comboBox_5"/>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="label_39">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>ALTA COMISION</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLineEdit" name="input_aula"/>
+               </item>
               </layout>
              </widget>
              <widget class="QWidget" name="page_alta_carrera">
               <layout class="QGridLayout" name="gridLayout_12">
-               <item row="1" column="3">
+               <item row="2" column="3">
                 <spacer name="horizontalSpacer_51">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1746,7 +1824,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="3" column="0" colspan="2">
+               <item row="4" column="0" colspan="2">
                 <widget class="QLabel" name="label_informe_carrera">
                  <property name="enabled">
                   <bool>true</bool>
@@ -1768,7 +1846,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="3">
+               <item row="4" column="3">
                 <widget class="QPushButton" name="btn_registro_6">
                  <property name="font">
                   <font>
@@ -1781,7 +1859,17 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="3">
+               <item row="3" column="2">
+                <widget class="QLineEdit" name="lineEdit_3">
+                 <property name="maxLength">
+                  <number>1</number>
+                 </property>
+                 <property name="clearButtonEnabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
                 <spacer name="horizontalSpacer_46">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1794,7 +1882,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="0">
+               <item row="2" column="0">
                 <spacer name="horizontalSpacer_50">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1807,7 +1895,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="2">
+               <item row="2" column="2">
                 <widget class="QLineEdit" name="input_dni_5">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1817,7 +1905,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="3" column="0">
                 <spacer name="horizontalSpacer_49">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1830,7 +1918,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="2">
+               <item row="1" column="2">
                 <widget class="QLineEdit" name="input_nombre_4">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1840,7 +1928,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="1">
                 <widget class="QLabel" name="label_30">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1862,7 +1950,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
+               <item row="1" column="0">
                 <spacer name="horizontalSpacer_47">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1875,7 +1963,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="1">
+               <item row="1" column="1">
                 <widget class="QLabel" name="label_28">
                  <property name="font">
                   <font>
@@ -1891,7 +1979,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="3">
+               <item row="3" column="3">
                 <spacer name="horizontalSpacer_48">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1907,7 +1995,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="1">
+               <item row="2" column="1">
                 <widget class="QLabel" name="label_29">
                  <property name="font">
                   <font>
@@ -1923,8 +2011,27 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="2">
-                <widget class="QLineEdit" name="lineEdit_3"/>
+               <item row="0" column="1" colspan="2">
+                <widget class="QLabel" name="label_40">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>ALTA CARRERA</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2046,35 +2153,35 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QPushButton" name="btn_alta_admin_2">
+            <widget class="QPushButton" name="btn_baja_admin">
              <property name="text">
               <string>Administrativo</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btn_alta_alu_2">
+            <widget class="QPushButton" name="btn_baja_alu">
              <property name="text">
               <string>Alumno</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btn_alta_profe_2">
+            <widget class="QPushButton" name="btn_baja_profe">
              <property name="text">
               <string>Profesor</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btn_alta_materia_2">
+            <widget class="QPushButton" name="btn_baja_materia">
              <property name="text">
               <string>Materia</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btn_alta_comi_2">
+            <widget class="QPushButton" name="btn_baja_comi">
              <property name="text">
               <string>Comision</string>
              </property>
@@ -2092,7 +2199,7 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
+           <item row="1" column="0">
             <widget class="QStackedWidget" name="stackedWidget_2">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -2101,7 +2208,7 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_baja_admin">
               <layout class="QGridLayout" name="gridLayout_5">
@@ -2157,7 +2264,7 @@
                <item row="5" column="2">
                 <widget class="QLabel" name="label_info_dni_en">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2176,7 +2283,7 @@
                <item row="2" column="0">
                 <widget class="QLabel" name="label_info_usuario">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="maximumSize">
                   <size>
@@ -2187,7 +2294,7 @@
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>11</pointsize>
+                   <pointsize>14</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -2220,7 +2327,7 @@
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>15</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -2280,7 +2387,7 @@
                <item row="6" column="2">
                 <widget class="QLabel" name="label_info_fing_en">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2363,7 +2470,7 @@
                <item row="3" column="2">
                 <widget class="QLabel" name="label_info_nombre_en">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2381,7 +2488,7 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="page_alta_alu_2">
+             <widget class="QWidget" name="page_baja_alu">
               <layout class="QGridLayout" name="gridLayout_13">
                <item row="0" column="1">
                 <widget class="QLabel" name="label_31">
@@ -2439,7 +2546,7 @@
                  <property name="sizeHint" stdset="0">
                   <size>
                    <width>20</width>
-                   <height>60</height>
+                   <height>54</height>
                   </size>
                  </property>
                 </spacer>
@@ -2447,7 +2554,7 @@
                <item row="2" column="0">
                 <widget class="QLabel" name="label_info_usuario_2">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="maximumSize">
                   <size>
@@ -2458,7 +2565,7 @@
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>11</pointsize>
+                   <pointsize>14</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -2485,7 +2592,7 @@
                <item row="3" column="1">
                 <widget class="QLabel" name="label_info_nombre_en_2">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2517,7 +2624,7 @@
                <item row="4" column="1">
                 <widget class="QLabel" name="label_info_dni_en_2">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2549,7 +2656,7 @@
                <item row="5" column="1">
                 <widget class="QLabel" name="label_info_fing_en_2">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2599,7 +2706,7 @@
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>17</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -2650,14 +2757,14 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="page_alta_profe_2">
+             <widget class="QWidget" name="page_baja_profe">
               <layout class="QGridLayout" name="gridLayout_14">
                <item row="0" column="0">
                 <widget class="QLabel" name="label_35">
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>17</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -2721,7 +2828,7 @@
                  <property name="sizeHint" stdset="0">
                   <size>
                    <width>20</width>
-                   <height>60</height>
+                   <height>54</height>
                   </size>
                  </property>
                 </spacer>
@@ -2742,7 +2849,7 @@
                <item row="2" column="0">
                 <widget class="QLabel" name="label_info_usuario_3">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="maximumSize">
                   <size>
@@ -2753,7 +2860,7 @@
                  <property name="font">
                   <font>
                    <family>Segoe UI Semibold</family>
-                   <pointsize>11</pointsize>
+                   <pointsize>14</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -2780,7 +2887,7 @@
                <item row="3" column="1">
                 <widget class="QLabel" name="label_info_nombre_en_3">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2819,7 +2926,7 @@
                <item row="4" column="1">
                 <widget class="QLabel" name="label_info_dni_en_3">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2858,7 +2965,7 @@
                <item row="5" column="1">
                 <widget class="QLabel" name="label_info_fing_en_3">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -2928,50 +3035,579 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="page_alta_materia_2">
-              <widget class="QLabel" name="label_alta_materia_2">
-               <property name="geometry">
-                <rect>
-                 <x>270</x>
-                 <y>190</y>
-                 <width>151</width>
-                 <height>16</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
+             <widget class="QWidget" name="page_baja_materia">
+              <layout class="QGridLayout" name="gridLayout_15">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_42">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>BAJA MATERIA</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_41">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Ingrese código de materia:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLineEdit" name="input_codmat">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maxLength">
+                  <number>5</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QPushButton" name="btn_buscar_4">
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Buscar</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <spacer name="verticalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Minimum</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>49</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLabel" name="label_error_legajo_4">
+                 <property name="styleSheet">
+                  <string notr="true">color: red;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_info_usuario_4">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Información de la materia:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <spacer name="horizontalSpacer_63">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>248</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_info_nombre_en_4">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Nombre:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="label_info_nombre_4">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <spacer name="horizontalSpacer_62">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>248</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="label_info_dni_en_4">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Créditos:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="label_info_dni_4">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <spacer name="horizontalSpacer_64">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>248</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="label_info_fing_en_4">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Comisiones:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <spacer name="horizontalSpacer_61">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>248</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="label_informe_profe_3">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="3">
+                <widget class="QPushButton" name="btn_baja_4">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Dar de baja</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QListView" name="lv_baja_materia">
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>70</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-             <widget class="QWidget" name="page_alta_comi_2">
-              <widget class="QLabel" name="label_alta_comi_2">
-               <property name="geometry">
-                <rect>
-                 <x>380</x>
-                 <y>240</y>
-                 <width>151</width>
-                 <height>16</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </widget>
-             <widget class="QWidget" name="page_alta_carrera_2">
-              <widget class="QLabel" name="label_alta_carrera_2">
-               <property name="geometry">
-                <rect>
-                 <x>270</x>
-                 <y>170</y>
-                 <width>141</width>
-                 <height>16</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
+             <widget class="QWidget" name="page_baja_comi">
+              <layout class="QGridLayout" name="gridLayout_16">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_44">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>17</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>BAJA COMISION</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <spacer name="horizontalSpacer_66">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>251</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLineEdit" name="input_legajo_admin_4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maxLength">
+                  <number>5</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="3">
+                <widget class="QPushButton" name="btn_baja_5">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Dar de baja</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLabel" name="label_info_fing_en_5">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Profesor:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="label_info_nombre_en_5">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Materia:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QLabel" name="label_info_fing_4">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="3">
+                <spacer name="horizontalSpacer_65">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>251</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="label_info_dni_en_5">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Aula:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <spacer name="horizontalSpacer_68">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>251</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLabel" name="label_error_legajo_5">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: red;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="label_info_nombre_5">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_43">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Ingrese código de materia:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_info_usuario_5">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Información de la comision:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <spacer name="horizontalSpacer_67">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>251</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="3">
+                <widget class="QPushButton" name="btn_buscar_5">
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Buscar</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="label_info_dni_5">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="label_informe_profe_4">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_45">
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI Semibold</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Ingrese código de comision:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QComboBox" name="comboBox_6"/>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
