@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.Login import Ui_Login
+from src.ui.login import Ui_Login
 from src.systemadmin import SystemadminWindow
 from src.systemalu import SystemaluWindow
 from src.systemprofe import SystemprofeWindow
