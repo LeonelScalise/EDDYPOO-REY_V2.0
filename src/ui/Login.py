@@ -127,7 +127,7 @@ class Ui_Login(object):
         self.label_error.setText("")
         self.label_error.setObjectName("label_error")
         self.label_tipo = QtWidgets.QLabel(self.centralwidget)
-        self.label_tipo.setGeometry(QtCore.QRect(10, 410, 121, 16))
+        self.label_tipo.setGeometry(QtCore.QRect(10, 420, 121, 16))
         font = QtGui.QFont()
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(10)

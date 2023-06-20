@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.systemadmin import Ui_Systemalu
+from src.ui.systemalu import Ui_Systemalu
 
 
 class SystemaluWindow(QMainWindow, Ui_Systemalu):

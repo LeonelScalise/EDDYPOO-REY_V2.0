@@ -26,7 +26,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def open_login_window(self, tipo:str):
         self.hide()
         if tipo == "admin":
-            self.login_window.label_tipo.setText("ADMINISTRADOR")
+            self.login_window.label_tipo.setText("ADMINISTRATIVO")
         elif tipo == "alu":
             self.login_window.label_tipo.setText("ALUMNO")
         else:

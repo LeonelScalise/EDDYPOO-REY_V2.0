@@ -17,6 +17,31 @@ class Ui_Systemprofe(object):
         Systemprofe.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(Systemprofe)
         self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_info = QtWidgets.QLabel(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Semibold")
+        font.setPointSize(11)
+        self.label_info.setFont(font)
+        self.label_info.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_info.setObjectName("label_info")
+        self.gridLayout.addWidget(self.label_info, 1, 0, 1, 1)
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
+        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
+        self.btn_logout_profe = QtWidgets.QPushButton(self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.btn_logout_profe.setFont(font)
+        self.btn_logout_profe.setObjectName("btn_logout_profe")
+        self.gridLayout.addWidget(self.btn_logout_profe, 2, 0, 1, 1)
         Systemprofe.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Systemprofe)
@@ -25,6 +50,10 @@ class Ui_Systemprofe(object):
     def retranslateUi(self, Systemprofe):
         _translate = QtCore.QCoreApplication.translate
         Systemprofe.setWindowTitle(_translate("Systemprofe", "MainWindow"))
+        self.label_info.setText(_translate("Systemprofe", "Logeado como"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Systemprofe", "Tab 1"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Systemprofe", "Tab 2"))
+        self.btn_logout_profe.setText(_translate("Systemprofe", "Cerrar sesión"))
 
 
 if __name__ == "__main__":

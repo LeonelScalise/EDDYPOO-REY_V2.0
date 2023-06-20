@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, QCoreApplication
 
 
 # Project modules
-from src.ui.systemadmin import Ui_Systemprofe
+from src.ui.systemprofe import Ui_Systemprofe
 
 
 class SystemprofeWindow(QMainWindow, Ui_Systemprofe):
