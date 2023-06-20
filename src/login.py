@@ -27,7 +27,7 @@ class LoginWindow(QMainWindow, Ui_Login):
 
 
 
-    def validLegajo(self, institucion, legajo_ingresado):
+    def validLegajoAlumno(self, institucion, legajo_ingresado):
         try:
             legajoingresado = int(legajo_ingresado)
         except ValueError:
@@ -43,6 +43,32 @@ class LoginWindow(QMainWindow, Ui_Login):
 
         return True
 
+    def validLegajoAdminyProf(self, institucion, legajo_ingresado, rol = 'administrativo'):
+        try:
+            legajoingresado = legajo_ingresado.upper().strip()
+        except ValueError:
+            self.label_error.setText("El legajo ingresado debe ser un numero.")
+            return False  # volve antes porque el codigo que sigue depende de la conversion
+        
+        if len(legajoingresado) != 7:
+            self.label_error.setText("El legajo debe ser de 7 caracteres.")
+            return False
+        if rol == 'profesor':
+                if legajoingresado[:2] != "PR":
+                    self.label_error.setText("El legajo debe comenzar con las primeras dos letras de su rol.")
+                    return False
+                if legajoingresado not in institucion.legajos_profesores:
+                    self.label_error.setText("El legajo no existe, intente nuevamente.")
+                    return False
+        else:
+                if legajoingresado[:2] != "AD":
+                    self.label_error.setText("El legajo debe comenzar con las primeras dos letras de su rol.")
+                    return False
+                if legajoingresado not in institucion.legajos_administrativos:
+                    self.label_error.setText("El legajo no existe, intente nuevamente.") #si no cumple con la condición que se indica levanta un error con un mensaje
+                    return False
+        return True
+
     def validLogin(self):
         try:
             ITBA.cargarDatos()
@@ -56,6 +82,10 @@ class LoginWindow(QMainWindow, Ui_Login):
             self.label_error.setText("Hay campos sin completar. Intente nuevamente")
         else:
             if self.label_tipo.text() == "ADMINISTRATIVO":
+                legajo_es_valido = self.validLegajoAdminyProf(ITBA, legajo_ingresado)
+                if not legajo_es_valido:
+                    return  # si el legajo no es valido no ejecutes lo siguiente
+                
                 admin_elegido = None
                 for admin in ITBA.administrativos:
                     if admin.legajo == legajo_ingresado:
@@ -69,7 +99,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")    
             
             elif self.label_tipo.text() == "ALUMNO":
-                legajo_es_valido = self.validLegajo(ITBA, legajo_ingresado)
+                legajo_es_valido = self.validLegajoAlumno(ITBA, legajo_ingresado)
                 if not legajo_es_valido:
                     return  # si el legajo no es valido no ejecutes lo siguiente
 
@@ -86,6 +116,9 @@ class LoginWindow(QMainWindow, Ui_Login):
                 #     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
             
             else:
+                legajo_es_valido = self.validLegajoAdminyProf(ITBA, legajo_ingresado, 'profesor')
+                if not legajo_es_valido:
+                    return  # si el legajo no es valido no ejecutes lo siguiente
                 profesor_elegido = None
                 for profesor in ITBA.profesores:
                     if profesor.legajo == legajo_ingresado:
