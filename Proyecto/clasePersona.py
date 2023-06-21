@@ -257,6 +257,7 @@ class Profesor(Persona):
           if prof.legajo == legajo_ingresado and prof.contraseña == contraseña_ingresada:
             if prof.sexo == "F":
               x = "a"
+              # Retorna el menú de opciones para el profesor
             return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Cambiar contraseña", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA), lambda : prof.actualizarContraseña()])
           elif prof.legajo == legajo_ingresado:
               print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
@@ -302,7 +303,7 @@ class Profesor(Persona):
     print("Seleccione la comision a la que desea subir la nota final:\n")
     for comision in materia.comisiones:
       if self == comision.profesor:
-        comisiones_a_cargo.append(comision)
+        comisiones_a_cargo.append(comision)  # Agregar comisiones a cargo del profesor
     while flag:
       for comision in comisiones_a_cargo:
         contador += 1
@@ -310,14 +311,14 @@ class Profesor(Persona):
       
       print(f"{contador + 1}. Volver")
 
-      opcion_elegida1 = validador(contador + 1)
+      opcion_elegida1 = validador(contador + 1) # Obtener la opción elegida por el usuario
       clear()
 
       if opcion_elegida1 == contador + 1:
         flag = False
-        comision_elegida = None
+        comision_elegida = None  # El usuario eligió volver, no se selecciona ninguna comisión
       else:
-        comision_elegida = comisiones_a_cargo[opcion_elegida1 - 1]
+        comision_elegida = comisiones_a_cargo[opcion_elegida1 - 1] # Obtener la comisión elegida por el usuario
         clear()
         flag = False
 
@@ -333,24 +334,24 @@ class Profesor(Persona):
           
           print(f"{contador + 1}. Volver")
 
-          opcion_elegida2 = validador(contador + 1)
+          opcion_elegida2 = validador(contador + 1) # Obtener la opción elegida por el usuario
           clear()
 
           if opcion_elegida2 == contador + 1:
-            flag = False
+            flag = False # El usuario eligió volver, finalizo el bucle
           else:
             clear()
-            alumno_elegido = comision_elegida.alumnos[opcion_elegida2 - 1]
-            Nota_final = validadorNota()
-            alumno_elegido.historial_academico[materia.nombre] = Nota_final
+            alumno_elegido = comision_elegida.alumnos[opcion_elegida2 - 1] # Obtener el alumno elegido
+            Nota_final = validadorNota() # Solicitar la nota final al usuario
+            alumno_elegido.historial_academico[materia.nombre] = Nota_final  # Actualizar el historial académico del alumno
             flag = False
-            if Nota_final >= 4:
-              alumno_elegido.materias_aprobadas.append(materia)
-              alumno_elegido.materias_en_curso.remove(materia)
-              materia.alumnos.remove(alumno_elegido)
-              alumno_elegido.comisiones_en_curso.remove(comision_elegida)
-              comision_elegida.alumnos.remove(alumno_elegido)
-              alumno_elegido.creditos_aprobados += materia.creditos
+            if Nota_final >= 4: # El alumno aprobó la materia
+              alumno_elegido.materias_aprobadas.append(materia) # Agregar la materia aprobada al alumno
+              alumno_elegido.materias_en_curso.remove(materia) # Eliminar la materia de las materias en curso
+              materia.alumnos.remove(alumno_elegido) # Eliminar al alumno de la lista de alumnos de la materia
+              alumno_elegido.comisiones_en_curso.remove(comision_elegida) # Eliminar la comisión en curso del alumno
+              comision_elegida.alumnos.remove(alumno_elegido) # Eliminar al alumno de la lista de alumnos de la comisión
+              alumno_elegido.creditos_aprobados += materia.creditos  # Incrementar los créditos aprobados del alumno
               print(f"La nota final se cargó correctamente. {alumno_elegido} aprobó {materia.nombre}")
             else:
               print(f"La nota final se cargó correctamente. {alumno_elegido} no aprobó {materia.nombre}")
