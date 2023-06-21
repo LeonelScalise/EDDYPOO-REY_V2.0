@@ -116,46 +116,23 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.stackedWidget_5.setCurrentWidget(self.page_rend_alu)
 
     
-    #agarra lo que esta en el input de texto
 
-    def agarraTextoInput(self, nombre_input):
+    def agarraTextoInput(self, nombre_input): #agarra lo que esta en el input de texto
         input_texto = getattr(self, nombre_input)
         texto = input_texto.text().upper()
         return texto
     
-    def agarraComboBoxValue(self, nombre_combobox):
+    def agarraComboBoxValue(self, nombre_combobox): #agarra el valor seleccionado del combobox
         combobox = getattr(self, nombre_combobox)
         valor = combobox.currentText().upper()
         return valor
 
-    def agarraFechaInput(self, nombre_input_fecha):
+    def agarraFechaInput(self, nombre_input_fecha): #agarra la fecha seleccionada en el datetime
         fecha_gui = getattr(self, nombre_input_fecha)
         fecha = fecha_gui.date()
         return fecha
     
-    # def alertaCreado(self, str_alerta):
-    #     return self.label_error.setText(str_alerta)
     
-    def clickRegistrarAdmin(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
-        nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
-        dni = self.agarraTextoInput(nombre_input_dni)
-        dni_valido = self.validadorDNI(dni, ITBA, 'administrativos')
-        if not dni_valido:
-            return
-        fecha_nac = self.agarraFechaInput(nombre_input_fecha)
-        sexo = self.agarraComboBoxValue(nombre_input_sexo)
-        contraseña = str(dni)
-        if len(institucion.legajos_administrativos) != 0:
-          legajo_numero = int(institucion.legajos_administrativos[-1][2:])+1
-          legajo_alfa = "AD"
-          legajo = legajo_alfa + str(legajo_numero)
-        else:
-          legajo="AD10000"
-        fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
-        institucion.administrativos.append(Administrativo(nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso))        
-        institucion.legajos_administrativos.append(legajo)
-        self.label_informe_alta_admin.setText(f'Se ha creado el administrativo {nombre_apellido} de dni {dni} correctamente. Hay {len(institucion.administrativos)} administrativos')
-
     def clickRegistrarAdmin(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
         nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
         dni = self.agarraTextoInput(nombre_input_dni)
@@ -228,21 +205,6 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.dt_fnac_alta_profe.setDate(QDate(2000, 1, 1))
         self.cb_sexo_alta_profe.setCurrentIndex(0)
     
-    # def validDniAdmin(self, institucion, dni_ingresado):
-    #     try:
-    #         legajoingresado = int(legajo_ingresado)
-    #     except ValueError:
-    #         self.label_error.setText("El legajo ingresado debe ser un numero.")
-    #         return False  # volve antes porque el codigo que sigue depende de la conversion
-
-    #     if len(str(legajoingresado)) != 5:
-    #         self.label_error.setText("El legajo debe ser de 5 digitos.")
-    #         return False
-    #     elif legajoingresado not in institucion.legajos_alumnos:
-    #         self.label_error.setText("El legajo no existe.")
-    #         return False
-
-    #     return True
     
     def validadorDNI(self, dni_a,institucion, atributo_ad_pr_al, label_informe):
         label_inf = getattr(self, label_informe)
@@ -261,7 +223,3 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         
         return True
     
-
-    # btn_logout_admin
-
-    # def logout_admin():

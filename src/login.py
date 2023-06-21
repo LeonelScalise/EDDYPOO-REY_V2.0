@@ -19,12 +19,28 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window = SystemadminWindow()
         self.systemalu_window = SystemaluWindow()
         self.systemprofe_window = SystemprofeWindow()
-
-        self.btn_login.clicked.connect(self.validLogin)
+        # self.systemadmin_window.cb_alta_mat_carrera
+        esValidoLogin = self.btn_login.clicked.connect(self.validLogin)
+        if esValidoLogin:
+            self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
         self.systemadmin_window.btn_logout_admin.clicked.connect(self.logout)
         self.systemalu_window.btn_logout_alu.clicked.connect(self.logout)
         self.systemprofe_window.btn_logout_profe.clicked.connect(self.logout)
 
+    def cargarDatosCombobox(self, nombre_combobox, nombre_ventana, institucion, attr_q_buscar):
+        lista_valores = []
+        institucionPuntoAtributo = getattr(institucion, attr_q_buscar)
+        
+        for elemento in institucionPuntoAtributo:
+            lista_valores.append(elemento)
+        
+        ventana = getattr(self, nombre_ventana)
+        combobox = getattr(ventana, nombre_combobox)
+
+        combobox.clear()
+        
+        for valor in lista_valores:
+            combobox.addItem(valor.nombre)
 
 
     def validLegajoAlumno(self, institucion, legajo_ingresado):
@@ -95,6 +111,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.hide()
                     self.systemadmin_window.label_info_usuario_log.setText(f"Logeado como {admin_elegido.nombre_apellido}")
                     self.systemadmin_window.show()
+                    return True
                 else:
                     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")    
             
@@ -112,8 +129,9 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.hide()
                     self.systemalu_window.label_info_usuario_log.setText(f"Logeado como {alumno_elegido.nombre_apellido}")
                     self.systemalu_window.show()
-                # else:
-                #     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
+                    return True
+                else:
+                    self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
             
             else:
                 legajo_es_valido = self.validLegajoAdminyProf(ITBA, legajo_ingresado, 'profesor')
@@ -128,6 +146,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.hide()
                     self.systemprofe_window.label_info_usuario_log.setText(f"Logeado como {profesor_elegido.nombre_apellido}")
                     self.systemprofe_window.show()
+                    return True
                 else:
                     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
     
