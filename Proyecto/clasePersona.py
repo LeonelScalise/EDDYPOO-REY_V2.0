@@ -1,7 +1,9 @@
+# importación de las bibliotecas necesarias
 import os
 import random
 import matplotlib.pyplot as plt
 from string import ascii_uppercase
+# importación de las funciones y clases propias del sistema
 from armado_menu import armado_menu
 from claseRegistroITBA import RegistroITBA
 from claseTramite import Tramite
@@ -12,8 +14,10 @@ from claseCarrera import Carrera
 from validadores import *
 from claseMateria import Materia
 
+# función para limpiar la pantalla de la consola
 clear = lambda : os.system('cls')
 
+# clase Persona con los atributos base
 class Persona:
   def __init__(self, nombre_apellido, dni, sexo, fecha_nac):
     self.dni=dni
@@ -21,8 +25,10 @@ class Persona:
     self.sexo = sexo
     self.fecha_nac = fecha_nac
 
+# clase Alumno que hereda de Persona
 class Alumno(Persona):
 
+  # método de clase para registrar al alumno en el sistema
   def menu_registro_alumno(institucion:RegistroITBA):
     inicio = True
     while inicio:
@@ -30,6 +36,7 @@ class Alumno(Persona):
       legajo_ingresado = validadorLegajoAlumnos(institucion)
       contraseña_ingresada = input("Contraseña: ")
       clear()
+      # Bucle que valida el legajo y contraseña ingresados por el alumno
       for alumno in institucion.alumnos:
           if alumno.legajo == legajo_ingresado and alumno.contraseña == contraseña_ingresada:
             if alumno.sexo == "F":
@@ -44,6 +51,7 @@ class Alumno(Persona):
             if opcion_elegida == 2:
                 inicio = False
 
+  # inicializador de la clase Alumno
   def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo,fecha_ingreso,estado_alumno="Activo", carrera=None, fecha_baja = None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
