@@ -128,7 +128,7 @@
           <item>
            <widget class="QPushButton" name="btn_stats_academicas">
             <property name="text">
-             <string>Ver estadísticas académicas</string>
+             <string>Estadísticas académicas</string>
             </property>
            </widget>
           </item>
@@ -332,7 +332,7 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_iniciar_tramite_alu">
+            <widget class="QWidget" name="page_desinscr_mat">
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
                <widget class="QLabel" name="label_52">
@@ -525,7 +525,7 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_modif_pass_alu">
+            <widget class="QWidget" name="page_iniciar_tramite_alu">
              <layout class="QGridLayout" name="gridLayout_6">
               <item row="0" column="0">
                <widget class="QLabel" name="label_42">
@@ -567,7 +567,7 @@
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>20</width>
-                  <height>68</height>
+                  <height>56</height>
                  </size>
                 </property>
                </spacer>
@@ -590,7 +590,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Información del último trámite</string>
+                 <string>Información del último trámite:</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -729,16 +729,6 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="2" colspan="2">
-               <widget class="QTextBrowser" name="tB_ini_tram_alu">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>100</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
               <item row="3" column="2">
                <widget class="QLabel" name="label_ini_tram_alu_fini">
                 <property name="text">
@@ -779,9 +769,19 @@
                 </property>
                </widget>
               </item>
+              <item row="0" column="3">
+               <widget class="QTextEdit" name="input_motivo_tramite_alu">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>150</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_ver_mat_aprobadas">
+            <widget class="QWidget" name="page_modif_pass_alu">
              <layout class="QGridLayout" name="gridLayout_7">
               <item row="0" column="0" colspan="2">
                <widget class="QLabel" name="label_57">
@@ -811,6 +811,9 @@
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_34">
+                 <property name="rightMargin">
+                  <number>40</number>
+                 </property>
                  <item row="1" column="1">
                   <widget class="QLabel" name="label_error_pass_actual_alu">
                    <property name="maximumSize">
@@ -843,6 +846,22 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="3" column="1">
+                  <widget class="QLabel" name="label_error_new_pass_alu">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="2" column="1">
                   <widget class="QLineEdit" name="input_new_pass_alu">
                    <property name="maximumSize">
@@ -855,6 +874,12 @@
                  </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_49">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="font">
                     <font>
                      <family>Segoe UI Semibold</family>
@@ -865,7 +890,7 @@
                     <string>Nueva contraseña:</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignCenter</set>
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -881,23 +906,7 @@
                     <string>Ingrese su contraseña actual:</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLabel" name="label_error_new_pass_alu">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>100</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -954,7 +963,7 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_desinscr_mat">
+            <widget class="QWidget" name="page_stats_academicas">
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="2" column="0">
                <widget class="QTableWidget" name="tW_mat_aprobadas">
@@ -977,7 +986,7 @@
                 </column>
                 <column>
                  <property name="text">
-                  <string>Nota final</string>
+                  <string>Final</string>
                  </property>
                 </column>
                </widget>
@@ -992,7 +1001,7 @@
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>150</width>
+                  <width>100</width>
                   <height>20</height>
                  </size>
                 </property>
@@ -1029,6 +1038,18 @@
               </item>
               <item row="2" column="2" colspan="2">
                <widget class="QFrame" name="frame_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>300</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
