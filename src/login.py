@@ -93,7 +93,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                 
                 if admin_elegido and admin_elegido.contraseña == contraseña_ingresada:
                     self.hide()
-                    self.systemadmin_window.label_info.setText(f"Logeado como {admin_elegido.nombre_apellido}")
+                    self.systemadmin_window.label_info_usuario_log.setText(f"Logeado como {admin_elegido.nombre_apellido}")
                     self.systemadmin_window.show()
                 else:
                     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")    
@@ -110,7 +110,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                 
                 if alumno_elegido and alumno_elegido.contraseña == contraseña_ingresada:
                     self.hide()
-                    self.systemalu_window.label_info.setText(f"Logeado como {alumno_elegido.nombre_apellido}")
+                    self.systemalu_window.label_info_usuario_log.setText(f"Logeado como {alumno_elegido.nombre_apellido}")
                     self.systemalu_window.show()
                 # else:
                 #     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
@@ -126,7 +126,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                 
                 if profesor_elegido and profesor_elegido.contraseña == contraseña_ingresada:
                     self.hide()
-                    self.systemprofe_window.label_info.setText(f"Logeado como {profesor_elegido.nombre_apellido}")
+                    self.systemprofe_window.label_info_usuario_log.setText(f"Logeado como {profesor_elegido.nombre_apellido}")
                     self.systemprofe_window.show()
                 else:
                     self.label_error.setText("Los datos son incorrectos. Intente nuevamente")

@@ -1,10 +1,12 @@
 from PyQt5.QtWidgets import QMainWindow, QListWidgetItem, QColorDialog, QFileDialog, QStyle
-from PyQt5.QtCore import Qt, QCoreApplication
+from PyQt5.QtCore import Qt, QCoreApplication, QDate
 
 
 # Project modules
 from src.ui.systemadmin import Ui_Systemadmin
-
+from ProyectoV2.popularInstitucion import ITBA
+from ProyectoV2.popularPersona import *
+from datetime import *
 
 class SystemadminWindow(QMainWindow, Ui_Systemadmin):
     def __init__(self):
@@ -27,7 +29,7 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.btn_baja_comi.clicked.connect(self.showWindowBajaComi)
 
         # Boton para sección de Profesores
-        self.btn_asig_profe.clicked.connect(self.showWindowAsignarProfe)
+        self.btn_asig_mat_profe.clicked.connect(self.showWindowAsignarProfe)
         self.btn_desasig_mat_profe.clicked.connect(self.showWindowDesasignarProfeMateria)
         self.btn_desasig_comi_profe.clicked.connect(self.showWindowDesasignarProfeComision)
 
@@ -41,7 +43,12 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.btn_aluactxcarrera.clicked.connect(self.showWindowAlumnosActualesxCarrera)
         self.btn_rend_alu.clicked.connect(self.showWindowRendimientoAlumno)
 
-        
+        #Boton para alta
+        self.btn_registro_alta_admin.clicked.connect(lambda: self.clickRegistrarAdmin(ITBA, 'input_alta_admin_nombre', 'input_alta_admin_dni', 'dt_alta_admin_fnac','cb_alta_admin_sexo'))
+        self.btn_registro_alta_alu.clicked.connect(lambda: self.clickRegistrarAlu(ITBA, 'input_alta_alu_nombre', 'input_alta_alu_dni', 'dt_fnac_alta_alu','cb_sexo_alta_alu'))
+        self.btn_registro_alta_profe.clicked.connect(lambda: self.clickRegistrarProfe(ITBA, 'input_alta_profe_nombre', 'input_alta_profe_dni', 'dt_fnac_alta_profe','cb_sexo_alta_profe'))
+
+
 
     # Funciones para activar con botones - Alta
     def showWindowAltaAdmin(self):
@@ -109,6 +116,152 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.stackedWidget_5.setCurrentWidget(self.page_rend_alu)
 
     
+    #agarra lo que esta en el input de texto
 
-
+    def agarraTextoInput(self, nombre_input):
+        input_texto = getattr(self, nombre_input)
+        texto = input_texto.text().upper()
+        return texto
     
+    def agarraComboBoxValue(self, nombre_combobox):
+        combobox = getattr(self, nombre_combobox)
+        valor = combobox.currentText().upper()
+        return valor
+
+    def agarraFechaInput(self, nombre_input_fecha):
+        fecha_gui = getattr(self, nombre_input_fecha)
+        fecha = fecha_gui.date()
+        return fecha
+    
+    # def alertaCreado(self, str_alerta):
+    #     return self.label_error.setText(str_alerta)
+    
+    def clickRegistrarAdmin(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+        nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
+        dni = self.agarraTextoInput(nombre_input_dni)
+        dni_valido = self.validadorDNI(dni, ITBA, 'administrativos')
+        if not dni_valido:
+            return
+        fecha_nac = self.agarraFechaInput(nombre_input_fecha)
+        sexo = self.agarraComboBoxValue(nombre_input_sexo)
+        contraseña = str(dni)
+        if len(institucion.legajos_administrativos) != 0:
+          legajo_numero = int(institucion.legajos_administrativos[-1][2:])+1
+          legajo_alfa = "AD"
+          legajo = legajo_alfa + str(legajo_numero)
+        else:
+          legajo="AD10000"
+        fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
+        institucion.administrativos.append(Administrativo(nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso))        
+        institucion.legajos_administrativos.append(legajo)
+        self.label_informe_alta_admin.setText(f'Se ha creado el administrativo {nombre_apellido} de dni {dni} correctamente. Hay {len(institucion.administrativos)} administrativos')
+
+    def clickRegistrarAdmin(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+        nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
+        dni = self.agarraTextoInput(nombre_input_dni)
+        dni_valido = self.validadorDNI(dni, ITBA, 'administrativos', 'label_informe_alta_admin')
+        if not dni_valido:
+            return
+        fecha_nac = self.agarraFechaInput(nombre_input_fecha)
+        sexo = self.agarraComboBoxValue(nombre_input_sexo)
+        contraseña = str(dni)
+        if len(institucion.legajos_administrativos) != 0:
+          legajo_numero = int(institucion.legajos_administrativos[-1][2:])+1
+          legajo_alfa = "AD"
+          legajo = legajo_alfa + str(legajo_numero)
+        else:
+          legajo="AD10000"
+        fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
+        institucion.administrativos.append(Administrativo(nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso))        
+        institucion.legajos_administrativos.append(legajo)
+        self.label_informe_alta_admin.setText(f'Se ha creado el administrativo {nombre_apellido} de dni {dni} correctamente. Hay {len(institucion.administrativos)} administrativos')
+        self.input_alta_admin_nombre.setText("")
+        self.input_alta_admin_dni.setText("")
+        self.dt_alta_admin_fnac.setDate(QDate(2000, 1, 1))
+        self.cb_alta_admin_sexo.setCurrentIndex(0)
+    
+
+    def clickRegistrarAlu(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+        nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
+        dni = self.agarraTextoInput(nombre_input_dni)
+        dni_valido = self.validadorDNI(dni, ITBA, 'alumnos', 'label_informe_alta_alu')
+        if not dni_valido:
+            return
+        fecha_nac = self.agarraFechaInput(nombre_input_fecha)
+        sexo = self.agarraComboBoxValue(nombre_input_sexo)
+        contraseña = str(dni)
+        if len(ITBA.legajos_alumnos) != 0:
+            legajo = ITBA.legajos_alumnos[-1] + 1
+        else:
+            legajo = 10000
+        fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
+        institucion.alumnos.append(Alumno(nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso))        
+        institucion.legajos_alumnos.append(legajo)
+        self.label_informe_alta_alu.setText(f'Se ha creado el alumno {nombre_apellido} de dni {dni} correctamente. Hay {len(institucion.alumnos)} alumnos')
+        self.input_alta_alu_nombre.setText("")
+        self.input_alta_alu_dni.setText("")
+        self.dt_fnac_alta_alu.setDate(QDate(2000, 1, 1))
+        self.cb_sexo_alta_alu.setCurrentIndex(0)
+
+
+    def clickRegistrarProfe(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+        nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
+        dni = self.agarraTextoInput(nombre_input_dni)
+        dni_valido = self.validadorDNI(dni, ITBA, 'profesores', 'label_informe_alta_profe')
+        if not dni_valido:
+            return
+        fecha_nac = self.agarraFechaInput(nombre_input_fecha)
+        sexo = self.agarraComboBoxValue(nombre_input_sexo)
+        contraseña = str(dni)
+        if len(ITBA.legajos_profesores) != 0:
+            legajo_numero = int(ITBA.legajos_profesores[-1][2:]) + 1
+            legajo_alfa = "PR"
+            legajo = legajo_alfa + str(legajo_numero)
+        else:
+            legajo="PR10000"
+        fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
+        institucion.profesores.append(Profesor(nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso))        
+        institucion.legajos_profesores.append(legajo)
+        self.label_informe_alta_profe.setText(f'Se ha creado el profesor {nombre_apellido} de dni {dni} correctamente. Hay {len(institucion.profesores)} profesores')
+        self.input_alta_profe_nombre.setText("")
+        self.input_alta_profe_dni.setText("")
+        self.dt_fnac_alta_profe.setDate(QDate(2000, 1, 1))
+        self.cb_sexo_alta_profe.setCurrentIndex(0)
+    
+    # def validDniAdmin(self, institucion, dni_ingresado):
+    #     try:
+    #         legajoingresado = int(legajo_ingresado)
+    #     except ValueError:
+    #         self.label_error.setText("El legajo ingresado debe ser un numero.")
+    #         return False  # volve antes porque el codigo que sigue depende de la conversion
+
+    #     if len(str(legajoingresado)) != 5:
+    #         self.label_error.setText("El legajo debe ser de 5 digitos.")
+    #         return False
+    #     elif legajoingresado not in institucion.legajos_alumnos:
+    #         self.label_error.setText("El legajo no existe.")
+    #         return False
+
+    #     return True
+    
+    def validadorDNI(self, dni_a,institucion, atributo_ad_pr_al, label_informe):
+        label_inf = getattr(self, label_informe)
+        try:
+            DNI_ingresado = int(dni_a)
+        except ValueError:
+            label_inf.setText("El dni ingresado debe ser un numero.")
+            return False  # volve antes porque el codigo que sigue depende de la conversion
+        if len(str(DNI_ingresado)) != 8:
+            label_inf.setText("El DNI debe tener 8 digitos.")
+            return False
+        for persona in getattr(institucion, atributo_ad_pr_al):
+            if int(persona.dni) == DNI_ingresado:
+                label_inf.setText("El DNI ya existe, inténtalo nuevamente.")
+                return False
+        
+        return True
+    
+
+    # btn_logout_admin
+
+    # def logout_admin():
