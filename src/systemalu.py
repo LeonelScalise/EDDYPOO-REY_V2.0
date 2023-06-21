@@ -33,3 +33,5 @@ class SystemaluWindow(QMainWindow, Ui_Systemalu):
 
     def showWindowEstadisticasAcademicas(self):
         self.stackedWidget.setCurrentWidget(self.page_stats_academicas)
+
+    
