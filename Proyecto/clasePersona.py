@@ -69,6 +69,7 @@ class Alumno(Persona):
     self.contraseña = contraseña
 
  
+  # Devuelve una representación legible de la instancia de la clase Alumno cuando se convierte en cadena de texto.
   def __str__(self):
     return self.nombre_apellido
   
@@ -76,6 +77,7 @@ class Alumno(Persona):
   def iniciarTramite(self, institucion):
     id_tramite = 0
 
+    # Verificar si existen trámites previos para asignar un nuevo ID
     if len(institucion.historial_tramites) != 0:
       id_tramite= institucion.historial_tramites[-1].id + 1
     tipo_de_tramite = input("Ingrese el motivo del tramite o 'exit' si no quiere iniciar tramite: ")
@@ -85,6 +87,7 @@ class Alumno(Persona):
       cantidad_administrativos = len(institucion.administrativos)
       i_random = random.randint(0, cantidad_administrativos - 1)
       administrativo_asignado=institucion.administrativos[i_random]
+      # Crear un nuevo objeto Tramite y asignarlo al administrativo y al alumno
       nuevo_tramite = Tramite(id_tramite, self, administrativo_asignado,tipo_de_tramite,"24/4/2023")
       administrativo_asignado.tramites_abiertos_admin.append(nuevo_tramite)
       institucion.tramites_abiertos.append(nuevo_tramite)
@@ -146,8 +149,9 @@ class Alumno(Persona):
     c1 = 0
     c2 = 0
     flag = True
-    
+    # Mostrar las materias disponibles para inscripción
     print(f"\t\t\nMaterias disponibles para inscripcion de {self.nombre_apellido}\n")
+    # Verificar si las materias tienen correlativas y si están disponibles para inscripción
     for materia in self.carrera.materias:
       if len(materia.correlativas) != 0:
         for corre in materia.correlativas:
