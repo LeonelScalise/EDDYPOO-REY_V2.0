@@ -1,4 +1,4 @@
-# EDDYPOO-REY_V2.0
+# Proyecto EDDYPOO-REY
 
 # Sistema de Gestión Académica (SGA)
 
@@ -14,7 +14,6 @@ El Sistema de Gestión Académica (SGA) es un proyecto de software diseñado par
 
 - **Trámites y solicitudes:** Los usuarios pueden iniciar trámites y solicitudes relacionados con la administración académica. Estos trámites son gestionados por el personal administrativo asignado, lo que permite un seguimiento eficiente y una resolución oportuna.
 
-
 ## Tecnologías utilizadas
 
 El proyecto del Sistema de Gestión Académica se desarrolla utilizando las siguientes tecnologías:
@@ -26,17 +25,16 @@ El proyecto del Sistema de Gestión Académica se desarrolla utilizando las sigu
 
 <p> Todas las librerias se pueden instalar con <code>pip install</code>.</p>
 
-
-## Aclaraciones
-
-Se desarrolló una interfaz de usuario (GUI) completa y funcional, pero no se pudo integrar todo el codigo realizado en la versión anterior. Es decir, la versión 1 que tiene el UX/UI en la terminal de Python, posee funcionalidades en términos de validaciones y lógica de programación que todavía no se pudieron implementar en la GUI. Sin embargo, nos parecía pertinente poder aclararlo.
-
 ## Testing
 
 **Usuarios** 
 - Administrativo: el legajo es AD10000 y su contraseña 41741232
 - Alumnos: hay varios creados para testear, un ejemplo para ingresar seria con el legajo 62523 y la contraseña 43046873
 - Profesor: el legajo es PR10000 y su contraseña 23123141
+
+## Aclaraciones
+
+Se desarrolló una interfaz de usuario (GUI) completa y funcional, pero no se pudo integrar todo el codigo realizado en la versión anterior. Es decir, la versión 1 que tiene el UX/UI en la terminal de Python, posee funcionalidades en términos de validaciones y lógica de programación que todavía no se pudieron implementar en la GUI. Sin embargo, nos parecía pertinente poder aclararlo.
 
 ## Autores
 
