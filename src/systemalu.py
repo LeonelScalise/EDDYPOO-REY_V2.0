@@ -94,19 +94,12 @@ class SystemaluWindow(QMainWindow, Ui_Systemalu):
             self.input_new_pass_alu.setText("")
     
 
-    # Función para inciar tramite del alumno
+    # Función para mostrar el último tramite del alumno
     
-    def iniciarTramite(self):
+    def ultimoTramiteAlumno(self):
         alumno = self.obtenerAlumno()
-        id_tramite = 0
         tramites_alumno = []
-        self.label_informe_ini_tram_alu.setText("")
-
-        if len(self.input_motivo_tramite_alu.toPlainText()) == 0:
-            self.setTextColor("label_informe_ini_tram_alu","Ingrese un motivo.", "red")
-        else:
-            if len(ITBA.historial_tramites) != 0:
-                id_tramite = ITBA.historial_tramites[-1].id + 1
+        if len(ITBA.historial_tramites) != 0:
                 for tramite in ITBA.historial_tramites:
                     if tramite.alumno.legajo == alumno.legajo:
                         tramites_alumno.append(tramite)
@@ -119,7 +112,18 @@ class SystemaluWindow(QMainWindow, Ui_Systemalu):
                 self.label_ini_tram_alu_fini.setText(f"{ultimo_tramite.fecha_de_inicio}")
                 self.label_ini_tram_alu_asig.setText(f"{ultimo_tramite.administrativo}")
                 self.label_ini_tram_alu_estado.setText(f"{ultimo_tramite.estado}")
-                
+
+    # Función para inciar tramite del alumno
+    def iniciarTramite(self):
+        alumno = self.obtenerAlumno()
+        id_tramite = 0
+        self.label_informe_ini_tram_alu.setText("")
+
+        if len(self.input_motivo_tramite_alu.toPlainText()) == 0:
+            self.setTextColor("label_informe_ini_tram_alu","Ingrese un motivo.", "red")
+        else:
+            if len(ITBA.historial_tramites) != 0:
+                id_tramite = ITBA.historial_tramites[-1].id + 1
 
 
             tipo_de_tramite = str(self.input_motivo_tramite_alu.toPlainText())
@@ -127,7 +131,7 @@ class SystemaluWindow(QMainWindow, Ui_Systemalu):
             i_random = random.randint(0, cantidad_administrativos - 1)
             administrativo_asignado = ITBA.administrativos[i_random] #Se asigna el tramite a un administrativo random
             fecha_ingreso = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
-            nuevo_tramite = Tramite(id_tramite, self, administrativo_asignado,tipo_de_tramite,fecha_ingreso)
+            nuevo_tramite = Tramite(id_tramite, alumno, administrativo_asignado,tipo_de_tramite,fecha_ingreso)
             administrativo_asignado.tramites_abiertos_admin.append(nuevo_tramite)
             ITBA.tramites_abiertos.append(nuevo_tramite)
             ITBA.historial_tramites.append(nuevo_tramite)

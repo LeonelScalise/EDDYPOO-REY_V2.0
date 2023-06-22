@@ -53,67 +53,87 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
     # Funciones para activar con botones - Alta
     def showWindowAltaAdmin(self):
         self.stackedWidget.setCurrentWidget(self.page_alta_admin)
+        self.resetLabelsInforme()
     
     def showWindowAltaAlu(self):
         self.stackedWidget.setCurrentWidget(self.page_alta_alu)
+        self.resetLabelsInforme()
 
     def showWindowAltaProfe(self):
         self.stackedWidget.setCurrentWidget(self.page_alta_profe)
+        self.resetLabelsInforme()
     
     def showWindowAltaMateria(self):
         self.stackedWidget.setCurrentWidget(self.page_alta_materia)
+        self.resetLabelsInforme()
 
     def showWindowAltaComi(self):
         self.stackedWidget.setCurrentWidget(self.page_alta_comi)
+        self.resetLabelsInforme()
     
     def showWindowAltaCarrera(self):
         self.stackedWidget.setCurrentWidget(self.page_alta_carrera)
+        self.resetLabelsInforme()
 
     # Funciones para activar con botones - Baja
     def showWindowBajaAdmin(self):
         self.stackedWidget_2.setCurrentWidget(self.page_baja_admin)
+        self.resetLabelsInforme()
     
     def showWindowBajaAlu(self):
         self.stackedWidget_2.setCurrentWidget(self.page_baja_alu)
+        self.resetLabelsInforme()
 
     def showWindowBajaProfe(self):
         self.stackedWidget_2.setCurrentWidget(self.page_baja_profe)
+        self.resetLabelsInforme()
     
     def showWindowBajaMateria(self):
         self.stackedWidget_2.setCurrentWidget(self.page_baja_materia)
+        self.resetLabelsInforme()
 
     def showWindowBajaComi(self):
         self.stackedWidget_2.setCurrentWidget(self.page_baja_comi)
+        self.resetLabelsInforme()
     
     # Funciones para activar con botones - Sección Profes
     def showWindowAsignarProfe(self):
         self.stackedWidget_3.setCurrentWidget(self.page_asig_profe)
+        self.resetLabelsInforme()
     
     def showWindowDesasignarProfeMateria(self):
         self.stackedWidget_3.setCurrentWidget(self.page_desasig_mat_profe)
+        self.resetLabelsInforme()
 
     def showWindowDesasignarProfeComision(self):
         self.stackedWidget_3.setCurrentWidget(self.page_desasig_comi_profe)
+        self.resetLabelsInforme()
 
     # Funciones para activar con botones - Sección Modificaciones
     def showWindowCambiarContrasena(self):
         self.stackedWidget_4.setCurrentWidget(self.page_passwords)
+        self.resetLabelsInforme()
     
     def showWindowModificarNombreMateria(self):
         self.stackedWidget_4.setCurrentWidget(self.page_nombre_mat)
+        self.resetLabelsInforme()
 
     def showWindowModificarNombreCarrera(self):
         self.stackedWidget_4.setCurrentWidget(self.page_nombre_carrera)
+        self.resetLabelsInforme()
 
     def showWindowCambiarAlumnodeCarrera(self):
         self.stackedWidget_4.setCurrentWidget(self.page_aluxcarrera)
+        self.resetLabelsInforme()
 
     # Funciones para activar con botones - Sección Estadisticas
     def showWindowAlumnosActualesxCarrera(self):
         self.stackedWidget_5.setCurrentWidget(self.page_aluactxcarrera)
+        self.resetLabelsInforme()
     
     def showWindowRendimientoAlumno(self):
         self.stackedWidget_5.setCurrentWidget(self.page_rend_alu)
+        self.resetLabelsInforme()
     
     # Funcion para resetar los labels de informe
     def resetLabelsInforme(self):

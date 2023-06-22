@@ -219,7 +219,7 @@
                </spacer>
               </item>
               <item row="4" column="1">
-               <widget class="QLabel" name="label_ini_tram_alu_asig_en">
+               <widget class="QLabel" name="label_ini_tram_profe_asig_en">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
@@ -238,7 +238,7 @@
                </widget>
               </item>
               <item row="4" column="2">
-               <widget class="QLabel" name="label_ini_tram_alu_asig">
+               <widget class="QLabel" name="label_ini_tram_profe_asig">
                 <property name="text">
                  <string/>
                 </property>
@@ -258,7 +258,7 @@
                </spacer>
               </item>
               <item row="5" column="1">
-               <widget class="QLabel" name="label_ini_tram_alu_estado_en">
+               <widget class="QLabel" name="label_ini_tram_profe_estado_en">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
@@ -329,7 +329,7 @@
                </widget>
               </item>
               <item row="5" column="2">
-               <widget class="QLabel" name="label_ini_tram_alu_estado">
+               <widget class="QLabel" name="label_ini_tram_profe_estado">
                 <property name="text">
                  <string/>
                 </property>
@@ -390,22 +390,6 @@
                  <property name="rightMargin">
                   <number>50</number>
                  </property>
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="label_error_pass_actual_profe">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
                   <widget class="QLineEdit" name="input_modif_pass_actual_profe">
                    <property name="sizePolicy">
@@ -420,31 +404,24 @@
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
+                   </property>
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QLineEdit" name="input_new_pass_profe">
+                  <widget class="QLabel" name="label_error_new_pass_profe">
                    <property name="maximumSize">
                     <size>
-                     <width>200</width>
-                     <height>16777215</height>
+                     <width>16777215</width>
+                     <height>30</height>
                     </size>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_49">
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI Semibold</family>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
                    <property name="text">
-                    <string>Nueva contraseña:</string>
+                    <string/>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                    </property>
                   </widget>
                  </item>
@@ -464,19 +441,32 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1">
-                  <widget class="QLabel" name="label_error_new_pass_profe">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>30</height>
-                    </size>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_49">
+                   <property name="font">
+                    <font>
+                     <family>Segoe UI Semibold</family>
+                     <pointsize>11</pointsize>
+                    </font>
                    </property>
                    <property name="text">
-                    <string/>
+                    <string>Nueva contraseña:</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="input_new_pass_profe">
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
                    </property>
                   </widget>
                  </item>

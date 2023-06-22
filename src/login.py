@@ -25,6 +25,8 @@ class LoginWindow(QMainWindow, Ui_Login):
             self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras')
             self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre')
             self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia')
+            self.systemalu_window.ultimoTramiteAlumno()
+            self.systemprofe_window.ultimoTramiteProfesor()
 
         self.systemadmin_window.cb_alta_mat_carrera.currentIndexChanged.connect(lambda: self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre'))
         self.systemadmin_window.cb_alta_comi_carrera.currentIndexChanged.connect(lambda: self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia'))
