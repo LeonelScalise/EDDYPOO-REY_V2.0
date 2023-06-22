@@ -114,8 +114,29 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
     
     def showWindowRendimientoAlumno(self):
         self.stackedWidget_5.setCurrentWidget(self.page_rend_alu)
-
     
+    # Funcion para resetar los labels de informe
+    def resetLabelsInforme(self):
+        self.label_informe_alta_admin.setText("")
+        self.label_informe_alta_alu.setText("")
+        self.label_informe_alta_profe.setText("")
+        self.label_informe_alta_mat.setText("")
+        self.label_informe_alta_comision.setText("")
+        self.label_informe_alta_carrera.setText("")
+        self.label_informe_baja_admin.setText("")
+        self.label_informe_baja_alumno.setText("")
+        self.label_informe_baja_profe.setText("")
+        self.label_informe_baja_mat.setText("")
+        self.label_informe_baja_comi.setText("")
+        self.label_informe_desasig_profe_comi.setText("")
+        self.label_informe_asig_profe.setText("")
+        self.label_informe_desasig_profe_mat.setText("")
+        self.label_informe_materia.setText("")
+        self.label_informe_modif_aluxcarrera.setText("")
+        self.label_informe_modif_nom_carr.setText("")
+        self.label_informe_modif_nom_mat.setText("")
+        self.label_informe_modif_pass.setText("")
+        self.label_informe_tramite.setText("")
 
     def agarraTextoInput(self, nombre_input): #agarra lo que esta en el input de texto
         input_texto = getattr(self, nombre_input)
@@ -211,14 +232,14 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         try:
             DNI_ingresado = int(dni_a)
         except ValueError:
-            label_inf.setText("El dni ingresado debe ser un numero.")
+            label_inf.setText("<span style='color=red;'>El dni ingresado debe ser un numero.</span>")
             return False  # volve antes porque el codigo que sigue depende de la conversion
         if len(str(DNI_ingresado)) != 8:
-            label_inf.setText("El DNI debe tener 8 digitos.")
+            label_inf.setText('<span style="color=red;">El DNI debe tener 8 digitos.</span>')
             return False
         for persona in getattr(institucion, atributo_ad_pr_al):
             if int(persona.dni) == DNI_ingresado:
-                label_inf.setText("El DNI ya existe, inténtalo nuevamente.")
+                label_inf.setText("<span style='color=red;'>El DNI ya existe, inténtalo nuevamente.</span>")
                 return False
         
         return True
