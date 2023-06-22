@@ -22,5 +22,4 @@ def armado_menu(nombre_menu, lista_opciones, lista_funciones): #arma los menus d
             elif opcion_elegida == numero:
                 lista_funciones[numero - 1]()
     
-        # aca cuando cambias de usuario en iniciar sesion, lista_numeros tiene mas elementos entonces se bugea --> a chequear --> ya lo arregle
 

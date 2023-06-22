@@ -48,7 +48,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Logeado como</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -147,7 +147,7 @@
           <item row="0" column="0">
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="page_inscr_mat">
              <layout class="QGridLayout" name="gridLayout_4">
@@ -527,21 +527,11 @@
             </widget>
             <widget class="QWidget" name="page_iniciar_tramite_alu">
              <layout class="QGridLayout" name="gridLayout_6">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_42">
-                <property name="font">
-                 <font>
-                  <family>Segoe UI Semibold</family>
-                  <pointsize>17</pointsize>
-                 </font>
+              <item row="5" column="1">
+               <widget class="QLabel" name="label_ini_tram_alu_estado_en">
+                <property name="enabled">
+                 <bool>true</bool>
                 </property>
-                <property name="text">
-                 <string>INICIAR TRAMITE</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="label_41">
                 <property name="font">
                  <font>
                   <family>Segoe UI Semibold</family>
@@ -549,28 +539,12 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Ingrese motivo del trámite:</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
-              </item>
-              <item row="1" column="1">
-               <spacer name="verticalSpacer_4">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Minimum</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>56</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_info_ult_tramite_alu">
@@ -590,42 +564,10 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Información del último trámite:</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <spacer name="horizontalSpacer_63">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>273</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="label_ini_tram_alu_fini_en">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Segoe UI Semibold</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Fecha de inicio:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -642,34 +584,8 @@
                 </property>
                </spacer>
               </item>
-              <item row="4" column="1">
-               <widget class="QLabel" name="label_ini_tram_alu_asig_en">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Segoe UI Semibold</family>
-                  <pointsize>11</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Asignado a:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="2">
-               <widget class="QLabel" name="label_ini_tram_alu_asig">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="3">
-               <spacer name="horizontalSpacer_64">
+              <item row="5" column="3">
+               <spacer name="horizontalSpacer_61">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -681,27 +597,63 @@
                 </property>
                </spacer>
               </item>
-              <item row="5" column="1">
-               <widget class="QLabel" name="label_ini_tram_alu_estado_en">
+              <item row="4" column="2">
+               <widget class="QLabel" name="label_ini_tram_alu_asig">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="label_ini_tram_alu_fini_en">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
                 <property name="font">
                  <font>
                   <family>Segoe UI Semibold</family>
-                  <pointsize>11</pointsize>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Estado:</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="5" column="3">
-               <spacer name="horizontalSpacer_61">
+              <item row="6" column="0" colspan="2">
+               <widget class="QLabel" name="label_informe_ini_tram_alu">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI Semibold</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <spacer name="horizontalSpacer_63">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>273</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="4" column="3">
+               <spacer name="horizontalSpacer_64">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -729,20 +681,6 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="2">
-               <widget class="QLabel" name="label_ini_tram_alu_fini">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="2">
-               <widget class="QLabel" name="label_ini_tram_alu_estado">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="3">
                <widget class="QLabel" name="label_error_ini_tram_alu">
                 <property name="styleSheet">
@@ -753,19 +691,10 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0" colspan="2">
-               <widget class="QLabel" name="label_informe_ini_tram_alu">
-                <property name="font">
-                 <font>
-                  <family>Segoe UI Semibold</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
+              <item row="3" column="2">
+               <widget class="QLabel" name="label_ini_tram_alu_fini">
                 <property name="text">
                  <string/>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -776,6 +705,77 @@
                   <width>16777215</width>
                   <height>150</height>
                  </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_42">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI Semibold</family>
+                  <pointsize>17</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>INICIAR TRAMITE</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <spacer name="verticalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Minimum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>56</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="label_41">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI Semibold</family>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Ingrese motivo del trámite:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2">
+               <widget class="QLabel" name="label_ini_tram_alu_estado">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="label_ini_tram_alu_asig_en">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI Semibold</family>
+                  <pointsize>11</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -814,22 +814,6 @@
                  <property name="rightMargin">
                   <number>40</number>
                  </property>
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="label_error_pass_actual_alu">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
                   <widget class="QLineEdit" name="input_modif_pass_actual_alu">
                    <property name="sizePolicy">
@@ -844,9 +828,12 @@
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
+                   </property>
                   </widget>
                  </item>
-                 <item row="3" column="1">
+                 <item row="2" column="1">
                   <widget class="QLabel" name="label_error_new_pass_alu">
                    <property name="maximumSize">
                     <size>
@@ -862,7 +849,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="1">
+                 <item row="1" column="1">
                   <widget class="QLineEdit" name="input_new_pass_alu">
                    <property name="maximumSize">
                     <size>
@@ -870,9 +857,12 @@
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
+                   </property>
                   </widget>
                  </item>
-                 <item row="2" column="0">
+                 <item row="1" column="0">
                   <widget class="QLabel" name="label_49">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">

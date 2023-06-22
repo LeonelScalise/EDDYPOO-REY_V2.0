@@ -99,7 +99,7 @@
           <item row="0" column="0">
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page_iniciar_tramite_profe">
              <layout class="QGridLayout" name="gridLayout_6">
@@ -166,7 +166,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Información del último trámite</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -198,7 +198,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Fecha de inicio:</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -230,7 +230,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Asignado a:</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -269,7 +269,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Estado:</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -806,7 +806,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Logeado como</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

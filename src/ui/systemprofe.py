@@ -87,6 +87,7 @@ class Ui_Systemprofe(object):
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(14)
         self.label_info_ult_tramite_profe.setFont(font)
+        self.label_info_ult_tramite_profe.setText("")
         self.label_info_ult_tramite_profe.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_info_ult_tramite_profe.setObjectName("label_info_ult_tramite_profe")
         self.gridLayout_6.addWidget(self.label_info_ult_tramite_profe, 2, 0, 1, 1)
@@ -98,6 +99,7 @@ class Ui_Systemprofe(object):
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(12)
         self.label_ini_tram_profe_fini_en.setFont(font)
+        self.label_ini_tram_profe_fini_en.setText("")
         self.label_ini_tram_profe_fini_en.setAlignment(QtCore.Qt.AlignCenter)
         self.label_ini_tram_profe_fini_en.setObjectName("label_ini_tram_profe_fini_en")
         self.gridLayout_6.addWidget(self.label_ini_tram_profe_fini_en, 3, 1, 1, 1)
@@ -109,6 +111,7 @@ class Ui_Systemprofe(object):
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(11)
         self.label_ini_tram_alu_asig_en.setFont(font)
+        self.label_ini_tram_alu_asig_en.setText("")
         self.label_ini_tram_alu_asig_en.setAlignment(QtCore.Qt.AlignCenter)
         self.label_ini_tram_alu_asig_en.setObjectName("label_ini_tram_alu_asig_en")
         self.gridLayout_6.addWidget(self.label_ini_tram_alu_asig_en, 4, 1, 1, 1)
@@ -124,6 +127,7 @@ class Ui_Systemprofe(object):
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(11)
         self.label_ini_tram_alu_estado_en.setFont(font)
+        self.label_ini_tram_alu_estado_en.setText("")
         self.label_ini_tram_alu_estado_en.setAlignment(QtCore.Qt.AlignCenter)
         self.label_ini_tram_alu_estado_en.setObjectName("label_ini_tram_alu_estado_en")
         self.gridLayout_6.addWidget(self.label_ini_tram_alu_estado_en, 5, 1, 1, 1)
@@ -346,6 +350,7 @@ class Ui_Systemprofe(object):
         font.setFamily("Segoe UI Semibold")
         font.setPointSize(11)
         self.label_info_usuario_log.setFont(font)
+        self.label_info_usuario_log.setText("")
         self.label_info_usuario_log.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_info_usuario_log.setObjectName("label_info_usuario_log")
         self.gridLayout_2.addWidget(self.label_info_usuario_log, 1, 0, 1, 2)
@@ -359,7 +364,7 @@ class Ui_Systemprofe(object):
         Systemprofe.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Systemprofe)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Systemprofe)
 
     def retranslateUi(self, Systemprofe):
@@ -370,10 +375,6 @@ class Ui_Systemprofe(object):
         self.btn_modif_pass_profe.setText(_translate("Systemprofe", "Cambiar contraseña"))
         self.label_42.setText(_translate("Systemprofe", "INICIAR TRAMITE"))
         self.label_41.setText(_translate("Systemprofe", "Ingrese motivo del trámite:"))
-        self.label_info_ult_tramite_profe.setText(_translate("Systemprofe", "Información del último trámite"))
-        self.label_ini_tram_profe_fini_en.setText(_translate("Systemprofe", "Fecha de inicio:"))
-        self.label_ini_tram_alu_asig_en.setText(_translate("Systemprofe", "Asignado a:"))
-        self.label_ini_tram_alu_estado_en.setText(_translate("Systemprofe", "Estado:"))
         self.btn_ini_tram_profe.setText(_translate("Systemprofe", "Iniciar trámite"))
         self.label_57.setText(_translate("Systemprofe", "CAMBIAR CONTRASEÑA"))
         self.label_49.setText(_translate("Systemprofe", "Nueva contraseña:"))
@@ -385,7 +386,6 @@ class Ui_Systemprofe(object):
         self.label_113.setText(_translate("Systemprofe", "SUBIR NOTA FINAL"))
         self.btn_subir_nota.setText(_translate("Systemprofe", "Registrar"))
         self.label_115.setText(_translate("Systemprofe", "Nota final:"))
-        self.label_info_usuario_log.setText(_translate("Systemprofe", "Logeado como"))
         self.btn_logout_profe.setText(_translate("Systemprofe", "Cerrar sesión"))
 
 

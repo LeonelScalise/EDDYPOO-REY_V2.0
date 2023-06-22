@@ -34,6 +34,7 @@ class Ui_Systemadmin(object):
         font.setBold(False)
         font.setWeight(50)
         self.label_info_usuario_log.setFont(font)
+        self.label_info_usuario_log.setText("")
         self.label_info_usuario_log.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_info_usuario_log.setObjectName("label_info_usuario_log")
         self.gridLayout_2.addWidget(self.label_info_usuario_log, 5, 0, 1, 1)
@@ -2449,7 +2450,6 @@ class Ui_Systemadmin(object):
         _translate = QtCore.QCoreApplication.translate
         Systemadmin.setWindowTitle(_translate("Systemadmin", "MainWindow"))
         self.btn_logout_admin.setText(_translate("Systemadmin", "Cerrar Sesión"))
-        self.label_info_usuario_log.setText(_translate("Systemadmin", "Logeado como"))
         self.cb_alta_admin_sexo.setItemText(0, _translate("Systemadmin", "M"))
         self.cb_alta_admin_sexo.setItemText(1, _translate("Systemadmin", "F"))
         self.label.setText(_translate("Systemadmin", "Nombre y Apellido:"))

@@ -589,7 +589,7 @@ class Administrativo(Persona):
 
 
   def __str__(self):
-      return "{} es administrativo y tiene el legajo {}".format(self.nombre_apellido,self.legajo)
+      return "{} - {}".format(self.nombre_apellido,self.legajo)
 
   def actualizarContraseña(self, institucion:RegistroITBA):
     inicio = True
