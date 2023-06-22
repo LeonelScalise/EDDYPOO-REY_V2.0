@@ -18,11 +18,8 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window = SystemadminWindow()
         self.systemalu_window = SystemaluWindow()
         self.systemprofe_window = SystemprofeWindow()
-        # self.systemadmin_window.cb_alta_mat_carrera
         esValidoLogin = self.btn_login.clicked.connect(self.validLogin)
         self.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal())
-        # self.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal(2))
-        # self.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal(3))
         if esValidoLogin:
             self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
             self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras')
@@ -289,41 +286,14 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.show()
 
 
-    # def comboboxInscripcionMatAlu(self, nivel = 1):
-    #     ventana = getattr(self, 'systemalu_window')
-    #     combobox_padre = getattr(ventana, 'cb_inscrip_mat')
-    #     combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
-    #     lista_valores = []
-    #     alumno = self.systemalu_window.obtenerAlumno()
-        
-    #     if nivel == 1:
-    #         for materia in alumno.carrera.materias:
-    #             lista_valores.append(materia.nombre)
-    #         for valor in lista_valores:
-    #             combobox_padre.addItem(valor)
-    #     else:
-    #         combobox_texto = combobox_padre.currentText()
-    #         for materia in alumno.carrera.materias:
-    #             if materia.nombre == combobox_texto:
-    #                 for comision in materia.comisiones:
-    #                     lista_valores.append(comision.codigo_comision)
-
-    #         combobox_hijo.clear()
-            
-    #         for valor in lista_valores:
-    #             combobox_hijo.addItem(valor)
-        
-    
-
-
     def comboboxSubirNotaFinal(self, nivel = 1):
         ventana = getattr(self, 'systemprofe_window')
         combobox_abuelo = getattr(ventana, 'cb_subir_nota_mat_dispo')
         combobox_padre = getattr(ventana, 'cb_subir_nota_com_a_cargo')
-        # combobox_nieto = getattr(ventana, 'cb_subir_nota_alumnos')
+
         lista_materias = []
         lista_comisiones = []
-        # lista_alumnos = []
+
         profesor = self.systemprofe_window.obtenerProfesor()
         
         for carrera in ITBA.carreras:
@@ -420,100 +390,3 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemprofe_window.cb_subir_nota_com_a_cargo.setCurrentIndex(0)
         self.systemprofe_window.cb_subir_nota_alumnos.setCurrentIndex(0)
         self.systemprofe_window.input_subir_nota.setText("")
-
-        
-    def InscripcionMateriaAlumno(self, nivel=1):
-        ventana = getattr(self, 'systemalu_window')
-        combobox_padre = getattr(ventana, 'cb_inscrip_mat')
-        combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
-        lista_valores = []
-        alumno = self.systemalu_window.obtenerAlumno()
-        materia_selec = None  # Inicializar la variable materia_selec
-        combobox_texto = None
-
-        if nivel == 1:
-            for materia in alumno.carrera.materias:
-                lista_valores.append(materia.nombre)
-            for valor in lista_valores:
-                combobox_padre.addItem(valor)
-        else:
-            combobox_texto = combobox_padre.currentText()
-            for materia in alumno.carrera.materias:
-                if materia.nombre == combobox_texto:
-                    for comision in materia.comisiones:
-                        materia_selec = materia  # Asignar la materia seleccionada a materia_selec
-                        lista_valores.append(comision.codigo_comision)
-
-            combobox_hijo.clear()
-
-            for valor in lista_valores:
-                combobox_hijo.addItem(valor)
-
-           
-           
-    def cambioHorarios(self):
-        alumno = self.systemalu_window.obtenerAlumno()
-
-        ventana = getattr(self, 'systemalu_window')
-        
-        combobox_padre = getattr(ventana, 'cb_inscrip_mat')
-        combobox_padre_texto = combobox_padre.currentText()
-        
-        combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
-        combobox_hijo_texto = combobox_hijo.currentText()
-        
-        lista_comisiones = []
-
-        for materia in alumno.carrera.materias:
-            if materia.nombre == combobox_padre_texto:
-                    for comision in materia.comisiones:
-                        materia_selec = materia  # Asignar la materia seleccionada a materia_selec
-                        lista_comisiones.append(comision)
-
-        if materia_selec is not None:
-                for comision in lista_comisiones:
-                    if comision.codigo_comision == combobox_hijo_texto and dia_horario is not None:
-                        dia_horario = comision.dia_y_horario
-                        break  # Salir del bucle una vez se encuentre la comisión seleccionada 
-           
-        self.systemalu_window.tW_inscr_mat.clearContents()
-
-        if dia_horario is not None:
-              # Establecer el número de filas en la tabla
-            self.systemalu_window.tW_inscr_mat.setRowCount(len(dia_horario["Dia"]))
-
-            #  Insertar los nuevos valores en la tabla
-
-            
-            for i, dia in enumerate(dia_horario["Dia"]):
-                inicio = dia_horario["Horario"][i].split("-")[0]
-                fin = dia_horario["Horario"][i].split("-")[1]
-                self.systemalu_window.tW_inscr_mat.setItem(i, 0, QTableWidgetItem(dia))
-                self.systemalu_window.tW_inscr_mat.setItem(i, 1, QTableWidgetItem(inicio))
-                self.systemalu_window.tW_inscr_mat.setItem(i, 2, QTableWidgetItem(fin))   
-           
-           
-           
-            # combobox_hijo_texto = combobox_hijo.currentText()
-
-            # if materia_selec is not None:
-            #     for comision in materia_selec.comisiones:
-            #         if comision.codigo_comision == combobox_hijo_texto:
-            #             dia_horario = comision.dia_y_horario
-            #             break  # Salir del bucle una vez se encuentre la comisión seleccionada
-                
-            # self.systemalu_window.tW_inscr_mat.clearContents()
-
-            # if dia_horario is not None:
-            #     # Establecer el número de filas en la tabla
-            #     self.systemalu_window.tW_inscr_mat.setRowCount(len(dia_horario["Dia"]))
-
-            # # Insertar los nuevos valores en la tabla
-
-            
-            for i, dia in enumerate(dia_horario["Dia"]):
-                inicio = dia_horario["Horario"][i].split("-")[0]
-                fin = dia_horario["Horario"][i].split("-")[1]
-                self.systemalu_window.tW_inscr_mat.setItem(i, 0, QTableWidgetItem(dia))
-                self.systemalu_window.tW_inscr_mat.setItem(i, 1, QTableWidgetItem(inicio))
-                self.systemalu_window.tW_inscr_mat.setItem(i, 2, QTableWidgetItem(fin))
