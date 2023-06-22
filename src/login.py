@@ -21,10 +21,10 @@ class LoginWindow(QMainWindow, Ui_Login):
 
         esValidoLogin = self.btn_login.clicked.connect(self.validLogin)
 
-        if self.label_tipo.text() == "ALUMNO":
-            lambda : self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMateriaAlumno())
-        elif self.label_tipo.text() == "PROFESOR":
-            lambda : self.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal())
+       # if self.label_tipo.text() == "ALUMNO":
+        #    lambda : self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMateriaAlumno())
+        #elif self.label_tipo.text() == "PROFESOR":
+        #nself.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal())
 
         if esValidoLogin:
             self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
@@ -46,6 +46,8 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window.btn_borrar_item_alta_mat.clicked.connect(lambda: self.borrarItemListWidget('listWidget_alta_mat', 'systemadmin_window'))
         self.systemadmin_window.btn_registro_alta_mat.clicked.connect(lambda: self.registrarAltaMat(ITBA))
         self.systemadmin_window.btn_logout_admin.clicked.connect(self.logout)
+        self.systemadmin_window.btn_registro_carrera.clicked.connect(lambda: self.registroAltaCarrera())
+        self.systemadmin_window.btn_asig_prof_busc_comi.clicked.connect(lambda: self.buscarAsignarProf())
         self.systemalu_window.btn_logout_alu.clicked.connect(self.logout)
         self.systemprofe_window.btn_logout_profe.clicked.connect(self.logout)
     
@@ -502,3 +504,45 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemprofe_window.cb_subir_nota_com_a_cargo.setCurrentIndex(0)
         self.systemprofe_window.cb_subir_nota_alumnos.setCurrentIndex(0)
         self.systemprofe_window.input_subir_nota.setText("")
+
+    def registroAltaCarrera(self):
+        ventana = getattr(self, "systemadmin_window")
+        
+        input_nombre_carrera = getattr(ventana, "input_alta_carrera_nom")
+        input_nombre_carrera_text = input_nombre_carrera.text()
+        
+        input_alta_carrera_director = getattr(ventana, "input_alta_carrera_direc")
+        input_alta_carrera_director_text = input_alta_carrera_director.text()
+
+        input_alta_carrera_creditos = getattr(ventana, "input_alta_carrera_cred")
+        input_alta_carrera_creditos_text = int(input_alta_carrera_creditos.text())
+
+        carrera_creada = Carrera(input_nombre_carrera_text, input_alta_carrera_director_text, input_alta_carrera_creditos_text)
+        ITBA.agregar_carrera(carrera_creada)
+        self.systemadmin_window.label_informe_alta_carrera.setText("Se agregó la carrera de manera exitosa.")
+
+
+    def buscarAsignarProf(self):
+        ventana = getattr(self, "systemadmin_window")
+        input_legajo_prof = getattr(ventana, "input_legajo_profe_asig")
+        input_legajo_prof_text = input_legajo_prof.text().upper()
+        input_cod_mat = getattr(ventana, "input_cod_mat_asig_profe")
+        input_cod_mat_text = input_cod_mat.text()
+
+        for profesor in ITBA.profesores:
+            if profesor.legajo == input_legajo_prof_text:
+                profesor_elegido = profesor
+        
+        self.systemadmin_window.label_asig_prof_prof_selec.setText(f"Seleccionó al profesor {profesor_elegido.nombre_apellido}")
+
+        for carrera in ITBA.carreras:
+            for materia in carrera.materias:
+                if materia.codigo_materia == input_cod_mat_text:
+                    materia_elegida = materia
+        
+        self.systemadmin_window.label_asig_prof__mat_selec.setText(f"Seleccionó a la materia {materia_elegida.nombre}")
+        
+        for comision in materia_elegida.comisiones:
+            self.systemadmin_window.cb_comi_asig_profe.addItem(comision.codigo_comision)
+
+        
