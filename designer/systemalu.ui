@@ -147,7 +147,7 @@
           <item row="0" column="0">
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page_inscr_mat">
              <layout class="QGridLayout" name="gridLayout_4">
@@ -302,14 +302,7 @@
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QListView" name="lv_inscr_alu_mat_dispo">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>200</height>
-                    </size>
-                   </property>
-                  </widget>
+                  <widget class="QComboBox" name="cb_inscrip_mat"/>
                  </item>
                 </layout>
                </widget>

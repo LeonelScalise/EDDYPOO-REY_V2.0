@@ -1,5 +1,5 @@
 from math import inf
-from PyQt5.QtWidgets import QMainWindow, QListWidgetItem, QColorDialog, QFileDialog, QStyle, QListWidget, QVBoxLayout, QWidget, QVBoxLayout, QApplication
+from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QListWidgetItem, QColorDialog, QFileDialog, QStyle, QListWidget, QVBoxLayout, QWidget, QVBoxLayout, QApplication
 from PyQt5.QtCore import Qt, QCoreApplication, QAbstractItemModel, QStringListModel
 
 
@@ -20,16 +20,33 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemprofe_window = SystemprofeWindow()
         # self.systemadmin_window.cb_alta_mat_carrera
         esValidoLogin = self.btn_login.clicked.connect(self.validLogin)
+        
+        self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMateriaAlumno())
+
+
+        # self.btn_login.clicked.connect(lambda: self.handleLoginClicked())
+        # self.systemalu_window.cb_inscrip_mat.currentIndexChanged.connect(lambda: self.handleComboBox1IndexChanged())
+        # self.systemalu_window.cb_inscrip_mat_comi.currentIndexChanged.connect(lambda: self.handleComboBox2IndexChanged())
+
+
+        # if self.label_tipo.text() == "ALUMNO":
+        #     self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMatAlu())
+        # elif self.label_tipo.text() == "PROFESOR":
+        #     pass
+
         if esValidoLogin:
-            self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
-            self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras')
-            self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre')
-            self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia')
+            self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
+            self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras')
+            self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre')
+            self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia')
             self.systemalu_window.ultimoTramiteAlumno()
             self.systemprofe_window.ultimoTramiteProfesor()
-
-        self.systemadmin_window.cb_alta_mat_carrera.currentIndexChanged.connect(lambda: self.cargarDatosCombobox('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre'))
-        self.systemadmin_window.cb_alta_comi_carrera.currentIndexChanged.connect(lambda: self.cargarDatosCombobox('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia'))
+        
+        self.systemalu_window.cb_inscrip_mat.currentIndexChanged.connect(lambda : self.comboboxInscripcionMateriaAlumno(2))
+        self.systemalu_window.cb_inscrip_mat_comi.currentIndexChanged.connect(lambda : self.cambioHorarios())
+        self.systemalu_window.btn_inscr_mat.clicked.connect(lambda : self.inscribirMateria())
+        self.systemadmin_window.cb_alta_mat_carrera.currentIndexChanged.connect(lambda: self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre'))
+        self.systemadmin_window.cb_alta_comi_carrera.currentIndexChanged.connect(lambda: self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia'))
         self.systemadmin_window.btn_add_alta_mat_corre.clicked.connect(lambda: self.agregarTextoListView('listWidget_alta_mat', 'cb_alta_mat_corre', 'systemadmin_window'))
         self.systemadmin_window.btn_borrar_item_alta_mat.clicked.connect(lambda: self.borrarItemListWidget('listWidget_alta_mat', 'systemadmin_window'))
         self.systemadmin_window.btn_registro_alta_mat.clicked.connect(lambda: self.registrarAltaMat(ITBA))
@@ -98,7 +115,7 @@ class LoginWindow(QMainWindow, Ui_Login):
         listWidget = getattr(ventana, nombre_list_widget)
         listWidget.takeItem(listWidget.currentRow())
 
-    def cargarDatosCombobox(self, nombre_combobox_padre, nombre_ventana, institucion, attr_q_buscar1, attr_q_buscar2=None, nombre_combobox_hija=None):
+    def cargarDatosComboboxGeneral(self, nombre_combobox_padre, nombre_ventana, institucion, attr_q_buscar1, attr_q_buscar2=None, nombre_combobox_hija=None):
         lista_valores = []
         institucionPuntoAtributo1 = getattr(institucion, attr_q_buscar1)
 
@@ -123,6 +140,105 @@ class LoginWindow(QMainWindow, Ui_Login):
 
         for valor in lista_valores:
             combobox.addItem(valor.nombre)
+
+
+    def comboboxInscripcionMateriaAlumno(self, nivel=1):
+        ventana = getattr(self, 'systemalu_window')
+        combobox_padre = getattr(ventana, 'cb_inscrip_mat')
+        combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
+        lista_valores = []
+        alumno = self.systemalu_window.obtenerAlumno()
+        materia_selec = None  # Inicializar la variable materia_selec
+        combobox_texto = None
+
+        if nivel == 1:
+            for materia in alumno.carrera.materias:
+                lista_valores.append(materia.nombre)
+            for valor in lista_valores:
+                combobox_padre.addItem(valor)
+        else:
+            combobox_texto = combobox_padre.currentText()
+            for materia in alumno.carrera.materias:
+                if materia.nombre == combobox_texto:
+                    for comision in materia.comisiones:
+                        materia_selec = materia  # Asignar la materia seleccionada a materia_selec
+                        lista_valores.append(comision.codigo_comision)
+
+            combobox_hijo.clear()
+
+            for valor in lista_valores:
+                combobox_hijo.addItem(valor)
+
+
+    def cambioHorarios(self):
+        alumno = self.systemalu_window.obtenerAlumno()
+
+        ventana = getattr(self, 'systemalu_window')
+        
+        combobox_padre = getattr(ventana, 'cb_inscrip_mat')
+        combobox_padre_texto = combobox_padre.currentText()
+        
+        combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
+        combobox_hijo_texto = combobox_hijo.currentText()
+        
+        materia_selec = None
+        dia_horario = None
+        
+        for materia in alumno.carrera.materias:
+            if materia.nombre == combobox_padre_texto:
+                materia_selec = materia
+                break
+
+        if materia_selec is not None:
+            for comision in materia_selec.comisiones:
+                if comision.codigo_comision == combobox_hijo_texto and comision.dia_y_horario is not None:
+                    dia_horario = comision.dia_y_horario
+                    break
+
+        if dia_horario is not None:
+            # Establecer el número de filas en la tabla
+            self.systemalu_window.tW_inscr_mat.setRowCount(len(dia_horario["Dia"]))
+
+            # Insertar los nuevos valores en la tabla
+            for i, dia in enumerate(dia_horario["Dia"]):
+                inicio = dia_horario["Horario"][i].split("-")[0]
+                fin = dia_horario["Horario"][i].split("-")[1]
+                self.systemalu_window.tW_inscr_mat.setItem(i, 0, QTableWidgetItem(dia))
+                self.systemalu_window.tW_inscr_mat.setItem(i, 1, QTableWidgetItem(inicio))
+                self.systemalu_window.tW_inscr_mat.setItem(i, 2, QTableWidgetItem(fin))
+        else:
+            # Si no hay horarios disponibles, vaciar la tabla
+            self.systemalu_window.tW_inscr_mat.clearContents()
+            self.systemalu_window.tW_inscr_mat.setRowCount(0)
+
+    def inscribirMateria(self):
+        alumno = self.systemalu_window.obtenerAlumno()
+        ventana = getattr(self, 'systemalu_window')
+        combobox_materia = getattr(ventana, 'cb_inscrip_mat')
+        combobox_comision = getattr(ventana, 'cb_inscrip_mat_comi')
+        combobox_materia_texto = combobox_materia.currentText()
+        combobox_comision_texto = combobox_comision.currentText()
+
+        for carrera in ITBA.carreras:
+            if carrera.nombre == alumno.carrera.nombre:
+                carrera_alumno = carrera
+
+        for materia in carrera_alumno.materias:
+            if materia.nombre == combobox_materia_texto:
+                materia_elegida = materia
+        
+        for comision in materia_elegida.comisiones:
+            if comision.codigo_comision == combobox_comision_texto:
+                comision_elegida = comision
+
+        comision_elegida.alumnos.append(alumno)
+        materia_elegida.alumnos.append(alumno)
+        alumno.materias_en_curso.append(materia_elegida)
+        alumno.comisiones_en_curso.append(comision_elegida)
+
+        self.systemalu_window.setTextColor('label_informe_inscr_mat', f'Se ha inscripto a {materia_elegida.nombre} en la comision {comision_elegida.codigo_comision} existosamente.', 'green')
+        self.systemalu_window.cb_inscrip_mat.setCurrentIndex(0)
+        self.systemalu_window.cb_inscrip_mat_comi.setCurrentIndex(0)
 
     # Función para establecer el color del texto
     def setTextColor(self, nombre_label, text, color):
@@ -231,8 +347,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     self.systemadmin_window.show()
                     return True
                 else:
-                    self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")
-                    self.label_error.setText()    
+                    self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")   
             
             elif self.label_tipo.text() == "ALUMNO":
                 legajo_es_valido = self.validLegajoAlumno(ITBA, legajo_ingresado)
@@ -268,6 +383,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     return True
                 else:
                     self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")
+
     
     def logout(self):
         ITBA.guardarDatos()

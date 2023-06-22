@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Systemprofe(object):
     def setupUi(self, Systemprofe):
         Systemprofe.setObjectName("Systemprofe")
-        Systemprofe.resize(1090, 600)
+        Systemprofe.resize(1090, 599)
         Systemprofe.setMaximumSize(QtCore.QSize(1090, 16777215))
         self.centralwidget = QtWidgets.QWidget(Systemprofe)
         self.centralwidget.setObjectName("centralwidget")
@@ -325,9 +325,9 @@ class Ui_Systemprofe(object):
         self.btn_subir_nota.setFont(font)
         self.btn_subir_nota.setObjectName("btn_subir_nota")
         self.gridLayout_55.addWidget(self.btn_subir_nota, 5, 3, 1, 1)
-        self.cb_subir_nota_mat_dispo = QtWidgets.QComboBox(self.page_subir_nota)
-        self.cb_subir_nota_mat_dispo.setObjectName("cb_subir_nota_mat_dispo")
-        self.gridLayout_55.addWidget(self.cb_subir_nota_mat_dispo, 1, 2, 1, 1)
+        self.cb_subir_nota_mat_disponible = QtWidgets.QComboBox(self.page_subir_nota)
+        self.cb_subir_nota_mat_disponible.setObjectName("cb_subir_nota_mat_disponible")
+        self.gridLayout_55.addWidget(self.cb_subir_nota_mat_disponible, 1, 2, 1, 1)
         spacerItem13 = QtWidgets.QSpacerItem(251, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_55.addItem(spacerItem13, 1, 3, 1, 1)
         self.label_115 = QtWidgets.QLabel(self.page_subir_nota)
@@ -360,7 +360,7 @@ class Ui_Systemprofe(object):
         Systemprofe.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Systemprofe)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(Systemprofe)
 
     def retranslateUi(self, Systemprofe):

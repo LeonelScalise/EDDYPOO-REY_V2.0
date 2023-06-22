@@ -157,10 +157,9 @@ class Ui_Systemalu(object):
         self.label_info_nombre_en_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_nombre_en_6.setObjectName("label_info_nombre_en_6")
         self.gridLayout_24.addWidget(self.label_info_nombre_en_6, 0, 0, 1, 1)
-        self.lv_inscr_alu_mat_dispo = QtWidgets.QListView(self.frame_6)
-        self.lv_inscr_alu_mat_dispo.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.lv_inscr_alu_mat_dispo.setObjectName("lv_inscr_alu_mat_dispo")
-        self.gridLayout_24.addWidget(self.lv_inscr_alu_mat_dispo, 0, 1, 1, 1)
+        self.cb_inscrip_mat = QtWidgets.QComboBox(self.frame_6)
+        self.cb_inscrip_mat.setObjectName("cb_inscrip_mat")
+        self.gridLayout_24.addWidget(self.cb_inscrip_mat, 0, 1, 1, 1)
         self.gridLayout_4.addWidget(self.frame_6, 1, 0, 1, 2)
         self.label_informe_inscr_mat = QtWidgets.QLabel(self.page_inscr_mat)
         font = QtGui.QFont()
@@ -534,7 +533,7 @@ class Ui_Systemalu(object):
         Systemalu.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Systemalu)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Systemalu)
 
     def retranslateUi(self, Systemalu):
