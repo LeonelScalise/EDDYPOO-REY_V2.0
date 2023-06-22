@@ -114,6 +114,29 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
     
     def showWindowRendimientoAlumno(self):
         self.stackedWidget_5.setCurrentWidget(self.page_rend_alu)
+    
+    # Funcion para resetar los labels de informe
+    def resetLabelsInforme(self):
+        self.label_informe_alta_admin.setText("")
+        self.label_informe_alta_alu.setText("")
+        self.label_informe_alta_profe.setText("")
+        self.label_informe_alta_mat.setText("")
+        self.label_informe_alta_comision.setText("")
+        self.label_informe_alta_carrera.setText("")
+        self.label_informe_baja_admin.setText("")
+        self.label_informe_baja_alumno.setText("")
+        self.label_informe_baja_profe.setText("")
+        self.label_informe_baja_mat.setText("")
+        self.label_informe_baja_comi.setText("")
+        self.label_informe_desasig_profe_comi.setText("")
+        self.label_informe_asig_profe.setText("")
+        self.label_informe_desasig_profe_mat.setText("")
+        self.label_informe_materia.setText("")
+        self.label_informe_modif_aluxcarrera.setText("")
+        self.label_informe_modif_nom_carr.setText("")
+        self.label_informe_modif_nom_mat.setText("")
+        self.label_informe_modif_pass.setText("")
+        self.label_informe_tramite.setText("")
 
     def agarraTextoInput(self, nombre_input): #agarra lo que esta en el input de texto
         input_texto = getattr(self, nombre_input)

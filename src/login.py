@@ -113,27 +113,64 @@ class LoginWindow(QMainWindow, Ui_Login):
                 lista_valores.append(elemento1)
 
         if nombre_combobox_hija is not None:
-            combobox_hija = getattr(ventana, nombre_combobox_hija)
+            combobox = getattr(ventana, nombre_combobox_hija)
         else:
-            combobox_hija = getattr(ventana, nombre_combobox_padre)
+            combobox= getattr(ventana, nombre_combobox_padre)
 
-        combobox_hija.clear()
+        combobox.clear()
 
         for valor in lista_valores:
-            combobox_hija.addItem(valor.nombre)
+            combobox.addItem(valor.nombre)
+
+    # Función para establecer el color del texto
+    def setTextColor(self, nombre_label, text, color):
+        label = getattr(self, nombre_label)
+        label.setText(text)
+        label.setStyleSheet("color: %s;" % color)
+        return label
+    
+    # Funcion para resetar los labels de informe
+    def resetLabelsInforme(self):
+        self.systemadmin_window.label_informe_alta_admin.setText("")
+        self.systemadmin_window.label_informe_alta_alu.setText("")
+        self.systemadmin_window.label_informe_alta_profe.setText("")
+        self.systemadmin_window.label_informe_alta_mat.setText("")
+        self.systemadmin_window.label_informe_alta_comision.setText("")
+        self.systemadmin_window.label_informe_alta_carrera.setText("")
+        self.systemadmin_window.label_informe_baja_admin.setText("")
+        self.systemadmin_window.label_informe_baja_alumno.setText("")
+        self.systemadmin_window.label_informe_baja_profe.setText("")
+        self.systemadmin_window.label_informe_baja_mat.setText("")
+        self.systemadmin_window.label_informe_baja_comi.setText("")
+        self.systemadmin_window.label_informe_desasig_profe_comi.setText("")
+        self.systemadmin_window.label_informe_asig_profe.setText("")
+        self.systemadmin_window.label_informe_desasig_profe_mat.setText("")
+        self.systemadmin_window.label_informe_materia.setText("")
+        self.systemadmin_window.label_informe_modif_aluxcarrera.setText("")
+        self.systemadmin_window.label_informe_modif_nom_carr.setText("")
+        self.systemadmin_window.label_informe_modif_nom_mat.setText("")
+        self.systemadmin_window.label_informe_modif_pass.setText("")
+        self.systemadmin_window.label_informe_tramite.setText("")
+        self.systemprofe_window.label_informe_ini_tram_profe.setText("")
+        self.systemprofe_window.label_informe_modif_pass_profe.setText("")
+        self.systemprofe_window.label_informe_subir_nota.setText("")
+        self.systemalu_window.label_informe_desinscr_mat.setText("")
+        self.systemalu_window.label_informe_inscr_mat.setText("")
+        self.systemalu_window.label_informe_ini_tram_alu.setText("")
+        self.systemalu_window.label_informe_modif_pass_alu.setText("")        
 
     def validLegajoAlumno(self, institucion, legajo_ingresado):
         try:
             legajoingresado = int(legajo_ingresado)
         except ValueError:
-            self.label_error.setText("El legajo ingresado debe ser un numero.")
+            self.setTextColor("label_error","El legajo ingresado debe ser un numero.", "red")
             return False  # volve antes porque el codigo que sigue depende de la conversion
 
         if len(str(legajoingresado)) != 5:
-            self.label_error.setText("El legajo debe ser de 5 digitos.")
+            self.setTextColor("label_error","El legajo debe ser de 5 digitos.", "red")
             return False
         elif legajoingresado not in institucion.legajos_alumnos:
-            self.label_error.setText("El legajo no existe.")
+            self.setTextColor("label_error","El legajo no existe. Intente nuevamente.", "red")
             return False
 
         return True
@@ -142,25 +179,25 @@ class LoginWindow(QMainWindow, Ui_Login):
         try:
             legajoingresado = legajo_ingresado.upper().strip()
         except ValueError:
-            self.label_error.setText("El legajo ingresado debe ser un numero.")
+            self.setTextColor("label_error","El legajo ingresado debe ser un numero.", "red")
             return False  # volve antes porque el codigo que sigue depende de la conversion
         
         if len(legajoingresado) != 7:
-            self.label_error.setText("El legajo debe ser de 7 caracteres.")
+            self.setTextColor("label_error","El legajo debe ser de 7 caracteres.", "red")
             return False
         if rol == 'profesor':
                 if legajoingresado[:2] != "PR":
-                    self.label_error.setText("El legajo debe comenzar con las primeras dos letras de su rol.")
+                    self.setTextColor("label_error","El legajo debe comenzar con las primeras dos letras de su rol.", "red")
                     return False
                 if legajoingresado not in institucion.legajos_profesores:
-                    self.label_error.setText("El legajo no existe, intente nuevamente.")
+                    self.setTextColor("label_error","El legajo no existe. Intente nuevamente.", "red")
                     return False
         else:
                 if legajoingresado[:2] != "AD":
-                    self.label_error.setText("El legajo debe comenzar con las primeras dos letras de su rol.")
+                    self.setTextColor("label_error","El legajo debe comenzar con las primeras dos letras de su rol.", "red")
                     return False
                 if legajoingresado not in institucion.legajos_administrativos:
-                    self.label_error.setText("El legajo no existe, intente nuevamente.") #si no cumple con la condición que se indica levanta un error con un mensaje
+                    self.setTextColor("label_error","El legajo no existe. Intente nuevamente.", "red") #si no cumple con la condición que se indica levanta un error con un mensaje
                     return False
         return True
 
@@ -174,7 +211,7 @@ class LoginWindow(QMainWindow, Ui_Login):
         contraseña_ingresada = self.input_pass.text()
 
         if len(legajo_ingresado) == 0 or len(contraseña_ingresada) == 0:
-            self.label_error.setText("Hay campos sin completar. Intente nuevamente")
+            self.setTextColor("label_error","Hay campos sin completar. Intente nuevamente.", "red")
         else:
             if self.label_tipo.text() == "ADMINISTRATIVO":
                 legajo_es_valido = self.validLegajoAdminyProf(ITBA, legajo_ingresado)
@@ -188,11 +225,12 @@ class LoginWindow(QMainWindow, Ui_Login):
                 
                 if admin_elegido and admin_elegido.contraseña == contraseña_ingresada:
                     self.hide()
-                    self.systemadmin_window.label_info_usuario_log.setText(f"Logeado como {admin_elegido.nombre_apellido}")
+                    self.systemadmin_window.label_info_usuario_log.setText(f"Logeado como {admin_elegido.nombre_apellido} - {admin_elegido.legajo}")
                     self.systemadmin_window.show()
                     return True
                 else:
-                    self.label_error.setText("Los datos son incorrectos. Intente nuevamente")    
+                    self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")
+                    self.label_error.setText()    
             
             elif self.label_tipo.text() == "ALUMNO":
                 legajo_es_valido = self.validLegajoAlumno(ITBA, legajo_ingresado)
@@ -206,11 +244,11 @@ class LoginWindow(QMainWindow, Ui_Login):
                 
                 if alumno_elegido and alumno_elegido.contraseña == contraseña_ingresada:
                     self.hide()
-                    self.systemalu_window.label_info_usuario_log.setText(f"Logeado como {alumno_elegido.nombre_apellido}")
+                    self.systemalu_window.label_info_usuario_log.setText(f"Logeado como {alumno_elegido.nombre_apellido} - {alumno_elegido.legajo}")
                     self.systemalu_window.show()
                     return True
                 else:
-                    self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
+                    self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")
             
             else:
                 legajo_es_valido = self.validLegajoAdminyProf(ITBA, legajo_ingresado, 'profesor')
@@ -223,11 +261,11 @@ class LoginWindow(QMainWindow, Ui_Login):
                 
                 if profesor_elegido and profesor_elegido.contraseña == contraseña_ingresada:
                     self.hide()
-                    self.systemprofe_window.label_info_usuario_log.setText(f"Logeado como {profesor_elegido.nombre_apellido}")
+                    self.systemprofe_window.label_info_usuario_log.setText(f"Logeado como {profesor_elegido.nombre_apellido} - {profesor_elegido.legajo}")
                     self.systemprofe_window.show()
                     return True
                 else:
-                    self.label_error.setText("Los datos son incorrectos. Intente nuevamente")
+                    self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")
     
     def logout(self):
         ITBA.guardarDatos()
@@ -237,7 +275,7 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.label_error.setText("")
         self.input_legajo.setText("")
         self.input_pass.setText("")
+        self.resetLabelsInforme()
         self.show()
-    
 
 
