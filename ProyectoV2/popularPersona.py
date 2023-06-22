@@ -16,6 +16,7 @@ ITBA.agregar_carrera(ingindustrial)
 ITBA.agregar_carrera(inginformatica)
 
 
+
 Leo = Alumno("Leonel Scalise","43046873","M","43046873","fecha",62523,"fecha","Activo",licnegocios)
 Juana = Alumno("Juana Santacreu","4112893","F","4112893","fecha",23424,"fecha","Activo",licnegocios)
 Mati = Alumno("Matías Díaz Cantón","43573875","M","4112893","fecha",62473,"fecha","Activo",licnegocios)
@@ -79,7 +80,10 @@ ITBA.agregar_profesor(Girafa)
 
 ITBA.agregar_administrativo(ElAdmin)
 
-
+licnanalitica.agregar_materia(Analisis_matematico)
+licnanalitica.agregar_materia(Algebra)
 licnegocios.agregar_materia(Analisis_matematico)
 licnegocios.agregar_materia(Algebra)
 licnegocios.agregar_materia(Microeconomia)
+inginformatica.agregar_materia(Analisis_matematico)
+ingindustrial.agregar_materia(Algebra)

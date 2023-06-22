@@ -115,8 +115,6 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
     def showWindowRendimientoAlumno(self):
         self.stackedWidget_5.setCurrentWidget(self.page_rend_alu)
 
-    
-
     def agarraTextoInput(self, nombre_input): #agarra lo que esta en el input de texto
         input_texto = getattr(self, nombre_input)
         texto = input_texto.text().upper()
@@ -211,14 +209,14 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         try:
             DNI_ingresado = int(dni_a)
         except ValueError:
-            label_inf.setText("El dni ingresado debe ser un numero.")
+            label_inf.setText("<span style='color=red;'>El dni ingresado debe ser un numero.</span>")
             return False  # volve antes porque el codigo que sigue depende de la conversion
         if len(str(DNI_ingresado)) != 8:
-            label_inf.setText("El DNI debe tener 8 digitos.")
+            label_inf.setText('<span style="color=red;">El DNI debe tener 8 digitos.</span>')
             return False
         for persona in getattr(institucion, atributo_ad_pr_al):
             if int(persona.dni) == DNI_ingresado:
-                label_inf.setText("El DNI ya existe, inténtalo nuevamente.")
+                label_inf.setText("<span style='color=red;'>El DNI ya existe, inténtalo nuevamente.</span>")
                 return False
         
         return True
