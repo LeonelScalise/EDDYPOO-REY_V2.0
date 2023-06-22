@@ -59,7 +59,15 @@ Microeconomia = Materia("43.74", "Microeconomia", 6, "SDF", [Analisis_matematico
 comi1 = Comision("A", "201F", Girafa, Analisis_matematico, {"Dia":["LUNES", "MIERCOLES"], "Horario":["12:30-14:30", "05:30-08:30"]})
 comi3 = Comision("B", "201F", Girafa, Analisis_matematico, {"Dia":["MARTES"], "Horario":["01:30-14:30"]})
 comi2 = Comision("A", "202F", Girafa, Algebra, {"Dia":["LUNES"], "Horario":["10:30-14:30"]})
+comi3 = Comision("B", "201F", Girafa, Analisis_matematico, {"Dia":["LUNES"], "Horario":["12:30-14:30"]})
 
+comi1.agregar_alumno(alumno1)
+comi1.agregar_alumno(alumno3)
+comi3.agregar_alumno(alumno9)
+comi3.agregar_alumno(alumno7)
+comi3.agregar_alumno(alumno8)
+comi3.agregar_alumno(alumno6)
+comi2.agregar_alumno(alumno4)
 
 Analisis_matematico.comisiones.append(comi1)
 Analisis_matematico.comisiones.append(comi3)
@@ -68,6 +76,7 @@ Algebra.comisiones.append(comi2)
 
 comi1.profesor = Girafa
 comi2.profesor = Girafa
+comi3.profesor = Girafa
 Analisis_matematico.profesores.append(Girafa)
 Algebra.profesores.append(Girafa)
 
@@ -89,3 +98,7 @@ licnegocios.agregar_materia(Algebra)
 licnegocios.agregar_materia(Microeconomia)
 inginformatica.agregar_materia(Analisis_matematico)
 ingindustrial.agregar_materia(Algebra)
+
+alumno8.materias_en_curso.append(Analisis_matematico)
+alumno8.comisiones_en_curso.append(comi3)
+Analisis_matematico.alumnos.append(alumno8)

@@ -84,5 +84,3 @@ licnegocios.agregar_materia(Analisis_matematico)
 licnegocios.agregar_materia(Algebra)
 licnegocios.agregar_materia(Microeconomia)
 
-if __name__ == "__main__":
-    print(Leo.materias_en_curso[0].nombre)

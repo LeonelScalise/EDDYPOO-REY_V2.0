@@ -18,21 +18,13 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window = SystemadminWindow()
         self.systemalu_window = SystemaluWindow()
         self.systemprofe_window = SystemprofeWindow()
-        # self.systemadmin_window.cb_alta_mat_carrera
+
         esValidoLogin = self.btn_login.clicked.connect(self.validLogin)
-        
-        self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMateriaAlumno())
 
-
-        # self.btn_login.clicked.connect(lambda: self.handleLoginClicked())
-        # self.systemalu_window.cb_inscrip_mat.currentIndexChanged.connect(lambda: self.handleComboBox1IndexChanged())
-        # self.systemalu_window.cb_inscrip_mat_comi.currentIndexChanged.connect(lambda: self.handleComboBox2IndexChanged())
-
-
-        # if self.label_tipo.text() == "ALUMNO":
-        #     self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMatAlu())
-        # elif self.label_tipo.text() == "PROFESOR":
-        #     pass
+        if self.label_tipo.text() == "ALUMNO":
+            lambda : self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMateriaAlumno())
+        elif self.label_tipo.text() == "PROFESOR":
+            lambda : self.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal())
 
         if esValidoLogin:
             self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
@@ -47,6 +39,9 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemalu_window.btn_inscr_mat.clicked.connect(lambda : self.inscribirMateria())
         self.systemadmin_window.cb_alta_mat_carrera.currentIndexChanged.connect(lambda: self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre'))
         self.systemadmin_window.cb_alta_comi_carrera.currentIndexChanged.connect(lambda: self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia'))
+        self.systemprofe_window.cb_subir_nota_mat_disponible.currentIndexChanged.connect(lambda: self.comboboxSubirNotaFinal(2))
+        self.systemprofe_window.cb_subir_nota_com_a_cargo.currentIndexChanged.connect(lambda: self.cambiarAlumnos())
+        self.systemprofe_window.btn_subir_nota.clicked.connect(lambda: self.registroNotaFinal())
         self.systemadmin_window.btn_add_alta_mat_corre.clicked.connect(lambda: self.agregarTextoListView('listWidget_alta_mat', 'cb_alta_mat_corre', 'systemadmin_window'))
         self.systemadmin_window.btn_borrar_item_alta_mat.clicked.connect(lambda: self.borrarItemListWidget('listWidget_alta_mat', 'systemadmin_window'))
         self.systemadmin_window.btn_registro_alta_mat.clicked.connect(lambda: self.registrarAltaMat(ITBA))
@@ -147,7 +142,9 @@ class LoginWindow(QMainWindow, Ui_Login):
         combobox_padre = getattr(ventana, 'cb_inscrip_mat')
         combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
         lista_valores = []
-        alumno = self.systemalu_window.obtenerAlumno()
+        if len(self.systemalu_window.label_info_usuario_log.text()) != 0:
+            alumno = self.systemalu_window.obtenerAlumno()
+        
         materia_selec = None  # Inicializar la variable materia_selec
         combobox_texto = None
 
@@ -171,7 +168,8 @@ class LoginWindow(QMainWindow, Ui_Login):
 
 
     def cambioHorarios(self):
-        alumno = self.systemalu_window.obtenerAlumno()
+        if len(self.systemalu_window.label_info_usuario_log.text()) != 0:
+            alumno = self.systemalu_window.obtenerAlumno()
 
         ventana = getattr(self, 'systemalu_window')
         
@@ -212,7 +210,8 @@ class LoginWindow(QMainWindow, Ui_Login):
             self.systemalu_window.tW_inscr_mat.setRowCount(0)
 
     def inscribirMateria(self):
-        alumno = self.systemalu_window.obtenerAlumno()
+        if len(self.systemalu_window.label_info_usuario_log.text()) != 0:
+            alumno = self.systemalu_window.obtenerAlumno()
         ventana = getattr(self, 'systemalu_window')
         combobox_materia = getattr(ventana, 'cb_inscrip_mat')
         combobox_comision = getattr(ventana, 'cb_inscrip_mat_comi')
@@ -242,6 +241,7 @@ class LoginWindow(QMainWindow, Ui_Login):
 
     # Función para establecer el color del texto
     def setTextColor(self, nombre_label, text, color):
+
         label = getattr(self, nombre_label)
         label.setText(text)
         label.setStyleSheet("color: %s;" % color)
@@ -397,3 +397,108 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.show()
 
 
+    def comboboxSubirNotaFinal(self, nivel = 1):
+        ventana = getattr(self, 'systemprofe_window')
+        combobox_abuelo = getattr(ventana, 'cb_subir_nota_mat_disponible')
+        combobox_padre = getattr(ventana, 'cb_subir_nota_com_a_cargo')
+
+        lista_materias = []
+        lista_comisiones = []
+
+        if len(self.systemprofe_window.label_info_usuario_log.text()) != 0:
+            profesor = self.systemprofe_window.obtenerProfesor()
+        
+        for carrera in ITBA.carreras:
+                for materia in carrera.materias:
+                    for profe in materia.profesores:
+                        if profe.legajo == profesor.legajo:
+                            if materia not in lista_materias:
+                                lista_materias.append(materia)
+
+        if nivel == 1:
+            for valor in lista_materias:
+                combobox_abuelo.addItem(valor.nombre)
+
+        elif nivel == 2:
+            combobox_texto = combobox_abuelo.currentText()
+            for materia in lista_materias:
+                if materia.nombre == combobox_texto:
+                    for comision in materia.comisiones:
+                        lista_comisiones.append(comision)
+
+            combobox_padre.clear()
+            
+            for valor in lista_comisiones:
+                combobox_padre.addItem(valor.codigo_comision)
+        
+
+    def cambiarAlumnos(self):
+        ventana = getattr(self, 'systemprofe_window')
+        combobox_mat = getattr(ventana, 'cb_subir_nota_mat_disponible')
+        combobox_mat_texto = combobox_mat.currentText()
+        combobox_comi = getattr(ventana, 'cb_subir_nota_com_a_cargo')
+        combobox_comi_texto = combobox_comi.currentText()
+        combobox_alumnos = getattr(ventana, 'cb_subir_nota_alumnos')
+        lista_alumnos = []
+        for carrera in ITBA.carreras:
+            for materia in carrera.materias:
+                if materia.nombre == combobox_mat_texto:
+                    objeto_materia = materia
+        
+        for comision in objeto_materia.comisiones:
+            if comision.codigo_comision == combobox_comi_texto:
+                for alumno in comision.alumnos:
+                    lista_alumnos.append(alumno)
+        
+        combobox_alumnos.clear()
+
+        for valor in lista_alumnos:
+            combobox_alumnos.addItem(str(valor.legajo))
+
+
+    def registroNotaFinal(self):
+        ventana = getattr(self, 'systemprofe_window')
+        
+        combobox_materia = getattr(ventana, 'cb_subir_nota_mat_disponible')
+        combobox_mat_texto = combobox_materia.currentText()
+        
+        combobox_comision = getattr(ventana, 'cb_subir_nota_com_a_cargo')
+        combobox_comi_texto = combobox_comision.currentText()
+        
+        combobox_alumno = getattr(ventana, 'cb_subir_nota_alumnos')
+        combobox_alumno_texto = combobox_alumno.currentText()
+        
+        input_nota_final = getattr(ventana, 'input_subir_nota')
+        input_nota_final_texto = int(input_nota_final.text())
+
+        for carrera in ITBA.carreras:
+            for materia in carrera.materias:
+                if materia.nombre == combobox_mat_texto:
+                    materia_elegida = materia
+        
+        for comision in materia_elegida.comisiones:
+            if combobox_comi_texto == comision.codigo_comision:
+                comision_elegida = comision
+
+        for alumno in ITBA.alumnos:
+            if str(alumno.legajo) == combobox_alumno_texto:
+                alumno_elegido = alumno
+
+
+
+        if input_nota_final_texto >= 4:
+              alumno_elegido.materias_aprobadas.append(materia_elegida)
+              alumno_elegido.materias_en_curso.remove(materia_elegida)
+              materia_elegida.alumnos.remove(alumno_elegido)
+              alumno_elegido.comisiones_en_curso.remove(comision_elegida)
+              comision_elegida.alumnos.remove(alumno_elegido)
+              alumno_elegido.creditos_aprobados += materia_elegida.creditos
+              print(f'el alumno {alumno_elegido.nombre_apellido} aprobo la materia {materia_elegida.nombre} en la comision {comision_elegida.codigo_comision} con una notasa mamasa de {str(input_nota_final_texto)}')
+        
+        alumno_elegido.historial_academico[materia_elegida.nombre] = input_nota_final_texto
+        
+        self.systemprofe_window.label_informe_subir_nota.setText("Ha subido la nota correctamente.")  #.setStyleSheet("color: %s;" % 'green')
+        self.systemprofe_window.cb_subir_nota_mat_disponible.setCurrentIndex(0)
+        self.systemprofe_window.cb_subir_nota_com_a_cargo.setCurrentIndex(0)
+        self.systemprofe_window.cb_subir_nota_alumnos.setCurrentIndex(0)
+        self.systemprofe_window.input_subir_nota.setText("")

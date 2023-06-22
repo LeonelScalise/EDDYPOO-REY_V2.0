@@ -146,13 +146,6 @@ class SystemaluWindow(QMainWindow, Ui_Systemalu):
             self.label_ini_tram_alu_estado.setText(f"{nuevo_tramite.estado}")
             str(self.input_motivo_tramite_alu.setPlainText(""))
     
-    def cargarDatosComboboxParticular(self):
-        alumno = self.obtenerAlumno()
-        materias_carrera_alumno = alumno.carrera
-        print(materias_carrera_alumno)
-  
-    def asignarAlumnoMateria(self):
-        pass
 
 
 

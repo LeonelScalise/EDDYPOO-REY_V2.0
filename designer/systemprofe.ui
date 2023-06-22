@@ -730,7 +730,11 @@
                </spacer>
               </item>
               <item row="4" column="2">
-               <widget class="QLineEdit" name="input_subir_nota"/>
+               <widget class="QLineEdit" name="input_subir_nota">
+                <property name="maxLength">
+                 <number>2</number>
+                </property>
+               </widget>
               </item>
               <item row="5" column="3">
                <widget class="QPushButton" name="btn_subir_nota">
