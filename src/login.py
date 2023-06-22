@@ -34,38 +34,6 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window.btn_logout_admin.clicked.connect(self.logout)
         self.systemalu_window.btn_logout_alu.clicked.connect(self.logout)
         self.systemprofe_window.btn_logout_profe.clicked.connect(self.logout)
-
-    def validadorDNI(self, dni_a,institucion, atributo_ad_pr_al, label_informe):
-        label_inf = getattr(self, label_informe)
-        try:
-            DNI_ingresado = int(dni_a)
-        except ValueError:
-            label_inf.setText("<span style='color=red;'>El dni ingresado debe ser un numero.</span>")
-            return False  # volve antes porque el codigo que sigue depende de la conversion
-        if len(str(DNI_ingresado)) != 8:
-            label_inf.setText('<span style="color=red;">El DNI debe tener 8 digitos.</span>')
-            return False
-        for persona in getattr(institucion, atributo_ad_pr_al):
-            if int(persona.dni) == DNI_ingresado:
-                label_inf.setText("<span style='color=red;'>El DNI ya existe, inténtalo nuevamente.</span>")
-                return False
-        
-        return True
-    
-    def agarraTextoInput(self, nombre_input): #agarra lo que esta en el input de texto
-        input_texto = getattr(self, nombre_input)
-        texto = input_texto.text().upper()
-        return texto
-    
-    def agarraComboBoxValue(self, nombre_combobox): #agarra el valor seleccionado del combobox
-        combobox = getattr(self, nombre_combobox)
-        valor = combobox.currentText().upper()
-        return valor
-
-    def agarraFechaInput(self, nombre_input_fecha): #agarra la fecha seleccionada en el datetime
-        fecha_gui = getattr(self, nombre_input_fecha)
-        fecha = fecha_gui.date()
-        return fecha
     
 
     def registrarAltaMat(self, institucion):
@@ -98,7 +66,14 @@ class LoginWindow(QMainWindow, Ui_Login):
             materia_nueva = Materia(codigo_texto, nombre__materia_texto, creditos_texto, sede_nombre)
             print(f'Se creo la materia de codigo {codigo_texto}, nombre {nombre__materia_texto} con {creditos_texto} creditos en {sede_nombre}')
         objeto_carrera.materias.append(materia_nueva)
-        print('materia agregada anachei')
+        print(len(objeto_carrera.materias))
+        print('materia agregada :)')
+        self.systemadmin_window.cb_alta_mat_carrera.setCurrentIndex(0)
+        self.systemadmin_window.input_alta_mat_cod.setText("")
+        self.systemadmin_window.input_alta_mat_nom.setText("")
+        self.systemadmin_window.input_alta_mat_cred.setText("")
+        self.systemadmin_window.cb_alta_mat_sede.setCurrentIndex(0)
+        self.systemadmin_window.listWidget_alta_mat.clear()
 
     def agregarTextoListView(self, nombre_list_widget, nombre_Combobox, nombre_ventana):
         ventana = getattr(self, nombre_ventana)
