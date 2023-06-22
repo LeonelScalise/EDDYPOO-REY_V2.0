@@ -24,7 +24,7 @@ El proyecto del Sistema de Gestión Académica se desarrolla utilizando las sigu
 - Base de datos: Pickle
 - Librerias externas: MatPlotlib, Qt-material, PyQt5-tools
   
-Todas las librerias se pueden instalar con pip install <p><code>monospace</code>.</p>
+Todas las librerias se pueden instalar con  <p><code>pip install</code>.</p>
 
 ## Autores
 
