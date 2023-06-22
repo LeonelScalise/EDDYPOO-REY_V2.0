@@ -4,7 +4,7 @@
 
 El Sistema de Gestión Académica (SGA) es un proyecto de software diseñado para administrar y automatizar diversas funciones relacionadas con la gestión académica en una institución educativa. El objetivo principal del proyecto es facilitar la organización y seguimiento de las actividades académicas, tanto para alumnos como para profesores y administrativos.
 
-## Características principales
+## Características principales y funcionalidades
 
 - **Registro y gestión de usuarios:** El sistema permite registrar y gestionar usuarios, incluyendo alumnos, profesores y administrativos. Cada usuario cuenta con información personal, como nombre, apellido, DNI, fecha de nacimiento, sexo, entre otros datos relevantes.
 
@@ -23,8 +23,20 @@ El proyecto del Sistema de Gestión Académica se desarrolla utilizando las sigu
 - Interfaz de usuario: PyQt5
 - Base de datos: Pickle
 - Librerias externas: MatPlotlib, Qt-material, PyQt5-tools
-  
-Todas las librerias se pueden instalar con  <p><code>pip install</code>.</p>
+
+<p> Todas las librerias se pueden instalar con <code>pip install</code>.</p>
+
+
+## Aclaraciones
+
+Se desarrolló una interfaz de usuario (GUI) completa y funcional, pero no se pudo integrar todo el codigo realizado en la versión anterior. Es decir, la versión 1 que tiene el UX/UI en la terminal de Python, posee funcionalidades en términos de validaciones y lógica de programación que todavía no se pudieron implementar en la GUI. Sin embargo, nos parecía pertinente poder aclararlo.
+
+## Testing
+
+**Usuarios** 
+- Administrativo: el legajo es AD10000 y su contraseña 41741232
+- Alumnos: hay varios creados para testear, un ejemplo para ingresar seria con el legajo 62523 y la contraseña 43046873
+- Profesor: el legajo es PR10000 y su contraseña 23123141
 
 ## Autores
 
