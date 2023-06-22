@@ -1,7 +1,9 @@
+# importación de las bibliotecas necesarias
 import os
 import random
 import matplotlib.pyplot as plt
 from string import ascii_uppercase
+# importación de las funciones y clases propias del sistema
 from armado_menu import armado_menu
 from claseRegistroITBA import RegistroITBA
 from claseTramite import Tramite
@@ -12,8 +14,10 @@ from claseCarrera import Carrera
 from validadores import *
 from claseMateria import Materia
 
+# función para limpiar la pantalla de la consola
 clear = lambda : os.system('cls')
 
+# clase Persona con los atributos base
 class Persona:
   def __init__(self, nombre_apellido, dni, sexo, fecha_nac):
     self.dni=dni
@@ -21,8 +25,10 @@ class Persona:
     self.sexo = sexo
     self.fecha_nac = fecha_nac
 
+# clase Alumno que hereda de Persona
 class Alumno(Persona):
 
+  # método de clase para registrar al alumno en el sistema
   def menu_registro_alumno(institucion:RegistroITBA):
     inicio = True
     while inicio:
@@ -30,6 +36,7 @@ class Alumno(Persona):
       legajo_ingresado = validadorLegajoAlumnos(institucion)
       contraseña_ingresada = input("Contraseña: ")
       clear()
+      # Bucle que valida el legajo y contraseña ingresados por el alumno
       for alumno in institucion.alumnos:
           if alumno.legajo == legajo_ingresado and alumno.contraseña == contraseña_ingresada:
             if alumno.sexo == "F":
@@ -44,6 +51,7 @@ class Alumno(Persona):
             if opcion_elegida == 2:
                 inicio = False
 
+  # inicializador de la clase Alumno
   def __init__(self, nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo,fecha_ingreso,estado_alumno="Activo", carrera=None, fecha_baja = None):
     super().__init__(nombre_apellido, dni, sexo, fecha_nac)
     self.legajo = legajo
@@ -61,6 +69,7 @@ class Alumno(Persona):
     self.contraseña = contraseña
 
  
+  # Devuelve una representación legible de la instancia de la clase Alumno cuando se convierte en cadena de texto.
   def __str__(self):
     return self.nombre_apellido
   
@@ -68,6 +77,7 @@ class Alumno(Persona):
   def iniciarTramite(self, institucion):
     id_tramite = 0
 
+    # Verificar si existen trámites previos para asignar un nuevo ID
     if len(institucion.historial_tramites) != 0:
       id_tramite= institucion.historial_tramites[-1].id + 1
     tipo_de_tramite = input("Ingrese el motivo del tramite o 'exit' si no quiere iniciar tramite: ")
@@ -77,6 +87,7 @@ class Alumno(Persona):
       cantidad_administrativos = len(institucion.administrativos)
       i_random = random.randint(0, cantidad_administrativos - 1)
       administrativo_asignado=institucion.administrativos[i_random]
+      # Crear un nuevo objeto Tramite y asignarlo al administrativo y al alumno
       nuevo_tramite = Tramite(id_tramite, self, administrativo_asignado,tipo_de_tramite,"24/4/2023")
       administrativo_asignado.tramites_abiertos_admin.append(nuevo_tramite)
       institucion.tramites_abiertos.append(nuevo_tramite)
@@ -138,8 +149,9 @@ class Alumno(Persona):
     c1 = 0
     c2 = 0
     flag = True
-    
+    # Mostrar las materias disponibles para inscripción
     print(f"\t\t\nMaterias disponibles para inscripcion de {self.nombre_apellido}\n")
+    # Verificar si las materias tienen correlativas y si están disponibles para inscripción
     for materia in self.carrera.materias:
       if len(materia.correlativas) != 0:
         for corre in materia.correlativas:
@@ -245,6 +257,7 @@ class Profesor(Persona):
           if prof.legajo == legajo_ingresado and prof.contraseña == contraseña_ingresada:
             if prof.sexo == "F":
               x = "a"
+              # Retorna el menú de opciones para el profesor
             return armado_menu(f"Bienvenid{x} {prof.nombre_apellido}", ["Subir nota final", "Iniciar Tramite", "Cambiar contraseña", "Volver"], [lambda : prof.displayMateriasActivas(), lambda: prof.iniciarTramite(ITBA), lambda : prof.actualizarContraseña()])
           elif prof.legajo == legajo_ingresado:
               print("La contraseña es incorrecta. Intente nuevamente o consulte en Administración")
@@ -290,7 +303,7 @@ class Profesor(Persona):
     print("Seleccione la comision a la que desea subir la nota final:\n")
     for comision in materia.comisiones:
       if self == comision.profesor:
-        comisiones_a_cargo.append(comision)
+        comisiones_a_cargo.append(comision)  # Agregar comisiones a cargo del profesor
     while flag:
       for comision in comisiones_a_cargo:
         contador += 1
@@ -298,14 +311,14 @@ class Profesor(Persona):
       
       print(f"{contador + 1}. Volver")
 
-      opcion_elegida1 = validador(contador + 1)
+      opcion_elegida1 = validador(contador + 1) # Obtener la opción elegida por el usuario
       clear()
 
       if opcion_elegida1 == contador + 1:
         flag = False
-        comision_elegida = None
+        comision_elegida = None  # El usuario eligió volver, no se selecciona ninguna comisión
       else:
-        comision_elegida = comisiones_a_cargo[opcion_elegida1 - 1]
+        comision_elegida = comisiones_a_cargo[opcion_elegida1 - 1] # Obtener la comisión elegida por el usuario
         clear()
         flag = False
 
@@ -321,24 +334,24 @@ class Profesor(Persona):
           
           print(f"{contador + 1}. Volver")
 
-          opcion_elegida2 = validador(contador + 1)
+          opcion_elegida2 = validador(contador + 1) # Obtener la opción elegida por el usuario
           clear()
 
           if opcion_elegida2 == contador + 1:
-            flag = False
+            flag = False # El usuario eligió volver, finalizo el bucle
           else:
             clear()
-            alumno_elegido = comision_elegida.alumnos[opcion_elegida2 - 1]
-            Nota_final = validadorNota()
-            alumno_elegido.historial_academico[materia.nombre] = Nota_final
+            alumno_elegido = comision_elegida.alumnos[opcion_elegida2 - 1] # Obtener el alumno elegido
+            Nota_final = validadorNota() # Solicitar la nota final al usuario
+            alumno_elegido.historial_academico[materia.nombre] = Nota_final  # Actualizar el historial académico del alumno
             flag = False
-            if Nota_final >= 4:
-              alumno_elegido.materias_aprobadas.append(materia)
-              alumno_elegido.materias_en_curso.remove(materia)
-              materia.alumnos.remove(alumno_elegido)
-              alumno_elegido.comisiones_en_curso.remove(comision_elegida)
-              comision_elegida.alumnos.remove(alumno_elegido)
-              alumno_elegido.creditos_aprobados += materia.creditos
+            if Nota_final >= 4: # El alumno aprobó la materia
+              alumno_elegido.materias_aprobadas.append(materia) # Agregar la materia aprobada al alumno
+              alumno_elegido.materias_en_curso.remove(materia) # Eliminar la materia de las materias en curso
+              materia.alumnos.remove(alumno_elegido) # Eliminar al alumno de la lista de alumnos de la materia
+              alumno_elegido.comisiones_en_curso.remove(comision_elegida) # Eliminar la comisión en curso del alumno
+              comision_elegida.alumnos.remove(alumno_elegido) # Eliminar al alumno de la lista de alumnos de la comisión
+              alumno_elegido.creditos_aprobados += materia.creditos  # Incrementar los créditos aprobados del alumno
               print(f"La nota final se cargó correctamente. {alumno_elegido} aprobó {materia.nombre}")
             else:
               print(f"La nota final se cargó correctamente. {alumno_elegido} no aprobó {materia.nombre}")
