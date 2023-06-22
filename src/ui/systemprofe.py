@@ -315,6 +315,7 @@ class Ui_Systemprofe(object):
         spacerItem12 = QtWidgets.QSpacerItem(51, 20, QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_55.addItem(spacerItem12, 2, 0, 1, 1)
         self.input_subir_nota = QtWidgets.QLineEdit(self.page_subir_nota)
+        self.input_subir_nota.setMaxLength(2)
         self.input_subir_nota.setObjectName("input_subir_nota")
         self.gridLayout_55.addWidget(self.input_subir_nota, 4, 2, 1, 1)
         self.btn_subir_nota = QtWidgets.QPushButton(self.page_subir_nota)
@@ -360,7 +361,7 @@ class Ui_Systemprofe(object):
         Systemprofe.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Systemprofe)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(Systemprofe)
 
     def retranslateUi(self, Systemprofe):
