@@ -18,23 +18,34 @@ El Sistema de Gestión Académica (SGA) es un proyecto de software diseñado par
 
 El proyecto del Sistema de Gestión Académica se desarrolla utilizando las siguientes tecnologías:
 
-- Lenguaje de programación: Python
-- Interfaz de usuario: PyQt5
-- Base de datos: Pickle
-- Librerias externas: MatPlotlib, Qt-material, PyQt5-tools
+- Lenguaje de programación: `Python`
+- Interfaz de usuario: `PyQt5`
+- Base de datos: `Pickle`
+- Librerias externas: `MatPlotlib`, `Qt-material`, `PyQt5-tools`
 
-<p> Todas las librerias se pueden instalar con <code>pip install</code>.</p>
+_Observación:_ Todas las librerias se pueden instalar con `pip install`
 
 ## Testing
 
+**Run Code**
+
+Como hay dos versiones (_ver las aclaraciones_), se crearon dos archivos `main.py`. Uno se encuentra dentro de la carpeta Proyecto y el otro dentro de la carpeta repositorio (EDDYPOO-REY_V2.0). Desde estos dos archivos se debe correr el programa.
+- Para correr la versión 1: `main.py` que se encuentra dentro de la carpeta Proyecto
+- Para correr la versión 2: `main.py` que se encuentra dentro de la carpeta del repositorio
+
 **Usuarios** 
+
 - Administrativo: el legajo es AD10000 y su contraseña 41741232
-- Alumnos: hay varios creados para testear, un ejemplo para ingresar seria con el legajo 62523 y la contraseña 43046873
+- Alumnos: hay varios creados para testing, un ejemplo para ingresar seria con el legajo 62523 y la contraseña 43046873
 - Profesor: el legajo es PR10000 y su contraseña 23123141
+
+_Observación:_ Hay algunos objetos creados para testing que no poseen todos sus atributos completos, esto se debe que fueron utilizados para otro propósito (los objetos usuarios expresados arriba, sí los poseen).
 
 ## Aclaraciones
 
-Se desarrolló una interfaz de usuario (GUI) completa y funcional, pero no se pudo integrar todo el codigo realizado en la versión anterior. Es decir, la versión 1 que tiene el UX/UI en la terminal de Python, posee funcionalidades en términos de validaciones y lógica de programación que todavía no se pudieron implementar en la GUI. Sin embargo, nos parecía pertinente poder aclararlo.
+- La carpeta ProyectoV2 se creó especificamente para poder importar las clases de la versión anterior (solo se hacen modificaciones en los `import`). Lo hicimos de esta manera para tener disponible la versión anterior que tiene todas las funcionalidades y validaciones correspondientes (código que se encuentra en la carpeta Proyecto).
+
+- Se desarrolló una interfaz de usuario (GUI) completa y funcional, pero no se pudo integrar todo el codigo realizado en la versión anterior. Es decir, la versión 1 que tiene el UX/UI en la terminal de Python, posee funcionalidades en términos de validaciones y lógica de programación que todavía no se pudieron implementar en la GUI. Gran parte se llegó a implementar correctamente, de todas formas nos parecía pertinente aclararlo.
 
 ## Autores
 
