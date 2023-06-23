@@ -1946,7 +1946,7 @@ class Ui_Systemadmin(object):
         self.label_asig_prof_prof_selec = QtWidgets.QLabel(self.page_asig_profe)
         self.label_asig_prof_prof_selec.setText("")
         self.label_asig_prof_prof_selec.setObjectName("label_asig_prof_prof_selec")
-        self.gridLayout_22.addWidget(self.label_asig_prof_prof_selec, 2, 3, 1, 1)
+        self.gridLayout_22.addWidget(self.label_asig_prof_prof_selec, 2, 3, 1, 2)
         self.stackedWidget_3.addWidget(self.page_asig_profe)
         self.gridLayout_21.addWidget(self.stackedWidget_3, 0, 0, 1, 1)
         self.gridLayout_20.addWidget(self.frame_4, 0, 1, 1, 1)
@@ -2570,8 +2570,8 @@ class Ui_Systemadmin(object):
         self.tB_motivo_tramite.setHtml(_translate("Systemadmin", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.14286pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.btn_resolver_tramite.setText(_translate("Systemadmin", "Resolver trámite"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_tram), _translate("Systemadmin", "Trámites"))
         self.label_52.setText(_translate("Systemadmin", "Ingrese legajo:"))

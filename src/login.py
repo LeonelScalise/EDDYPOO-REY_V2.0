@@ -19,21 +19,10 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemalu_window = SystemaluWindow()
         self.systemprofe_window = SystemprofeWindow()
 
-        esValidoLogin = self.btn_login.clicked.connect(self.validLogin)
-
-       # if self.label_tipo.text() == "ALUMNO":
-        #    lambda : self.btn_login.clicked.connect(lambda : self.comboboxInscripcionMateriaAlumno())
-        #elif self.label_tipo.text() == "PROFESOR":
-        #nself.btn_login.clicked.connect(lambda: self.comboboxSubirNotaFinal())
-
-        if esValidoLogin:
-            self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
-            self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras')
-            self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre')
-            self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia')
-            self.systemalu_window.ultimoTramiteAlumno()
-            self.systemprofe_window.ultimoTramiteProfesor()
+        self.btn_login.clicked.connect(self.validLogin)
         
+        
+
         self.systemalu_window.cb_inscrip_mat.currentIndexChanged.connect(lambda : self.comboboxInscripcionMateriaAlumno(2))
         self.systemalu_window.cb_inscrip_mat_comi.currentIndexChanged.connect(lambda : self.cambioHorarios())
         self.systemalu_window.btn_inscr_mat.clicked.connect(lambda : self.inscribirMateria())
@@ -146,6 +135,8 @@ class LoginWindow(QMainWindow, Ui_Login):
         lista_valores = []
         if len(self.systemalu_window.label_info_usuario_log.text()) != 0:
             alumno = self.systemalu_window.obtenerAlumno()
+        else:
+            return #no encontró alumno, abort abort
         
         materia_selec = None  # Inicializar la variable materia_selec
         combobox_texto = None
@@ -321,6 +312,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     return False
         return True
 
+
     def validLogin(self):
         try:
             ITBA.cargarDatos()
@@ -344,8 +336,12 @@ class LoginWindow(QMainWindow, Ui_Login):
                         admin_elegido = admin
                 
                 if admin_elegido and admin_elegido.contraseña == contraseña_ingresada:
-                    self.hide()
                     self.systemadmin_window.label_info_usuario_log.setText(f"Logeado como {admin_elegido.nombre_apellido} - {admin_elegido.legajo}")
+                    self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras')
+                    self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras')
+                    self.cargarDatosComboboxGeneral('cb_alta_mat_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_mat_corre')
+                    self.cargarDatosComboboxGeneral('cb_alta_comi_carrera', 'systemadmin_window', ITBA, 'carreras', 'materias', 'cb_alta_comi_materia')
+                    self.hide()
                     self.systemadmin_window.show()
                     return True
                 else:
@@ -364,6 +360,8 @@ class LoginWindow(QMainWindow, Ui_Login):
                 if alumno_elegido and alumno_elegido.contraseña == contraseña_ingresada:
                     self.hide()
                     self.systemalu_window.label_info_usuario_log.setText(f"Logeado como {alumno_elegido.nombre_apellido} - {alumno_elegido.legajo}")
+                    self.systemalu_window.ultimoTramiteAlumno()
+                    self.comboboxInscripcionMateriaAlumno()
                     self.systemalu_window.show()
                     return True
                 else:
@@ -379,8 +377,10 @@ class LoginWindow(QMainWindow, Ui_Login):
                         profesor_elegido = profesor
                 
                 if profesor_elegido and profesor_elegido.contraseña == contraseña_ingresada:
-                    self.hide()
                     self.systemprofe_window.label_info_usuario_log.setText(f"Logeado como {profesor_elegido.nombre_apellido} - {profesor_elegido.legajo}")
+                    self.systemprofe_window.ultimoTramiteProfesor()
+                    self.comboboxSubirNotaFinal()
+                    self.hide()
                     self.systemprofe_window.show()
                     return True
                 else:
