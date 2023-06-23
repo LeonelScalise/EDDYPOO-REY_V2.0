@@ -43,11 +43,13 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.btn_aluactxcarrera.clicked.connect(self.showWindowAlumnosActualesxCarrera)
         self.btn_rend_alu.clicked.connect(self.showWindowRendimientoAlumno)
 
-        #Boton para alta
+        #Boton para registro - Alta
         self.btn_registro_alta_admin.clicked.connect(lambda: self.clickRegistrarAdmin(ITBA, 'input_alta_admin_nombre', 'input_alta_admin_dni', 'dt_alta_admin_fnac','cb_alta_admin_sexo'))
         self.btn_registro_alta_alu.clicked.connect(lambda: self.clickRegistrarAlu(ITBA, 'input_alta_alu_nombre', 'input_alta_alu_dni', 'dt_fnac_alta_alu','cb_sexo_alta_alu'))
         self.btn_registro_alta_profe.clicked.connect(lambda: self.clickRegistrarProfe(ITBA, 'input_alta_profe_nombre', 'input_alta_profe_dni', 'dt_fnac_alta_profe','cb_sexo_alta_profe'))
-
+        
+        #Boton para cambiar contraseña
+        self.btn_cambiar_pass.clicked.connect(self.cambiarContrasena)
 
 
     # Funciones para activar con botones - Alta
@@ -158,6 +160,14 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.label_informe_modif_pass.setText("")
         self.label_informe_tramite.setText("")
 
+    # Función para establecer el color del texto
+    def setTextColor(self, nombre_label, text, color):
+        label = getattr(self, nombre_label)
+        label.setText(text)
+        label.setStyleSheet("color: %s;" % color)
+        return label
+
+
     def agarraTextoInput(self, nombre_input): #agarra lo que esta en el input de texto
         input_texto = getattr(self, nombre_input)
         texto = input_texto.text().upper()
@@ -174,7 +184,7 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         return fecha
     
     
-    def clickRegistrarAdmin(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+    def clickRegistrarAdmin(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo): #registra administrativo
         nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
         dni = self.agarraTextoInput(nombre_input_dni)
         dni_valido = self.validadorDNI(dni, ITBA, 'administrativos', 'label_informe_alta_admin')
@@ -199,7 +209,7 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.cb_alta_admin_sexo.setCurrentIndex(0)
     
 
-    def clickRegistrarAlu(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+    def clickRegistrarAlu(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo): #registra alumno
         nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
         dni = self.agarraTextoInput(nombre_input_dni)
         dni_valido = self.validadorDNI(dni, ITBA, 'alumnos', 'label_informe_alta_alu')
@@ -222,7 +232,7 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.cb_sexo_alta_alu.setCurrentIndex(0)
 
 
-    def clickRegistrarProfe(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo):
+    def clickRegistrarProfe(self, institucion, nombre_input_nombre, nombre_input_dni, nombre_input_fecha, nombre_input_sexo): #registra profe
         nombre_apellido = self.agarraTextoInput(nombre_input_nombre)
         dni = self.agarraTextoInput(nombre_input_dni)
         dni_valido = self.validadorDNI(dni, ITBA, 'profesores', 'label_informe_alta_profe')
@@ -247,7 +257,7 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         self.cb_sexo_alta_profe.setCurrentIndex(0)
     
     
-    def validadorDNI(self, dni_a,institucion, atributo_ad_pr_al, label_informe):
+    def validadorDNI(self, dni_a,institucion, atributo_ad_pr_al, label_informe): #valida que el dni ingresado sea valido (no exista yan tenga 8 digitos, sea num...)
         label_inf = getattr(self, label_informe)
         try:
             DNI_ingresado = int(dni_a)
@@ -264,3 +274,49 @@ class SystemadminWindow(QMainWindow, Ui_Systemadmin):
         
         return True
     
+    # Funcion para cambiar contraseña de todos los usuarios
+    def cambiarContrasena(self):
+
+        self.label_informe_modif_pass.setText("")
+
+        legajo = str(self.agarraTextoInput('input_legajo_modif_pass')).upper()
+        nueva_contra = self.agarraTextoInput('input_new_pass')
+
+        if len(nueva_contra) == 0 or len(legajo) == 0:
+            self.setTextColor('label_informe_modif_pass', 'Hay campos incompletos.', 'red' )
+        else:
+            if legajo in ITBA.legajos_administrativos:
+                for admin in ITBA.administrativos:
+                    if admin.legajo == legajo:
+                        admin_seleccionado = admin
+
+                admin_seleccionado.contraseña = nueva_contra
+                self.setTextColor('label_informe_modif_pass', 'Se ha cambiado la contraseña.', 'green')
+                self.input_legajo_modif_pass.setText('')
+                self.input_new_pass.setText('')
+
+            elif legajo.isdigit():
+                if int(legajo) in ITBA.legajos_alumnos:
+                    for alumno in ITBA.alumnos:
+                        if alumno.legajo == int(legajo):
+                            alumno_seleccionado = alumno
+                            
+                    alumno_seleccionado.contraseña = nueva_contra
+                    self.setTextColor('label_informe_modif_pass', 'Se ha cambiado la contraseña.', 'green')
+                    self.input_legajo_modif_pass.setText('')
+                    self.input_new_pass.setText('')
+                else:
+                    self.setTextColor('label_informe_modif_pass', 'El legajo ingresado no existe.', 'red' )
+
+            elif legajo in ITBA.legajos_profesores:
+                for profe in ITBA.profesores:
+                    if profe.legajo == legajo:
+                        profe_seleccionado=admin
+                profe_seleccionado.contraseña = nueva_contra
+                self.setTextColor('label_informe_modif_pass', 'Se ha cambiado la contraseña.', 'green')
+                self.input_legajo_modif_pass.setText('')
+                self.input_new_pass.setText('')
+            
+            else:
+                self.setTextColor('label_informe_modif_pass', 'El legajo ingresado no existe.', 'red' )
+                

@@ -95,6 +95,7 @@ class Alumno(Persona):
       self.tramites_abiertos_alu.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
 
+#Este metodo permite que un alumno se inscriba en una materia
   def inscribirMateria(self, materia):
     contador = 0
     flag = True
@@ -143,7 +144,7 @@ class Alumno(Persona):
     else:
         print("La materia no posee comisiones por el momento")
 
-
+  # Metodo que despliega las materias a las que un alumno puede inscribirse
   def displayMateriasDisponibles(self):
     materias_disponibles = []
     c1 = 0
@@ -175,7 +176,8 @@ class Alumno(Persona):
       else:
         self.inscribirMateria(materias_disponibles[opcion_elegida - 1])
         flag = False
-
+  
+  # Metodo que permite la desiscripcion de una materia (alumno)
   def desinscribirMateria(self):
     contador = 0
     flag = True
@@ -207,9 +209,11 @@ class Alumno(Persona):
     else:
       print("No se encuentra anotado en ninguna materia")
 
+  # Metodo que muestra el menu de las estadisticas el alumno puede observar en el sistema
   def estadisticasAlumno(self):
     armado_menu("ESTADISTICAS DEL ALUMNO", ['Ver el promedio de la carrera', "Volver"], [lambda : self.verPromedioCarrera()])
   
+  # Metodo que muestra el promedio de carrera del alumno
   def verPromedioCarrera(self):
     suma = 0
     cantidad_notas = 0
@@ -225,12 +229,14 @@ class Alumno(Persona):
     
     else:
       print(f"{self.nombre_apellido} no tiene notas cargadas por el momento")
-
+  
+  # Metodo que le permite al alumno actualizar su contraseña
   def actualizarContraseña(self):
     contraseña_nueva = input("Ingrese su contraseña nueva: ")
     self.contraseña = contraseña_nueva
     print("Su contraseña ha sido modificada exitosamente")
     
+  # Metodo que le permite al alumno ver las materias que tiene aprobadas
   def materiasAprobadas(self):
     flag=True
     print("\t\t\nMaterias Aprobadas\t\t\n")
@@ -244,7 +250,7 @@ class Alumno(Persona):
         if opcion_elegida == 1:
             flag = False
 
-
+#Inicializacion clase Profes
 class Profesor(Persona):
   def menu_registro_profesor(institucion:RegistroITBA):
     inicio = True
@@ -276,7 +282,9 @@ class Profesor(Persona):
     self.tramites_abiertos_profe = []
     self.tramites_resueltos_profe = []
     self.contraseña = contraseña
-  
+
+
+  #Este metodo permite que el profesor inicie un tramite
   def iniciarTramite(self, institucion):
     id_tramite = 0
 
@@ -295,7 +303,9 @@ class Profesor(Persona):
       institucion.historial_tramites.append(nuevo_tramite) 
       self.tramites_abiertos_profe.append(nuevo_tramite)
       return print("Ya iniciaste el tramite")
-  
+
+
+  # Este metodo permite que el profesor suba la nota final de un alumno
   def subirNotaFinal(self, materia):
     comisiones_a_cargo = []
     contador = 0
@@ -358,6 +368,7 @@ class Profesor(Persona):
       else:
         print("No hay alumnos en esta comision")
   
+  # Metodo que despliega las materias activas del profesor
   def displayMateriasActivas(self):
     contador = 0
     materias_activas = []
@@ -384,7 +395,7 @@ class Profesor(Persona):
         flag = False
         self.subirNotaFinal(materias_activas[opcion_elegida - 1])
       
-  
+  #Este metodo permite actualizar la contrasena del profesor
   def actualizarContraseña(self):
     contraseña_nueva = input("Ingrese su contraseña nueva: ")
     self.contraseña = contraseña_nueva
@@ -392,6 +403,7 @@ class Profesor(Persona):
 
 class Administrativo(Persona):
 
+  #Metodo que le permite a un administrativo dar de alta
   def altaAdministrativo(institucion:RegistroITBA):
         
         nombre_apellido = input("Ingrese el nombre y apellido del administrativo: ")
@@ -412,7 +424,8 @@ class Administrativo(Persona):
         clear()
         print(f'El administrativo {nombre_apellido} se ha creado correctamente')
         print(f"El legajo del administrativo es: {legajo} y la contraseña es su dni: {contraseña}")
-
+  
+  # Metodo que valida el registro del administrativo
   def menu_registro_administrativo(institucion:RegistroITBA):
     inicio = True
     while inicio:
@@ -443,7 +456,7 @@ class Administrativo(Persona):
     self.tramites_resueltos_admin = []
     self.contraseña = contraseña
 
-
+#Este metodo permite asignar al profesor a una materia o comision
   def asignarProfesor(self):
     contador = 0
     flag1 = False
@@ -506,6 +519,7 @@ class Administrativo(Persona):
         
           print(f"Se ha asignado correctamente a {profesor_elegido.nombre_apellido} a la comision {comision_elegida.codigo_comision} de {materia_elegida.nombre}")
 
+#Este metodo permite desasignar a un profesor de una materia o comision
   def desasignarProfesor(self):
     materias_de_profesor = []
     c1 = 0
@@ -591,7 +605,7 @@ class Administrativo(Persona):
       else:
         print("El profesor no tiene comisiones a cargo.")
 
-
+#Este metodo permite dar de alta una nueva carrera
   def altaCarrera(self, institucion:RegistroITBA):
     nombre = input("Ingrese el nombre de la carrera:")
     director = input("Ingrese el nombre del director de la carrera:")
@@ -604,6 +618,7 @@ class Administrativo(Persona):
   def __str__(self):
       return "{} es administrativo y tiene el legajo {}".format(self.nombre_apellido,self.legajo)
 
+#Este metodo permite actualizar las contrasenas de todos los usuarios
   def actualizarContraseña(self, institucion:RegistroITBA):
     inicio = True
     opcion_elegida = 0
@@ -638,7 +653,7 @@ class Administrativo(Persona):
       else:
         inicio = False
 
-    
+    #Este metodo permite que el administrativo pueda resolver los tramites que tiene pendiente de los alumnos o profesores
   def resolverTramite(self, tramite): #menu para resolver trámite
     if tramite.alumno != None:
       print(f'\n¿Quiere resolver el tramite "{tramite.tipo_de_tramite}" del alumno {tramite.alumno.nombre_apellido}?\n')
@@ -689,7 +704,7 @@ class Administrativo(Persona):
             return print(f"\nEl tramite {tramite.tipo_de_tramite} ha sido resuelto\n")
             
       clear()   
-    
+    #Este metodo permite mostrar los tramites que tiene disponibles el administrativo para resolver
   def displayTramiteActivo(self):
     resolviendo_tramites = True
     while resolviendo_tramites:
@@ -710,7 +725,7 @@ class Administrativo(Persona):
       else:
         self.resolverTramite(self.tramites_abiertos_admin[opcion_elegida-1])
 
-
+#Este metodo permite dar de alta un alumno nuevo
   def altaAlumno(self):
     nombre = input("Ingrese el nombre del alumno: ")
     dni = validadorDNI()
@@ -747,6 +762,7 @@ class Administrativo(Persona):
         ITBA.agregar_alumno(alumno_nuevo)
         alumno_nuevo.carrera.alumnos_actuales.append(alumno_nuevo)
 
+#Este metodo permite dar de alta un profesor nuevo
   def altaProfesor(self):
     nombre = input("Ingrese el nombre del profesor: ")
     dni = validadorDNI()
@@ -765,6 +781,7 @@ class Administrativo(Persona):
     ITBA.agregar_profesor(profesor_nuevo)
     print(f"El legajo del profesor es: {profesor_nuevo.legajo} y su contraseña es su dni: {contraseña}")
 
+#Este metodo permite dar de baja un alumno
   def bajaAlumno(self):
     legajo_alumno = validadorLegajoAlumnos(ITBA)
     for alumno in ITBA.alumnos:
@@ -773,7 +790,7 @@ class Administrativo(Persona):
         alumno.carrera.alumnos_actuales.remove(alumno)
         alumno.fecha_baja = datetime.strptime(datetime.today().strftime('%d/%m/%Y'), '%d/%m/%Y')
 
-
+#Este metodo permite dar de baja un profesor
   def bajaProfesor(self):
     flag = False
     legajo_profesor = validadorLegajoAdminyProf(ITBA,"profesor")
@@ -797,6 +814,7 @@ class Administrativo(Persona):
       
     ITBA.profesores.remove(profesor_elegido)
 
+#Este metodo permite dar de baja un administrativo
   def bajaAdministrativo(self):
     almacen_tramites=[]
     legajo_admin = validadorLegajoAdminyProf(ITBA)
@@ -823,7 +841,7 @@ class Administrativo(Persona):
             ITBA.administrativos.remove(administrativo)
             print("El Administrativo ha sido dado de baja correctamente")
 
-
+#Este metodo permite crear una nueva materia
   def crearMateria(self):
     contador = 0
     carreras_total = []
@@ -856,6 +874,8 @@ class Administrativo(Persona):
         carrera_elegida.materias.append(nueva_materia)
         print(f"\nLa materia {nueva_materia.nombre} de la carrera {carrera_elegida.nombre} fue creada correctamente. ")
 
+
+#Este metodo permite dar de baja una materia
   def bajaMateria(self): 
     codigo_elegido = validadorCodigoMateria()
 
@@ -887,7 +907,7 @@ class Administrativo(Persona):
     
     print(f"La materia {materia_elegida.nombre} se ha dado de baja con exito.")
 
-
+#Este metodo permite dar de alta una comision
   def crearComision(self):
     contador = 0
     materias_total = []
@@ -934,6 +954,8 @@ class Administrativo(Persona):
 
         print(f"La comision {nueva_comision.codigo_comision} de {materia_elegida.nombre} fue creada correctamente ")
  
+
+ #Este metodo permite dar de baja una comision
   def bajaComision(self):
     comisiones=[]
     materias=[]
@@ -959,7 +981,8 @@ class Administrativo(Persona):
 
   def estadisticasGenerales(self):
     armado_menu("ESTADISTICAS GENERALES", ['Alumnos actuales por carrera','Rendimiento Alumno', "Volver"], [lambda : self.alumnosActualesxCarrera(), lambda : self.histogramaNotasFinalesAlumno()])
-
+  
+  #Metodo que le permite ver los alumnos actuales por carrera al admin
   def alumnosActualesxCarrera(self):
    alumnos=[]
    carreras=[]
@@ -973,6 +996,7 @@ class Administrativo(Persona):
    plt.title(label = "Alumnos por Carrera")
    plt.show()
 
+  #Metodo que le permite ver un histrograma de las notas finales de los alumnos
   def histogramaNotasFinalesAlumno(self):
     legajo_alumno=validadorLegajoAlumnos(ITBA)
     for alumno in ITBA.alumnos:

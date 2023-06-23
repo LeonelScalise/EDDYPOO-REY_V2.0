@@ -31,17 +31,17 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemprofe_window.cb_subir_nota_mat_disponible.currentIndexChanged.connect(lambda: self.comboboxSubirNotaFinal(2))
         self.systemprofe_window.cb_subir_nota_com_a_cargo.currentIndexChanged.connect(lambda: self.cambiarAlumnos())
         self.systemprofe_window.btn_subir_nota.clicked.connect(lambda: self.registroNotaFinal())
-        self.systemadmin_window.btn_add_alta_mat_corre.clicked.connect(lambda: self.agregarTextoListView('listWidget_alta_mat', 'cb_alta_mat_corre', 'systemadmin_window'))
+        self.systemadmin_window.btn_add_alta_mat_corre.clicked.connect(lambda: self.agregarTextoListWidget('listWidget_alta_mat', 'cb_alta_mat_corre', 'systemadmin_window'))
         self.systemadmin_window.btn_borrar_item_alta_mat.clicked.connect(lambda: self.borrarItemListWidget('listWidget_alta_mat', 'systemadmin_window'))
         self.systemadmin_window.btn_registro_alta_mat.clicked.connect(lambda: self.registrarAltaMat(ITBA))
         self.systemadmin_window.btn_logout_admin.clicked.connect(self.logout)
         self.systemadmin_window.btn_registro_carrera.clicked.connect(lambda: self.registroAltaCarrera())
-        self.systemadmin_window.btn_asig_prof_busc_comi.clicked.connect(lambda: self.buscarAsignarProf())
+        self.systemadmin_window.btn_asig_prof_busc_comi.clicked.connect(lambda: self.buscarProfeAsignarProf())
         self.systemalu_window.btn_logout_alu.clicked.connect(self.logout)
         self.systemprofe_window.btn_logout_profe.clicked.connect(self.logout)
     
 
-    def registrarAltaMat(self, institucion):
+    def registrarAltaMat(self, institucion): #da de alta una materia
         ventana = getattr(self, 'systemadmin_window')
         listWidget = getattr(ventana, 'listWidget_alta_mat')
         nombre_carrera = getattr(ventana, 'cb_alta_mat_carrera')
@@ -80,7 +80,7 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window.cb_alta_mat_sede.setCurrentIndex(0)
         self.systemadmin_window.listWidget_alta_mat.clear()
 
-    def agregarTextoListView(self, nombre_list_widget, nombre_Combobox, nombre_ventana):
+    def agregarTextoListWidget(self, nombre_list_widget, nombre_Combobox, nombre_ventana): #agrega valores de un combobox a una QListWidget, pero si ya existe ese valor en la lista, no te deja volver a agregarlo.
         ventana = getattr(self, nombre_ventana)
         combobox = getattr(ventana, nombre_Combobox)
         listWidget = getattr(ventana, nombre_list_widget)
@@ -96,12 +96,12 @@ class LoginWindow(QMainWindow, Ui_Login):
             listWidget.addItem(valor_combobox)
 
 
-    def borrarItemListWidget(self, nombre_list_widget, nombre_ventana):
+    def borrarItemListWidget(self, nombre_list_widget, nombre_ventana): #te permite remover un valor existente de la QListWidget 
         ventana = getattr(self, nombre_ventana)
         listWidget = getattr(ventana, nombre_list_widget)
         listWidget.takeItem(listWidget.currentRow())
 
-    def cargarDatosComboboxGeneral(self, nombre_combobox_padre, nombre_ventana, institucion, attr_q_buscar1, attr_q_buscar2=None, nombre_combobox_hija=None):
+    def cargarDatosComboboxGeneral(self, nombre_combobox_padre, nombre_ventana, institucion, attr_q_buscar1, attr_q_buscar2=None, nombre_combobox_hija=None): #sin usar los valores predeterminados llena un combobox con datos proporcionados por institucion.attr_q_buscar1, si se llenan los parametros "None" te permite llenar un combobox en el cual sus valores dependan de otro combobox padre
         lista_valores = []
         institucionPuntoAtributo1 = getattr(institucion, attr_q_buscar1)
 
@@ -128,7 +128,7 @@ class LoginWindow(QMainWindow, Ui_Login):
             combobox.addItem(valor.nombre)
 
 
-    def comboboxInscripcionMateriaAlumno(self, nivel=1):
+    def comboboxInscripcionMateriaAlumno(self, nivel=1): #llena combobox de materias de alumno en cuestion con obtenerAlumno()  y llena el cb con materias si parametro nivel == 1 y sino, llena el cb de comisiones.
         ventana = getattr(self, 'systemalu_window')
         combobox_padre = getattr(ventana, 'cb_inscrip_mat')
         combobox_hijo = getattr(ventana, 'cb_inscrip_mat_comi')
@@ -160,7 +160,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                 combobox_hijo.addItem(valor)
 
 
-    def cambioHorarios(self):
+    def cambioHorarios(self): #Llena la tabla de los dias, horario de inicio y horario de fin de una comision
         if len(self.systemalu_window.label_info_usuario_log.text()) != 0:
             alumno = self.systemalu_window.obtenerAlumno()
 
@@ -201,7 +201,8 @@ class LoginWindow(QMainWindow, Ui_Login):
             # Si no hay horarios disponibles, vaciar la tabla
             self.systemalu_window.tW_inscr_mat.clearContents()
             self.systemalu_window.tW_inscr_mat.setRowCount(0)
-
+            
+    #Esta funcion permite que un alumno se inscriba en una materia
     def inscribirMateria(self):
         if len(self.systemalu_window.label_info_usuario_log.text()) != 0:
             alumno = self.systemalu_window.obtenerAlumno()
@@ -268,8 +269,10 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemalu_window.label_informe_desinscr_mat.setText("")
         self.systemalu_window.label_informe_inscr_mat.setText("")
         self.systemalu_window.label_informe_ini_tram_alu.setText("")
-        self.systemalu_window.label_informe_modif_pass_alu.setText("")        
+        self.systemalu_window.label_informe_modif_pass_alu.setText("")     
+           
 
+        #Esta funcion valida el legajo del alumno
     def validLegajoAlumno(self, institucion, legajo_ingresado):
         try:
             legajoingresado = int(legajo_ingresado)
@@ -285,7 +288,8 @@ class LoginWindow(QMainWindow, Ui_Login):
             return False
 
         return True
-
+    
+    #Esta funcion valida legajos de administrativo y profesor
     def validLegajoAdminyProf(self, institucion, legajo_ingresado, rol = 'administrativo'):
         try:
             legajoingresado = legajo_ingresado.upper().strip()
@@ -312,7 +316,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                     return False
         return True
 
-
+#Esta funcion retorna true o false dependiendo de si se pudo ingresar correctamente. Ademas carga todas la información necesaria en la GUI dependiendo del tipo de usuario y carga los datos del pickle
     def validLogin(self):
         try:
             ITBA.cargarDatos()
@@ -386,7 +390,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                 else:
                     self.setTextColor("label_error","Los datos son incorrectos. Intente nuevamente.", "red")
 
-    
+    #Esta funcion permite mantener los datos en el programa, guardandolos cuando el mismo se cierra
     def logout(self):
         ITBA.guardarDatos()
         self.systemadmin_window.hide()
@@ -399,6 +403,7 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.show()
 
 
+        #Esta funcion permite cargar los combo box con las materias disponibles y las respectivas comisiones de las materias de un profesor en especifico
     def comboboxSubirNotaFinal(self, nivel = 1):
         ventana = getattr(self, 'systemprofe_window')
         combobox_abuelo = getattr(ventana, 'cb_subir_nota_mat_disponible')
@@ -434,7 +439,7 @@ class LoginWindow(QMainWindow, Ui_Login):
                 combobox_padre.addItem(valor.codigo_comision)
         
 
-    def cambiarAlumnos(self):
+    def cambiarAlumnos(self): #Busca la comision especifica que se selecciono con los combobox de materia y comision del profesor, y llena el combobox de alumnos con los alumnos respectivos de esa comision
         ventana = getattr(self, 'systemprofe_window')
         combobox_mat = getattr(ventana, 'cb_subir_nota_mat_disponible')
         combobox_mat_texto = combobox_mat.currentText()
@@ -458,7 +463,7 @@ class LoginWindow(QMainWindow, Ui_Login):
             combobox_alumnos.addItem(str(valor.legajo))
 
 
-    def registroNotaFinal(self):
+    def registroNotaFinal(self): #Agarra los valores seleccionados de los combobox para subirle la nota a ese alumno en esa materia, luego lo quita de la materia y de la comision si aprobo, y si no aprobo lo mantiene ahi. (despues el alumno puede decidir si irse) 
         ventana = getattr(self, 'systemprofe_window')
         
         combobox_materia = getattr(ventana, 'cb_subir_nota_mat_disponible')
@@ -499,12 +504,14 @@ class LoginWindow(QMainWindow, Ui_Login):
         
         alumno_elegido.historial_academico[materia_elegida.nombre] = input_nota_final_texto
         
-        self.systemprofe_window.label_informe_subir_nota.setText("Ha subido la nota correctamente.")  #.setStyleSheet("color: %s;" % 'green')
+        self.systemprofe_window.label_informe_subir_nota.setText("Ha subido la nota correctamente.")
         self.systemprofe_window.cb_subir_nota_mat_disponible.setCurrentIndex(0)
         self.systemprofe_window.cb_subir_nota_com_a_cargo.setCurrentIndex(0)
         self.systemprofe_window.cb_subir_nota_alumnos.setCurrentIndex(0)
         self.systemprofe_window.input_subir_nota.setText("")
 
+
+        #Esta funcion permite crear una nueva carrera
     def registroAltaCarrera(self):
         ventana = getattr(self, "systemadmin_window")
         
@@ -522,27 +529,13 @@ class LoginWindow(QMainWindow, Ui_Login):
         self.systemadmin_window.label_informe_alta_carrera.setText("Se agregó la carrera de manera exitosa.")
 
 
-    def buscarAsignarProf(self):
+    def buscarProfeAsignarProf(self): #Busca profesor al clickear el boton de "Buscar profesor"
         ventana = getattr(self, "systemadmin_window")
         input_legajo_prof = getattr(ventana, "input_legajo_profe_asig")
         input_legajo_prof_text = input_legajo_prof.text().upper()
-        input_cod_mat = getattr(ventana, "input_cod_mat_asig_profe")
-        input_cod_mat_text = input_cod_mat.text()
 
         for profesor in ITBA.profesores:
             if profesor.legajo == input_legajo_prof_text:
                 profesor_elegido = profesor
-        
+
         self.systemadmin_window.label_asig_prof_prof_selec.setText(f"Seleccionó al profesor {profesor_elegido.nombre_apellido}")
-
-        for carrera in ITBA.carreras:
-            for materia in carrera.materias:
-                if materia.codigo_materia == input_cod_mat_text:
-                    materia_elegida = materia
-        
-        self.systemadmin_window.label_asig_prof__mat_selec.setText(f"Seleccionó a la materia {materia_elegida.nombre}")
-        
-        for comision in materia_elegida.comisiones:
-            self.systemadmin_window.cb_comi_asig_profe.addItem(comision.codigo_comision)
-
-        

@@ -4,7 +4,7 @@ from claseRegistroITBA import RegistroITBA
 from popularInstitucion import ITBA
 from datetime import *
 
-def validadorAula():
+def validadorAula(): #valida que el aula escrita sea una valida e.g. "102F"
     inicio = True
     patron = "^\s*[0-9]{1}[0]{1}[0-9]{1}(F|R|T){1}\s*$"
     while inicio:
@@ -22,7 +22,7 @@ def validadorAula():
     return aula
 
 
-def validadorDNI():
+def validadorDNI(): #valida DNI, existe, tiene 8 digitos, es numero
     inicio = True
     while inicio:
         try:
@@ -42,7 +42,7 @@ def validadorDNI():
     return DNI
 
 
-def validadorDia():
+def validadorDia(): #valida que se ingresen los datos de dia con formato "lunes, viernes, etc."
     inicio = True
     patron = "^\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*([,]{1}\s*(lunes|martes|miercoles|jueves|viernes|sabado){1}\s*)*$"
     while inicio:
@@ -59,7 +59,7 @@ def validadorDia():
     
     return dias
 
-def validadorFecha():
+def validadorFecha(): #valida que sea una fecha de formato "(dd/mm/yyyy)"
     inicio = True
     while inicio:
         try:
@@ -77,7 +77,7 @@ def validadorFecha():
     return datetime.strptime(fecha, '%d/%m/%Y')
 
 
-def validadorHorario(lista_dias):
+def validadorHorario(lista_dias): #valida que se ingresen horarios de formato valido e.g. 12:24-15:20 perdonando errores de espacios y otros. Valida que no se superpongan los horarios en un mismo dia, o que la hora de fin sea menor que la de inicio con ayuda de la funcion de abajo superposicion(horario1, horario2)
     repe = len(lista_dias)
     inicio = True
     patron = fr"^\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])\s*-\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])(\s*,\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])\s*-\s*((0[0-9]|1[0-9]|2[0-3]):[0-5][0-9])){{{repe-1}}}$"
@@ -117,13 +117,13 @@ def validadorHorario(lista_dias):
 
     return lista_horarios
 
-def superposicion(horario1, horario2):
+def superposicion(horario1, horario2): #valida que no se superpongan los horarios
     hora_inicio1, hora_fin1 = horario1.split("-")
     hora_inicio2, hora_fin2 = horario2.split("-")
     return hora_inicio1 < hora_fin2 and hora_fin1 > hora_inicio2
 
 
-def validador(cant_opciones):
+def validador(cant_opciones): #valida que la respuesta ingresada numerica de las opciones mostradas en la terminal sea una valida. e.g si hay 3 opciones no podes elegir 5.
     inicio = True
 
     while inicio: #arranca el loop
@@ -144,7 +144,7 @@ def validador(cant_opciones):
 clear = lambda : os.system('cls')
 
 
-def reintento():
+def reintento(): #si te equivocaste en algo o te arrepentis, para que no te obligue si o si a poner el dato valido, te permite ir para atras.
     print("1. Reintentar\n2. Volver")
     eleccion = validador(2)
     if eleccion == 1:
@@ -156,7 +156,7 @@ def reintento():
         
     
 
-def validadorLegajoAlumnos(institucion):
+def validadorLegajoAlumnos(institucion): #valida legajo de alumno
     inicio = True
 
     while inicio: #arranca el loop
@@ -177,7 +177,7 @@ def validadorLegajoAlumnos(institucion):
             inicio = reintento() 
     return legajoingresado
 
-def validadorLegajoAdminyProf(institucion, rol = 'administrativo'):
+def validadorLegajoAdminyProf(institucion, rol = 'administrativo'): #valida legajo de profesor y administrador
     inicio = True
     while inicio: #arranca el loop
         try: #intenta pedir una respuesta
@@ -207,7 +207,7 @@ def validadorLegajoAdminyProf(institucion, rol = 'administrativo'):
             inicio = reintento() 
     return legajoingresado
 
-def validadorNota():
+def validadorNota(): #valida que la nota sea una valida 1-10
     inicio = True
     while inicio:
         try:
@@ -223,7 +223,7 @@ def validadorNota():
     
     return Nota_final
 
-def validadorSexo():
+def validadorSexo(): #valida que el sexo sea o M o F
     inicio = True
     while inicio:
         try:
@@ -240,7 +240,7 @@ def validadorSexo():
     return sexo
 
 
-def validadorCodigoMateria():
+def validadorCodigoMateria(): #valida que el codigo materia sean 2 digitos seguidos de un punto(".") seguido de 2 digitos
      inicio = True
      patron = "^\s*[0-9]{1}\s*[0-9]{1}\s*\.{1}\s*[0-9]{1}\s*[0-9]{1}\s*$"
      while inicio:
@@ -260,7 +260,7 @@ def validadorCodigoMateria():
                 print(e)
      return codigo_de_materia
 
-def validadorCreditos():
+def validadorCreditos(): #valida creditos
      inicio = True
      while inicio:
         try:
@@ -275,7 +275,7 @@ def validadorCreditos():
              print(e)
      return creditos
 
-def validadorSede():
+def validadorSede(): #valida sede
      inicio = True
      patron = "^(SDF|SDT|SDR)$"
 
@@ -293,7 +293,7 @@ def validadorSede():
              print(e)
      return sede
 
-def validadorCorrelativas():
+def validadorCorrelativas(): #valida las correlativas de una materia
      inicio = True
      while inicio:
         try:
@@ -318,7 +318,7 @@ def validadorCorrelativas():
 
 
         
-def validadorCodigoMateriaExistente(): #seguro haya que cambiar esto, se que no va a funcionar siempre.
+def validadorCodigoMateriaExistente(): #valida el codigo materia existente
     inicio = True
     while inicio:
         try:
@@ -339,23 +339,7 @@ def validadorCodigoMateriaExistente(): #seguro haya que cambiar esto, se que no 
     return cod_materia
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def validadorCodigoComisionExistente(cod_materia):
+def validadorCodigoComisionExistente(cod_materia): #valida el codigo comision existente
     inicio = True
     while inicio:
         try:

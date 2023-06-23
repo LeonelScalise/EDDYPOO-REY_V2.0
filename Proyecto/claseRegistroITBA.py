@@ -48,6 +48,8 @@ class RegistroITBA():
         self.carreras.append(carrera)
         print("Carrera agregada")
 
+
+    # Funcion que utiliza pickle para guardar los datos entre sesiones
     def guardarDatos(self):
       
        with open("DatosITBA","wb") as df:
@@ -66,7 +68,7 @@ class RegistroITBA():
            pickle.dump(self.historial_tramites,df)
 
 
-
+    # Funcion que utiliza pickle para cargar los datos entre sesiones
     def cargarDatos(self):
        with open ("DatosITBA","rb") as lf:
            carreras=pickle.load(lf)

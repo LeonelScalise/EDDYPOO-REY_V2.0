@@ -5,6 +5,8 @@ from claseMateria import Materia
 from claseComision import Comision
 from claseCarrera import Carrera
 
+#Este archivo se utiliza para crear objetos de prueba para el programa
+
 licnegocios=Carrera("Lic. en Gestión de Negocios","Luis", 196)
 licnanalitica=Carrera("Lic. en Analitica Empresarial y Social","Juan", 196)
 inginformatica=Carrera("Ingenieria Informatica","Mario", 250)
@@ -49,6 +51,11 @@ Girafa = Profesor("Profe Girafale", "23123141", "M","23123141", "12/12/12", "PR1
 
 ElAdmin = Administrativo("El Admin","41741232","M","41741232","fecha","AD10000","FECHA INGRESO") # nombre_apellido, dni, sexo, contraseña, fecha_nac, legajo, fecha_ingreso, tramites_abiertos, tramites_resueltos, fecha_baja=None
 
+ITBA.legajos_alumnos.append(Leo.legajo)
+ITBA.legajos_alumnos.append(Juana.legajo)
+ITBA.legajos_alumnos.append(Mati.legajo)
+ITBA.legajos_profesores.append(Girafa.legajo)
+ITBA.legajos_administrativos.append(ElAdmin.legajo)
 
 Analisis_matematico = Materia("55.22", "Analisis matematico", 3, "SDT")
 Algebra = Materia("67.30", "Algebra", 6, "SDF")
@@ -83,4 +90,5 @@ ITBA.agregar_administrativo(ElAdmin)
 licnegocios.agregar_materia(Analisis_matematico)
 licnegocios.agregar_materia(Algebra)
 licnegocios.agregar_materia(Microeconomia)
+
 

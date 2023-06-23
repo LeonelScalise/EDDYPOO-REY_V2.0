@@ -48,7 +48,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_altas">
        <property name="minimumSize">
@@ -103,7 +103,7 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>5</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_alta_admin">
               <layout class="QGridLayout" name="gridLayout">
@@ -4625,6 +4625,9 @@ p, li { white-space: pre-wrap; }
            </item>
            <item>
             <widget class="QPushButton" name="btn_modif_aluxcarr">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="text">
               <string>Cambiar alumno de carrera</string>
              </property>
@@ -4677,39 +4680,7 @@ p, li { white-space: pre-wrap; }
                   <enum>QFrame::Raised</enum>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_34">
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_56">
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI Semibold</family>
-                      <pointsize>11</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Ingrese legajo:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="1" column="1">
-                   <widget class="QLineEdit" name="input_legajo_modif_pass">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>200</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
                    <widget class="QLabel" name="label_error_modif_pass">
                     <property name="maximumSize">
                      <size>
@@ -4725,64 +4696,23 @@ p, li { white-space: pre-wrap; }
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="2">
-                   <widget class="QPushButton" name="btn_buscar_modif_pass">
-                    <property name="maximumSize">
-                     <size>
-                      <width>100</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI Semibold</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Buscar</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="0">
-                   <widget class="QLabel" name="label_info_nombre_en_9">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
+                   <widget class="QLabel" name="label_56">
                     <property name="font">
                      <font>
                       <family>Segoe UI Semibold</family>
-                      <pointsize>12</pointsize>
+                      <pointsize>11</pointsize>
                      </font>
                     </property>
                     <property name="text">
-                     <string>Seleccione un tipo de usuario:</string>
+                     <string>Ingrese legajo:</string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1" colspan="2">
-                   <widget class="QComboBox" name="cb_modif_pass_tipo_usu">
-                    <item>
-                     <property name="text">
-                      <string>Administrativo</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Alumno</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Profesor</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
+                  <item row="2" column="1">
                    <widget class="QLineEdit" name="input_new_pass">
                     <property name="maximumSize">
                      <size>
@@ -4790,9 +4720,12 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="2" column="0">
                    <widget class="QLabel" name="label_49">
                     <property name="font">
                      <font>
@@ -4804,7 +4737,23 @@ p, li { white-space: pre-wrap; }
                      <string>Nueva contraseña:</string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="input_legajo_modif_pass">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>200</width>
+                      <height>16777215</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -4830,7 +4779,7 @@ p, li { white-space: pre-wrap; }
                <item row="2" column="2">
                 <widget class="QPushButton" name="btn_cambiar_pass">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="font">
                   <font>
@@ -5475,7 +5424,7 @@ p, li { white-space: pre-wrap; }
            <item row="0" column="0">
             <widget class="QStackedWidget" name="stackedWidget_5">
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="page_aluactxcarrera">
               <widget class="QLabel" name="label_69">
@@ -5488,7 +5437,7 @@ p, li { white-space: pre-wrap; }
                 </rect>
                </property>
                <property name="text">
-                <string>Alumnos actuales por carrera</string>
+                <string>PROXIMAMENTE. Ver en versión 1</string>
                </property>
               </widget>
              </widget>
@@ -5496,14 +5445,14 @@ p, li { white-space: pre-wrap; }
               <widget class="QLabel" name="label_68">
                <property name="geometry">
                 <rect>
-                 <x>206</x>
-                 <y>180</y>
+                 <x>290</x>
+                 <y>160</y>
                  <width>181</width>
                  <height>20</height>
                 </rect>
                </property>
                <property name="text">
-                <string>Rendimiento alumnos</string>
+                <string>PROXIMAMENTE. Ver en versión 1</string>
                </property>
               </widget>
              </widget>
